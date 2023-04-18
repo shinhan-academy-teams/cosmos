@@ -94,9 +94,14 @@
 			</span>
 			<span id="content2-span">나에게 맞는 스터디를 찾아<br>코드 리뷰도 편하게</span><br>
 			<span id="content3-span">코스모스를 지금 시작하세요!</span><br>
-			<button type="button" class="btn btn-danger">스터디 찾으러 가기</button>
+			<button id="studyList" type="button" class="btn btn-danger">스터디 찾으러 가기</button>
 		</div>
 	</div>
 	<%@ include file="common/footer.jsp" %>
+	<script>
+		document.getElementById('studyList').addEventListener('click', function(){
+			location.href = '${path}/studygroup.do';
+		});
+	</script>
 </body>
 </html>
