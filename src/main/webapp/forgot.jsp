@@ -25,7 +25,7 @@
 	
 	#wrap > div {
 		width: 420px;
-		margin: 128px auto 0px;
+		margin: 128px auto 64px;
 		text-align: center;
 	}
 
@@ -59,13 +59,14 @@
 		margin-bottom: 4px;
 	}
 	
-	#form-bottom-div {
-		margin-top: 24px;
+	#btn-div {
+		display: flex;
+		justify-content: space-between;
 	}
-	
+
 	button[type="submit"] {
 		margin-top: 48px;
-		width: 100%;
+		width: 48%;
 		height: 42px;
 		background-color: rgba(238, 119, 133, 0.6);
 		border: none;
@@ -75,22 +76,6 @@
 		background-color: rgba(238, 119, 133, 1);
 	}
 	
-	#form-bottom-div a {
-		font-size: 15px;
-		font-weight: 300;
-	}
-	
-	#form-bottom-div > span {
-		padding: 0px 24px;
-	}
-	
-	div.separator {
-		display: inline-block;
-		width: 1px;
-		height: 16px;
-		vertical-align: middle;
-		background-color: #D2D2D7;
-	}
 	
 </style>
 </head>
@@ -105,13 +90,13 @@
 			<p>회원 가입시 입력하신 이메일 주소를 입력해주세요.</p>
 			<div>
 				<form action="" >
-					
 					<div class="form-group">
 						<label for="email">이메일</label>
 						<input type="email" class="form-control" id="email" name="email" required placeholder="이메일을 입력해주세요">
 					</div>
-					<div>
-						<button type="submit" class="btn btn-danger">회원가입</button>
+					<div id="btn-div">
+						<button id="find-id-btn" type="submit" class="btn btn-danger">아이디 찾기</button>
+						<button id="find-pw-btn" type="submit" class="btn btn-danger">비밀번호 찾기</button>
 					</div>
 				</form>
 				
