@@ -11,15 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/FrontController")
+@WebServlet("*.do")
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    
-    public FrontController() {
-        super();
-    }
-
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = request.getServletPath();
 		CommonControllerInterface controller = null;
@@ -28,7 +23,7 @@ public class FrontController extends HttpServlet {
 		data.put("request", request);
 		
 		switch(path) {
-		case "/signup":
+		case "/signup.do":
 			controller = new SignUpController();
 			break;
 		default:
