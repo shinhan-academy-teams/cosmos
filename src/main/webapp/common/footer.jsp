@@ -59,7 +59,7 @@
 		margin-right: 36px;
 	}
 	
-	a {
+	#footer-content a {
 		color: #6E6E73;
 		text-decoration: none;
 	}
