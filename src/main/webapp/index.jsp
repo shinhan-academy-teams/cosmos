@@ -1,12 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>cosmos</title>
-	<link rel="icon" type="image/x-icon" href="${path}/images/favicon.ico">
-</head>
+<title>COSMOS</title>
+<link rel="icon" type="image/x-icon" href="${path}/images/favicon.ico">
 <style>
 	@font-face {
 	    font-family: 'GmarketSansMedium';
@@ -20,7 +18,7 @@
 	}
 
 	#wrap {
-		background-color: #ffffff;
+		background-color: #FFFFFF;
 		width: 100%;
 		max-width: 1200px;
 		margin: 0 auto;
@@ -32,35 +30,40 @@
 	}
 	
 	
-	
 	img[alt="home"] {
 		margin: auto 0px;
 		height: 500px;
 	}
 	
 	#home-content {
-		font-family: 'GmarketSansMedium';
 		display: inline-block;
 		text-align: center;
 		margin: auto 0px;
-		margin-left: -80px;
-		font-size: 2em;
+		margin-left: -90px;
+	}
+	
+	#home-content * {
+		font-family: 'GmarketSansMedium';
+	}
+	
+	#content1-span{
+		font-size: 1.8em;
 	}
 	
 	.initial-span {
-		font-family: 'GmarketSansMedium';
-		color: rgb(238, 119, 133);
-		font-weight: 600;
+		color: #EE7785;
+		font-weight: 700;
 	}
 	
 	#content2-span {
-		font-family: 'GmarketSansMedium';
-		font-size: 0.6em;
+		display: inline-block;
+		padding: 6px 0px 12px;
+		font-size: 1.4em;
 	}
 	
 	#content3-span {
-		font-family: 'GmarketSansMedium';
-		font-weight: 600;
+		font-size: 2.1em;
+		font-weight: 700;
 	}
 	
 	#home-content > button {
@@ -69,24 +72,27 @@
 		width: 200px;
 		height: 60px;
 		margin-top: 24px;
-		border-radius: 25px;
+		border-radius: 27px;
 		font-size: 18px;
+		padding-top: 10px;
 	}
 	
 	#home-content > button:hover {
 		background-color: #dc3545;
 	}
 	
-	
-	
 </style>
+</head>
+
 <body id="top">
 	<%@ include file="common/header.jsp" %>
 	<div id="wrap">
-		<img alt="home" src="${path}/images/img_home.png">
+		<img alt="home" src="${path}/images/img-home.png">
 		<div id="home-content">
-			<span class="initial-span">코</span>딩 <span class="initial-span">스</span>터디 <span class="initial-span">모</span>여서 <span class="initial-span">스</span>타트!<br>
-			<span id="content2-span">나에게 맞는 스터디를 찾아<br>코드드 리뷰도 편하게</span><br>
+			<span id="content1-span">
+				<span class="initial-span">코</span>딩 <span class="initial-span">스</span>터디 <span class="initial-span">모</span>여서 <span class="initial-span">스</span>타트!<br>
+			</span>
+			<span id="content2-span">나에게 맞는 스터디를 찾아<br>코드 리뷰도 편하게</span><br>
 			<span id="content3-span">코스모스를 지금 시작하세요!</span><br>
 			<button type="button" class="btn btn-danger">스터디 찾으러 가기</button>
 		</div>
