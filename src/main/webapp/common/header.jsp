@@ -25,12 +25,18 @@
 			</a>
 			<div class="collapse navbar-collapse" id="mynavbar">
 				<ul class="navbar-nav me-auto">
-					<li class="nav-item"><a class="nav-link" href="javascript:void(0)">menu 1 </a></li>
+					<li class="nav-item"><a class="nav-link" href="studygroup.do">전체 스터디</a></li>
 					<li class="nav-item"><a class="nav-link" href="javascript:void(0)">menu 2 </a></li>
 					<li class="nav-item"><a class="nav-link" href="javascript:void(0)">menu 3 </a></li>
 				</ul>
-				<form class="d-flex">
+				<form class="d-flex" action="search.do">
 					<div class="input-group">
+						<!-- 230418 영선 -->
+						<select name="searchOption">
+							<option value="study_name">스터디명</option>
+							<option value = "study_manager">스터디장</option>
+						</select>
+						<!-- 영선 end -->
 						<input type="search" name="search" class="form-control" placeholder="Search">
 						<button id="search-btn" class="btn" type="submit"></button>
 					</div>
