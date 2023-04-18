@@ -41,7 +41,7 @@ public class SignUpController implements CommonControllerInterface {
 		if(result_id<=0 && result_em<=0) {
 			//중복체크 검사 통과한 경우
 			member.setMember_id(request.getParameter("id"));
-			member.setMember_pwd(request.getParameter("pw"));
+			member.setMember_pwd(request.getParameter("pw1"));
 			member.setMember_name(request.getParameter("username"));
 			member.setMember_email(request.getParameter("email"));
 		

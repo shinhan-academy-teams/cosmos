@@ -31,6 +31,10 @@ public class FrontController extends HttpServlet {
 		case "/signin.do":
 			controller = new SignInController();
 			break;
+		//로그아웃
+		case "/signout.do":
+			controller = new SignOutController();
+			break;
 		// 스터디 그룹 목록 보기
 		case "/studygroup.do":
 			controller = new StudyGroupController();
