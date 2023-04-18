@@ -9,15 +9,15 @@
 			</div>
 			<div>
 				<div aria-hidden="true" class="separator"></div>
-				<span class="footer-link"><a target="_blank" href="#">Privacy Policy</a></span>
+				<span class="footer-link"><a target="_self" href="#">Privacy Policy</a></span>
 				<div aria-hidden="true" class="separator"></div>
-				<span class="footer-link"><a target="_blank" href="#">Terms of Use</a></span>
+				<span class="footer-link"><a target="_self" href="#">Terms of Use</a></span>
 				<div aria-hidden="true" class="separator"></div>
 			</div>
 			<div id="logo-footer-div">
-				<img alt="logo-cosmos" src="${path}/images/logo-footer-cosmos.png" onclick="javascript:location.href = '#top'"/>
+				<img alt="logo-cosmos" src="${path}/images/logo-footer-cosmos.png" onclick="javascript:window.open('https://github.com/shinhan-academy-teams/cosmos')"/>
 				<img alt="logo-shinhanDS" src="${path}/images/logo-footer-shinhanDS.png" onclick="javascript:window.open('https://www.shinhands.co.kr')"/>
-				<img alt="logo-kcci" src="${path}/images/logo_footer_kcci.png" onclick="javascript:window.open('https://www.kccistc.net')"/>
+				<img alt="logo-kcci" src="${path}/images/logo-footer-kcci.png" onclick="javascript:window.open('https://www.kccistc.net')"/>
 			</div>
 		</div>
 	</footer>
@@ -45,7 +45,7 @@
 	}
 	
 	#footer-content {
-		color: #6e6e73;
+		color: #6E6E73;
 		font-size: 12px;
 		line-height: 2;
 		width: 100%;
@@ -60,24 +60,27 @@
 	}
 	
 	a {
-		color: #6e6e73;
+		color: #6E6E73;
 		text-decoration: none;
 	}
 	
-	span.footer-link {
-		padding: 0px 24px;
-	}
-	
-	div.separator {
+	.separator {
 		width: 1px;
 		height: 16px;
 		vertical-align: middle;
-		background-color: #d2d2d7;
+		background-color: #D2D2D7;
+	}
+	
+	.footer-link {
+		padding: 0px 24px;
+	}
+	
+	.footer-link > a:hover {
+		color: #6E6E73;
 	}
 	
 	#logo-footer-div {
 		float: right;
-		text-align: right;
 	}
 	
 	#logo-footer-div > img {
