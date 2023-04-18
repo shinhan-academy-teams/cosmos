@@ -30,6 +30,9 @@ public class FrontController extends HttpServlet {
 		// 스터디 그룹 목록 보기
 		case "/studygroup.do":
 			controller = new StudyGroupController();
+		// 스터디명으로 검색하기
+		case "/search.do":
+			controller = new GroupSearchController();
 		default:
 			break;
 		}
