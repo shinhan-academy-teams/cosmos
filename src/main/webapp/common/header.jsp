@@ -15,11 +15,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
+
+
 <div id="nav-wrap">
 	<nav class="navbar navbar-expand-sm navbar-light">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="${path}">
-				<img alt="logo" src="${path}/images/logo-full.png"/>
+				<img alt="logo" src="${path}/images/logo-horizontal.png"/>
 			</a>
 			<div class="collapse navbar-collapse" id="mynavbar">
 				<ul class="navbar-nav me-auto">
@@ -29,13 +31,13 @@
 				</ul>
 				<form class="d-flex">
 					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Search">
+						<input type="search" name="search" class="form-control" placeholder="Search">
 						<button id="search-btn" class="btn" type="submit"></button>
 					</div>
 				</form>
 				<div id="sign-div">
-					<button id="signin" type="button" class="btn btn-outline-light text-dark">Sign in</button>
-					<button id="signup" type="button" class="btn btn-outline-light text-dark">Sign up</button>
+					<button id="sign-in" type="button" class="btn btn-outline-light text-dark">Sign in</button>
+					<button id="sign-up" type="button" class="btn btn-outline-light text-dark">Sign up</button>
 				</div>
 			</div>
 		</div>
@@ -43,8 +45,11 @@
 </div>
 
 <script>
-	document.getElementById('signin').addEventListener('click', function(){
-		location.href = '${path}/login.jsp';
+	document.getElementById('sign-in').addEventListener('click', function(){
+		location.href = '${path}/sign-in.jsp';
+	});
+	document.getElementById('sign-up').addEventListener('click', function(){
+		location.href = '${path}/sign-up.jsp';
 	});
 </script>
 
@@ -60,16 +65,12 @@
 	}
 
 	nav {
-		position: relative;
 		margin: 0 auto;
-		display: flex;
-		align-items: center;
-		padding: 0 16px;
 		height: 64px;
 		width: 100%;
 		max-width: 1200px;
 		z-index: 10000;
-		vertical-align: center;
+		vertical-align: middle;
 	}
 
 	a[class="navbar-brand"] {
@@ -77,7 +78,21 @@
 	}
 
 	img[alt="logo"] {
-		height: 30px;
+		height: 32px;
+	}
+	
+	#mynavbar > ul {
+		margin-left: 12px;
+	}
+	
+	.nav-item {
+		padding: 8px 12px;
+	}
+	
+	.form-control:focus {
+		color: black;
+		border-color: #EE7785;
+		box-shadow: 0 0 0 0 white;
 	}
 	
 	#search-btn {
@@ -85,10 +100,10 @@
 		padding: 10px 0px;
 		background-color: rgba(238, 119, 133, 0.6);
 		border: 0.8px solid rgb(206, 212, 218);
-		background-image: url('${path}/images/search_logo.svg');
+		background-image: url('${path}/images/icon-search.svg');
 		background-repeat: no-repeat;
 		background-position: center;
-		background-size: 50%;
+		background-size: 40%;
 	}
 	
 	#search-btn:hover {
@@ -100,8 +115,9 @@
 	}
 	
 	.btn-outline-light {
+		height: 37.6px;
 		margin-left: 12px;
-		border: 1.2px solid lightgray;
+		border: 1.4px solid #EE7785;
 	}
 	
 </style>
