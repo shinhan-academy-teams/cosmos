@@ -27,7 +27,7 @@
 	
 	#wrap > div {
 		width: 420px;
-		margin: 128px auto 0px;
+		margin: 128px auto 64px;
 		text-align: center;
 	}
 
@@ -106,7 +106,7 @@
 			<h2>COSMOS에 오신 것을 환영합니다.</h2>
 			<p>COSMOS는 알고리즘 그룹 스터디 플랫폼입니다.</p>
 			<div>
-				<form action="">
+				<form action="${path}/signin.do" method="post">
 					<div class="form-group">
 						<label for="id">아이디</label>
 						<input type="text" class="form-control" id="id" name="id" required autofocus>
@@ -120,7 +120,7 @@
 					</div>
 				</form>
 				<div id="form-bottom-div">
-					<span><a href="#">계정찾기</a></span>
+					<span><a href="${path}/forgot.jsp">계정찾기</a></span>
 					<div aria-hidden="true" class="separator"></div>
 					<span><a href="${path}/sign-up.jsp">회원가입</a></span>
 				</div>
