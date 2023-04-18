@@ -27,9 +27,22 @@ public class FrontController extends HttpServlet {
 		case "/signup.do":
 			controller = new SignUpController();
 			break;
+		//로그인
+		case "/signin.do":
+			controller = new SignInController();
+			break;
+		//로그아웃
+		case "/signout.do":
+			controller = new SignOutController();
+			break;
 		// 스터디 그룹 목록 보기
 		case "/studygroup.do":
 			controller = new StudyGroupController();
+			break;
+		// 스터디명으로 검색하기
+		case "/search.do":
+			//controller = new GroupSearchController();
+			break;
 		default:
 			break;
 		}

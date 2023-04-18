@@ -25,11 +25,11 @@
 	
 	#wrap > div {
 		width: 420px;
-		margin: 128px auto 0px;
+		margin: 128px auto 64px;
 		text-align: center;
 	}
 
-	img[alt="vertical-logo"] {
+	img[alt="logo-vertical"] {
 		height: 72px;
 	}
 
@@ -58,9 +58,29 @@
 	label {
 		margin-bottom: 4px;
 	}
-	
-	#form-bottom-div {
-		margin-top: 24px;
+
+	#id-value-valid, #id-value-invalid,
+	#pw1-value-valid, #pw1-value-invalid,
+	#pw2-value-valid, #pw2-value-invalid {
+		display: none;
+	}
+
+	img[alt="valid"] {
+		height: 18px;
+    margin-right: 7px;
+    margin-left: 3px;
+	}
+
+	img[alt="warning"] {
+		height: 24px;
+		margin-right: 4px;
+	}
+
+	.form-group > span {
+    color: gray;
+    font-size: 13px;
+    font-weight: 100;
+		height: 24px;
 	}
 	
 	button[type="submit"] {
@@ -75,23 +95,6 @@
 		background-color: rgba(238, 119, 133, 1);
 	}
 	
-	#form-bottom-div a {
-		font-size: 15px;
-		font-weight: 300;
-	}
-	
-	#form-bottom-div > span {
-		padding: 0px 24px;
-	}
-	
-	div.separator {
-		display: inline-block;
-		width: 1px;
-		height: 16px;
-		vertical-align: middle;
-		background-color: #D2D2D7;
-	}
-	
 </style>
 </head>
 <body id="top">
@@ -99,23 +102,29 @@
 	<div id="wrap">
 		<div>
 			<a href="${path}">
-				<img alt="vertical-logo" src="${path}/images/logo-vertical.png"/>
+				<img alt="logo-vertical" src="${path}/images/logo-vertical.png"/>
 			</a>
 			<h2>COSMOS에 오신 것을 환영합니다.</h2>
 			<p>COSMOS는 알고리즘 그룹 스터디 플랫폼입니다.</p>
 			<div>
-				<form action="" > <!-- https://www.w3schools.com/bootstrap5/bootstrap_form_validation.php -->
+				<form action="${path}/signup.do" method="post"> <!-- https://www.w3schools.com/bootstrap5/bootstrap_form_validation.php -->
 					<div class="form-group">
 						<label for="id">아이디</label>
 						<input type="text" class="form-control" id="id" name="id" required placeholder="4~15자 이내로 입력해주세요">
+						<span id="id-value-valid"><img alt="valid" src="${path}/images/icon-valid.png">Valid.</span>
+						<span id="id-value-invalid"><img alt="warning" src="${path}/images/icon-warning.png">4~15자 이내로 입력해주세요.</span>
 					</div>
 					<div class="form-group">
-						<label for="pw">비밀번호</label>
-						<input type="password" class="form-control" id="pw" name="pw" required placeholder="최소 6자 이상(영문, 숫자 필수)">
+						<label for="pw1">비밀번호</label>
+						<input type="password" class="form-control" id="pw1" name="pw1" required placeholder="최소 6자 이상(영문, 숫자 필수)">
+						<span id="pw1-value-valid"><img alt="valid" src="${path}/images/icon-valid.png">Valid.</span>
+						<span id="pw1-value-invalid"><img alt="warning" src="${path}/images/icon-warning.png">영문, 숫자를 포함하여 최소 6자 이상 입력해주세요.</span>
 					</div>
 					<div class="form-group">
-						<label for="pw-check">비밀번호 확인</label>
-						<input type="password" class="form-control" id="pw-check" name="pw-check" required placeholder="동일한 비밀번호를 입력해주세요">
+						<label for="pw2">비밀번호 확인</label>
+						<input type="password" class="form-control" id="pw2" name="pw2" required placeholder="동일한 비밀번호를 입력해주세요">
+						<span id="pw2-value-valid"><img alt="valid" src="${path}/images/icon-valid.png">Valid.</span>
+						<span id="pw2-value-invalid"><img alt="warning" src="${path}/images/icon-warning.png">Text</span>
 					</div>
 					<div class="form-group">
 						<label for="email">이메일</label>
@@ -125,21 +134,94 @@
 						<label for="username">실명</label>
 						<input type="text" class="form-control" id="username" name="username" required placeholder="홍길동">
 					</div>
-					<!-- <div class="form-group">
-						<label for="nickname">닉네임</label>
-						<input type="text" class="form-control" id="nickname" name="nickname" required placeholder="영문, 한글, 숫자를 20자 이하로 입력해주세요">
-					</div> -->
 					<div>
 						<button type="submit" class="btn btn-danger">회원가입</button>
 					</div>
 				</form>
-				<!-- <div id="form-bottom-div">
-					<span><a href="#">계정찾기</a></span>
-					<div aria-hidden="true" class="separator"></div>
-					<span><a href="#">회원가입</a></span>
-				</div> -->
 			</div>
 		</div>
 	</div>
+
+	<script>
+		// 아이디 처리
+		$('#id').keyup(func_id_check); // 아이디 input창에 입력이 생길 때
+		function func_id_check() { // 아이디 조건 체크 메서드
+			let length = $(this).val().length; // 입력된 id 길이
+
+			if(length == 0) { // 길이 0이면 두 알림 숨김.
+				func_id_msg_display_none();
+			} else {
+				if(length < 4 || length > 15) { // 길이가 4미만이거나 15초과이면 valid 숨기고 invalid 표시.
+					$('#id-value-valid').css('display', 'none');
+					$('#id-value-invalid').css('display', 'inline-block');
+				} else { // 길이가 4이상이고 15이하이면 invalid 숨기고 valid 표시.
+					$('#id-value-invalid').css('display', 'none');
+					$('#id-value-valid').css('display', 'inline-block');
+				}
+			}
+		}
+		function func_id_msg_display_none() { // 두 알림 숨기기 메서드
+			$('#id-value-valid').css('display', 'none');
+			$('#id-value-invalid').css('display', 'none');
+		}
+
+		// 비밀번호 처리
+		let regexNumber = /[0-9]/; // 정규표현식 숫자
+		let regexAlphabet = /[a-zA-Z]/; // 정규표현식 문자
+		let pw1isOk = false;
+		$('#pw1').keyup(func_pw1_check); // 비밀번호-1 조건 체크
+		function func_pw1_check() { // 아이디 조건 체크 메서드
+			let pw1 = $(this).val(); // 입력된 pw1
+			if(pw1.length == 0) { // 길이 0이면 두 알림 숨김.
+				func_pw1_msg_display_none();
+				pw1isOk = false;
+			} else {
+				if(pw1.length < 6 || !regexNumber.test(pw1) || !regexAlphabet.test(pw1)) { // 길이가 6미만이거나 영문, 숫자 포함하지 않으면 valid 숨기고 invalid 표시.
+					$('#pw1-value-valid').css('display', 'none');
+					$('#pw1-value-invalid').css('display', 'inline-block');
+					pw1isOk = false;
+				} else { // 비밀번호 조건 통과시 invalid 숨기고 valid 표시.
+					$('#pw1-value-invalid').css('display', 'none');
+					$('#pw1-value-valid').css('display', 'inline-block');
+					pw1isOk = true;
+				}
+			}
+		}
+		function func_pw1_msg_display_none() { // 두 알림 숨기기 메서드
+			$('#pw1-value-valid').css('display', 'none');
+			$('#pw1-value-invalid').css('display', 'none');
+		}
+
+		$('#pw1').keyup(func_pw2_check);
+		$('#pw2').keyup(func_pw2_check);
+		function func_pw2_check() { // 비밀번호-2 조건 체크
+			let pw2 = $('#pw2').val(); // 입력된 pw2
+
+			if(pw2.length == 0) { // 길이 0이면 두 알림 숨김.
+				func_pw2_msg_display_none();
+			} else {
+				if(pw1isOk){ // 비밀번호-1 조건 통과 시
+					if($('#pw1').val() === pw2){ // pw1과 pw2가 같으면
+						$('#pw2-value-invalid').css('display', 'none');
+						$('#pw2-value-valid').css('display', 'inline-block');
+					} else { // pw1과 pw2가 다르면
+						$('#pw2-value-valid').css('display', 'none');
+						$('#pw2-value-invalid').html('<img alt="warning" src="${path}/images/icon-warning.png">동일한 비밀번호를 입력해주세요.');
+						$('#pw2-value-invalid').css('display', 'inline-block');
+					}
+				} else { // 비밀번호-1 조건 불충족시
+					$('#pw2-value-valid').css('display', 'none');
+					$('#pw2-value-invalid').html('<img alt="warning" src="${path}/images/icon-warning.png">조건에 맞춰 비밀번호를 다시 입력해주세요.');
+					$('#pw2-value-invalid').css('display', 'inline-block');
+				}
+			}
+		}
+		function func_pw2_msg_display_none() { // 두 알림 숨기기 메서드
+			$('#pw2-value-valid').css('display', 'none');
+			$('#pw2-value-invalid').css('display', 'none');
+		}
+
+
+	</script>
 </body>
 </html>
