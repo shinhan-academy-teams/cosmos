@@ -127,5 +127,21 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		// 회원가입하고나서 메세지 알림창
+		// 비밀번호 초기화(임시 비밀번호 이메일로 발송)하고나서 메세지 알림창
+		$(function(){
+			let message = "${message}";
+			if(message == "from SignUpController"){
+				alert('회원가입이 정상적으로 처리되었습니다.');
+				message = null;
+			} else if(message == "from FindPwdController") {
+				alert('임시 비밀번호가 발송되었습니다.\n이메일을 확인해주세요.\n마이페이지를 통해 비밀번호를 수정할 수 있습니다.');
+				message = null;
+			}
+		})
+	</script>
+	
+	<c:set var="message" value="" scope="session"/>
 </body>
 </html>
