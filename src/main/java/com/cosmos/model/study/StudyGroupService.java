@@ -26,5 +26,10 @@ public class StudyGroupService {
 	public List<StudyGroupVO> searchGroupByKeyword(String keyword) {
 		return studyGroupDao.searchGroupByKeyword(keyword);
 	}
+	
+	// 스터디 아이디로 스터디 그룹 정보 가져오기
+	public StudyGroupVO getGroupInfo(int studyNo) {
+		return studyGroupDao.getGroupInfo(studyNo);
+	}
 
 }

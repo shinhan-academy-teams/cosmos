@@ -118,6 +118,37 @@ public class StudyGroupDAO {
 	/*
 	 * 
 	 */
+	
+	// 스터디 아이디로 스터디 그룹 정보 가져오기
+	public StudyGroupVO getGroupInfo(int studyNo) {
+		String sql = "select studygroup.*, member_name from studygroup join members "
+				+ "on studygroup.sg_manager = members.member_no "
+				+ "where sg_no=" + studyNo;
+		StudyGroupVO studyGroup = new StudyGroupVO();
+		conn = OracleUtil.getConnection();
+		try {
+			statement = conn.createStatement();
+			result = statement.executeQuery(sql);
+			while (result.next()) {
+				studyGroup.setSg_info(result.getString("sg_info"));
+				// 멤버(추후 추가)
+				studyGroup.setSg_lang(result.getString("sg_lang"));
+				studyGroup.setSg_name(result.getString("sg_name"));
+				studyGroup.setManager_name(result.getString("member_name"));
+				studyGroup.setSg_created(result.getDate("sg_created"));
+				// 현재 참여 인원 (추후 추가)
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleUtil.dbDisconnect(result, statement, conn);
+		}
+		return studyGroup;
+	}
+	
+	/*
+	 * 
+	 */
 
 	// 스터디 그룹 객체를 생성해서 반환해주는 메서드
 	private StudyGroupVO getOneGroup(ResultSet result) throws SQLException {

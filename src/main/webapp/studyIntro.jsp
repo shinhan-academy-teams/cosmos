@@ -74,23 +74,19 @@
 		<div id="contents">
 			<span class="header">그룹 소개</span>
 			<div class="introduce">
-				<p>sfdahflhslhkdfssdffsdfsdsdffsㅁㄴ여ㅣㅁ노허암ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ이ㅗㅕㅋㅇ펴ㅗㅋ티ㅕㅠㅕ뫄나ㅗ나ㅘㅗ파ㅗㅓㅍㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊ파이ㅘ몰어나미홍너ㅏㅎ모나ㅓㄹㅇㅁㄴ잏ㅇㄴㅁㅎ리ㅏㅁ농라ㅓㄴㅇㅎㅁ니홈ㄴ려앟ㄴㅇ모험ㄴ이롬날호어함ㅇ놓ㄴㅁㄹㅇㅁㄴㄹㄴㅁㅇㄴㅁㅇㄴㅇ마ㅓㅗㅇ너ㅏㅁㄴ어ㅏㄻㄴ이로ㅕㄴㅁ이러ㅏㄴㅁ유러낭미로머나렁ㄴ마ㅣ호넝마퓨ㅜㅍ,ㅋㅌ츄ㅓㅏㅁ륨녇어dsfdahflhslhkdfssdffsdfsdsdffsㅁㄴ여ㅣㅁ노허암ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ이ㅗㅕㅋㅇ펴ㅗㅋ티ㅕㅠㅕ뫄나ㅗ나ㅘㅗ파ㅗㅓㅍㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊ파이ㅘ몰어나미홍너ㅏㅎ모나ㅓㄹㅇㅁㄴ잏ㅇㄴㅁㅎ리ㅏㅁ농라ㅓㄴㅇㅎㅁ니홈ㄴ려앟ㄴㅇ모험ㄴ이롬날호어함ㅇ놓ㄴㅁㄹㅇㅁㄴㄹㄴㅁㅇㄴㅁㅇㄴㅇ마ㅓㅗㅇ너ㅏㅁㄴ어ㅏㄻㄴ이로ㅕㄴㅁ이러ㅏㄴㅁ유러낭미로머나렁ㄴ마ㅣ호넝마퓨ㅜㅍ,ㅋㅌ츄ㅓㅏㅁ륨녇어dsfdahflhslhkdfssdffsdfsdsdffsㅁㄴ여ㅣㅁ노허암ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ이ㅗㅕㅋㅇ펴ㅗㅋ티ㅕㅠㅕ뫄나ㅗ나ㅘㅗ파ㅗㅓㅍㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊ파이ㅘ몰어나미홍너ㅏㅎ모나ㅓㄹㅇㅁㄴ잏ㅇㄴㅁㅎ리ㅏㅁ농라ㅓㄴㅇㅎㅁ니홈ㄴ려앟ㄴㅇ모험ㄴ이롬날호어함ㅇ놓ㄴㅁㄹㅇㅁㄴㄹㄴㅁㅇㄴㅁㅇㄴㅇ마ㅓㅗㅇ너ㅏㅁㄴ어ㅏㄻㄴ이로ㅕㄴㅁ이러ㅏㄴㅁ유러낭미로머나렁ㄴ마ㅣ호넝마퓨ㅜㅍ,ㅋㅌ츄ㅓㅏㅁ륨녇어dsfdahflhslhkdfssdffsdfsd라ㅓㄴㅇㅎㅁ니홈ㄴ려앟ㄴㅇ모험ㄴ이롬날호어함ㅇ놓ㄴㅁㄹㅇㅁㄴㄹㄴㅁㅇㄴㅁㅇㄴㅇ마ㅓㅗㅇ너ㅏㅁㄴ어ㅏㄻㄴ이로ㅕㄴㅁ이러ㅏㄴㅁ유러낭미로머나렁ㄴ마ㅣ호넝마퓨ㅜㅍ,ㅋㅌ츄ㅓㅏㅁ륨녇어d</p>
+				<p>${groupInfo.sg_info }</p>
 			</div>
 			<span class="header">멤버</span>
 			<div class="introduce">
-				<p>멤버정보 나타나는 칸</p>
+				<p>구현 예정</p>
 			</div>
 			<hr>
 			<div class="lang">사용언어</div>
+			<p>${groupInfo.sg_lang }</p>
 			<hr>
-			<p>dfd</p>
-			<p>dfd</p>
-			<p>dfd</p>
-			<p>dfd</p>
-			<p>dfd</p>
 		</div>
 <!-- 로그인 안한 상태 
-	 1. 가입하기 click시 alret 알람 로그인 페이지로 넘어가기  o 
+	 1. 가입하기 click시 alret 알람 로그인 페이지로 넘어가기
 	 
 	 로그인 한상태 
 	 1. 가입하기 click시 alert 가입완료되었습니다. 알림 후 (홈화면으로 이동) 
@@ -99,16 +95,16 @@
 -->
 		<div id="rightInfo">
 			<p>그룹 이름</p>
-			<p>${grouplist.sg_name }</p>
+			<p>${groupInfo.sg_name }</p>
 			<hr>
 			<p>그룹 장</p>
-			<p>${grouplist.sg_manager }</p>
+			<p>${groupInfo.manager_name }</p>
 			<hr>
 			<p>그룹 생성 날짜</p>
-			<p>${grouplist.sg_created }</p>
+			<p>${groupInfo.sg_created }</p>
 			<hr>
 			<p>현재참여 인원</p>
-			<hr>
+			<P>구현 예정</P>
 			<button id="btnStudyjoin">가입</button>
 			
 		</div>
@@ -123,7 +119,7 @@
 				url:"",
 				success:function(responseData){
 					alert("로그인이 필요합니다.");
-					location.href="${path}/sign-in.jsp
+					location.href="${path}/sign-in.jsp"
 				},
 				error:function(){
 					alert(message);

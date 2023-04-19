@@ -16,6 +16,7 @@ public class StudyGroupVO {
 	private int sg_max;
 	private String sg_lang;
 	private Date sg_created;
+	private String sg_info;
 	private String manager_name;
 
 } // 230418 영선
