@@ -73,7 +73,7 @@
 							<td>상태</td>
 							<td><a href="#">${grouplist.sg_name }</a></td>
 							<td>${grouplist.sg_lang }</td>
-							<td>${grouplist.sg_manager }</td>
+							<td>${grouplist.manager_name }</td>
 							<td>${grouplist.sg_no }</td>
 						</tr>
 					</c:forEach>
