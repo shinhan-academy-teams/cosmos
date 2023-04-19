@@ -43,7 +43,7 @@
 				<div id="sign-div">
 					<c:if test="${empty user}">
 					<button id="sign-in" type="button" class="btn btn-outline-light text-dark" onclick="signIn()">로그인</button>
-					<button id="sign-up" type="button" class="btn btn-outline-light text-dark" onclick="singUp()">회원가입</button>
+					<button id="sign-up" type="button" class="btn btn-outline-light text-dark" onclick="signUp()">회원가입</button>
 					</c:if>
 					<c:if test="${not empty user}">
 					<label>${user.member_name }님</label>
@@ -61,7 +61,7 @@
 		location.href = '${path}/signin.do';
 	}	
 	function signUp(){
-		location.href = '${path}/sign-up.jsp';
+		location.href = '${path}/signup.do';
 	}	
 	function signOut(){
 		alert("로그아웃 되었습니다.");
