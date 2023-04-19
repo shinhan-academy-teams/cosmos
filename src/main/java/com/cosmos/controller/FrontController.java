@@ -14,26 +14,35 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String path = request.getServletPath();
 		CommonControllerInterface controller = null;
 		Map<String, Object> data = new HashMap<>();
-		data.put("method", request.getMethod());  //get인지 post인지 모르니까 받아옴
+		data.put("method", request.getMethod()); // get인지 post인지 모르니까 받아옴
 		data.put("request", request);
-		
-		switch(path) {
+
+		switch (path) {
 		// 회원 가입
 		case "/signup.do":
 			controller = new SignUpController();
 			break;
-		//로그인
+		// 로그인
 		case "/signin.do":
 			controller = new SignInController();
 			break;
-		//로그아웃
+		// 로그아웃
 		case "/signout.do":
 			controller = new SignOutController();
+			break;
+		// 아이디 찾기
+		case "/findid.do":
+			controller = new FindIdController();
+			break;
+		// 비밀번호 찾기
+		case "/findpwd.do":
+			controller = new FindPwdController();
 			break;
 		// 스터디 그룹 목록 보기
 		case "/studygroup.do":
@@ -53,15 +62,15 @@ public class FrontController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		RequestDispatcher rd;
-		rd = request.getRequestDispatcher(page);
-		rd.forward(request, response);
-		
-	}
 
-	
-	
+		if (page.indexOf("redirect:") >= 0) {
+			response.sendRedirect(page.substring(9));
+		} else {
+			RequestDispatcher rd;
+			rd = request.getRequestDispatcher(page);
+			rd.forward(request, response);
+		}
+
+	}
 
 }
