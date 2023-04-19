@@ -85,14 +85,6 @@
 			<p>${groupInfo.sg_lang }</p>
 			<hr>
 		</div>
-<!-- 로그인 안한 상태 
-	 1. 가입하기 click시 alret 알람 로그인 페이지로 넘어가기
-	 
-	 로그인 한상태 
-	 1. 가입하기 click시 alert 가입완료되었습니다. 알림 후 (홈화면으로 이동) 
-	 2. 내그룹 화면에 들어가면 가입한 스터디 목록 나타남
-	 3. 이미 가입한 그룹처리 할 방법 생각해보기 
--->
 		<div id="rightInfo">
 			<p>그룹 이름</p>
 			<p>${groupInfo.sg_name }</p>
@@ -112,21 +104,27 @@
 	<%@ include file="common/footer.jsp"%>
 </body>
 
-<script>
-	$(function(){
-		$("#btnStudyjoin").on("click",function(){
+<script>	
+	$("#btnStudyjoin").on("click",function(){
+		if("${user}"===''){
+			location.href="${path}/joinstudy.do"
+		} else {
 			$.ajax({
-				url:"",
+				url:"${path}/joinstudy.do",
+				data:{
+					memberNo:'${user.member_no}',
+					studyNo:'${groupInfo.sg_no}'
+				},
 				success:function(responseData){
-					alert("로그인이 필요합니다.");
-					location.href="${path}/sign-in.jsp"
+					alert(responseData);
+					location.href="${path}/studygroup.do"
 				},
 				error:function(){
 					alert(message);
 					console.log(message)
 				}
 			});
-		});
+		}
 	});
 </script>
 

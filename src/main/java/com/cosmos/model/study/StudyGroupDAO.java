@@ -1,6 +1,7 @@
 package com.cosmos.model.study;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,6 +16,7 @@ public class StudyGroupDAO {
 	Connection conn;
 	Statement statement;
 	ResultSet result;
+	PreparedStatement prepared;
 
 	// 존재하는 전체 스터디 그룹 목록 보여주기
 	public List<StudyGroupVO> selectAllGroup() {
@@ -130,6 +132,7 @@ public class StudyGroupDAO {
 			statement = conn.createStatement();
 			result = statement.executeQuery(sql);
 			while (result.next()) {
+				studyGroup.setSg_no(result.getInt("sg_no"));
 				studyGroup.setSg_info(result.getString("sg_info"));
 				// 멤버(추후 추가)
 				studyGroup.setSg_lang(result.getString("sg_lang"));
@@ -149,6 +152,25 @@ public class StudyGroupDAO {
 	/*
 	 * 
 	 */
+	
+	// 스터디 가입
+	public int joinStudyGroup(int memberNo, int studyNo) {
+		int resultCount = 0;
+		String sql = "insert into party values(?,?,'memeber')";
+		conn = OracleUtil.getConnection();
+		try {
+			prepared = conn.prepareStatement(sql);
+			prepared.setInt(1, memberNo);
+			prepared.setInt(2, studyNo);
+			resultCount = prepared.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			OracleUtil.dbDisconnect(null, prepared, conn);
+		}
+		return resultCount;
+	}
 
 	// 스터디 그룹 객체를 생성해서 반환해주는 메서드
 	private StudyGroupVO getOneGroup(ResultSet result) throws SQLException {

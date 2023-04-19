@@ -31,5 +31,10 @@ public class StudyGroupService {
 	public StudyGroupVO getGroupInfo(int studyNo) {
 		return studyGroupDao.getGroupInfo(studyNo);
 	}
+	
+	// 스터디 가입
+	public int joinStudyGroup(int memberNo, int studyNo) {
+		return studyGroupDao.joinStudyGroup(memberNo, studyNo);
+	}
 
 }
