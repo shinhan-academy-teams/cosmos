@@ -20,6 +20,9 @@ public class GroupSearchController implements CommonControllerInterface {
 		List<StudyGroupVO> studyGroup = new ArrayList<>();
 		StudyGroupService sv = new StudyGroupService();
 		
+		if(searchOption.equals("study_all")) {
+			studyGroup = sv.searchGroupByKeyword(keyword);
+		}
 		if(searchOption.equals("study_name")) {
 			studyGroup = sv.searchGroupByName(keyword);
 		}

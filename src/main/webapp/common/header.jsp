@@ -39,22 +39,34 @@
 						<button id="search-btn" aria-label="search-btn" class="btn" type="submit"></button>
 					</div>
 				</form>
+				<!-- 230419 영선 -->
 				<div id="sign-div">
-					<button id="sign-in" type="button" class="btn btn-outline-light text-dark">로그인</button>
-					<button id="sign-up" type="button" class="btn btn-outline-light text-dark">회원가입</button>
+					<c:if test="${empty user}">
+					<button id="sign-in" type="button" class="btn btn-outline-light text-dark" onclick="signIn()">로그인</button>
+					<button id="sign-up" type="button" class="btn btn-outline-light text-dark" onclick="singUp()">회원가입</button>
+					</c:if>
+					<c:if test="${not empty user}">
+					<label>${user.member_name }님</label>
+					<button id="sign-out" type="button" class="btn btn-outline-light text-dark" onclick="signOut()">로그아웃</button>
+					</c:if>
 				</div>
+				<!-- 영선 end -->
 			</div>
 		</div>
 	</nav>
 </div>
 
 <script>
-	document.getElementById('sign-in').addEventListener('click', function(){
-		location.href = '${path}/sign-in.jsp';
-	});
-	document.getElementById('sign-up').addEventListener('click', function(){
+	function signIn(){
+		location.href = '${path}/signin.do';
+	}	
+	function signUp(){
 		location.href = '${path}/sign-up.jsp';
-	});
+	}	
+	function signOut(){
+		alert("로그아웃 되었습니다.");
+		location.href = '${path}/signout.do';
+	}
 </script>
 
 <style>

@@ -60,11 +60,13 @@
 			<table>
 				<thead>
 					<tr>
-						<th scope="col"></th>
-						<th scope="col">스터디명</th>
-						<th scope="col">사용언어</th>
-						<th scope="col">그룹장</th>
-						<th scope="col">모집인원</th>
+						<th scope="col">상태</th>
+						<th scope="col">내 스터디</th>
+						<th scope="col">관리자</th>
+						<th scope="col">인원수</th>
+						<th scope="col">-</th>
+						<th scope="col">-</th>
+						<th scope="col">-</th>
 					</tr>
 				</thead>
 				<tbody id="tbody">
@@ -73,7 +75,7 @@
 							<td>상태</td>
 							<td><a href="#">${grouplist.sg_name }</a></td>
 							<td>${grouplist.sg_lang }</td>
-							<td>${grouplist.manager_name }</td>
+							<td>${grouplist.sg_manager }</td>
 							<td>${grouplist.sg_no }</td>
 						</tr>
 					</c:forEach>
