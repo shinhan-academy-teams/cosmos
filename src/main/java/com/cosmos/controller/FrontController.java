@@ -52,6 +52,10 @@ public class FrontController extends HttpServlet {
 		case "/search.do":
 			controller = new GroupSearchController();
 			break;
+		// 스터디 모집 정보 상세 보기
+		case "/studyintro.do":
+			controller = new StudyIntroduceController();
+			break;
 		default:
 			break;
 		}
