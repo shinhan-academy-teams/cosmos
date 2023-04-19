@@ -3,9 +3,11 @@ package com.cosmos.model.members;
 import java.util.Date;
 import java.util.Random;
 
+import javax.servlet.http.HttpServlet;
+
 import com.cosmos.vo.MemberVO;
 
-public class FindService {
+public class FindService extends HttpServlet{
 
 	MemberDAO dao = new MemberDAO();
 	public MemberVO findId(String email) {
