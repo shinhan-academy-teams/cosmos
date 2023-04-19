@@ -3,6 +3,7 @@ package com.cosmos.controller;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.cosmos.model.members.SignUpService;
 import com.cosmos.vo.MemberVO;
@@ -14,9 +15,17 @@ public class SignUpController implements CommonControllerInterface {
 		HttpServletRequest request = (HttpServletRequest)data.get("request");
 		request.setCharacterEncoding("utf-8");
 		
-		int result = service.signUpMember(doHandle(request));
+		int result = -1;
+		MemberVO newMember = doHandle(request);
 		
-		return "index.jsp";
+		if(newMember != null) {
+			service.signUpMember(newMember);
+			return "index.jsp";
+		} else {
+			HttpSession session = request.getSession();
+			session.setAttribute("dupCheckResult", result);
+			return "redirect:sign-up.jsp";
+		}
 	}
 
 
@@ -24,24 +33,21 @@ public class SignUpController implements CommonControllerInterface {
 
 
 	private MemberVO doHandle(HttpServletRequest request) {
-		MemberVO member = new MemberVO();
+		MemberVO member = null;
 		
 		//id 중복체크
-		int result_id = service.idDupCheck("id");
-		if(result_id>0) {
-			request.setAttribute("idDup",1);
-		}
+		int result_id = service.idDupCheck(request.getParameter("id"));
+		request.setAttribute("idDup", result_id); // 중복 건수: 0 초과이면 중복있음.
 		
 		//email 중복체크
-		int result_em = service.emailDupCheck("email");
-		if(result_em>0) {
-			request.setAttribute("emailDup",1);
-		}
+		int result_em = service.emailDupCheck(request.getParameter("email"));
+		request.setAttribute("emailDup", result_em); // 중복 건수: 0 초과이면 중복있음.
 		
-		if(result_id<=0 && result_em<=0) {
+		if(result_id <= 0 && result_em <= 0) {
 			//중복체크 검사 통과한 경우
+			member = new MemberVO();
 			member.setMember_id(request.getParameter("id"));
-			member.setMember_pwd(request.getParameter("pw1"));
+			member.setMember_pwd(request.getParameter("pw2"));
 			member.setMember_name(request.getParameter("username"));
 			member.setMember_email(request.getParameter("email"));
 		
