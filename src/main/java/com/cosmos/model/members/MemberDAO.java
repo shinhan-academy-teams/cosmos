@@ -134,4 +134,80 @@ public class MemberDAO {
 		return count;
 	}
 	
+	//아이디 찾기
+	public MemberVO findId(String email) {
+		MemberVO member = null;
+		//select member_id from members where member_email='zzahee366@gmail.com';
+		String sql ="select member_id from members where member_email=?";
+		conn = OracleUtil.getConnection();
+		try {
+			st = conn.prepareStatement(sql);
+			st.setString(1, email);
+			rs = st.executeQuery();
+			
+			while(rs.next()) {
+				member = new MemberVO();
+				member.setMember_id(rs.getString("member_id"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			OracleUtil.dbDisconnect(rs, st, conn);
+		}
+		return member;
+	}
+	
+	//난수 비밀번호 수정
+	public MemberVO updateRndPwd(MemberVO vo) {
+		MemberVO member = null;
+		int result = 0;
+		//update members set member_pwd='4321' where member_id='bona366';
+		String sql = "update members set member_pwd=? where member_id=?";
+		conn = OracleUtil.getConnection();
+		try {
+			st = conn.prepareStatement(sql);
+			st.setString(1,vo.getMember_pwd());
+			st.setString(2, vo.getMember_id());
+			st.executeUpdate();  //SQL문 실행
+			member = vo;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			OracleUtil.dbDisconnect(rs, st, conn);
+		}
+		System.out.println("update결과 : " +member);
+		return member;
+	}
+
+	//아이디로 회원 찾기
+	public MemberVO findById(String id) {
+		MemberVO member = null;
+		//select * from members where member_id='hee00';
+		String sql = "select * from members where member_id=?";
+		conn = OracleUtil.getConnection();
+		try {
+			st = conn.prepareStatement(sql);
+			st.setString(1,id);
+			rs = st.executeQuery();
+			while(rs.next()) {
+				member = new MemberVO();
+				member.setMember_no(rs.getInt("member_no"));
+				member.setMember_id(id);
+				member.setMember_name(rs.getString("member_name"));
+				member.setMember_pwd(rs.getString("member_pwd"));
+				member.setMember_email(rs.getString("member_email"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			OracleUtil.dbDisconnect(rs, st, conn);
+		}
+		return member;
+		
+	}
+
 }
