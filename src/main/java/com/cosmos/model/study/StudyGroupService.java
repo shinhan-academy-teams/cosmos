@@ -21,5 +21,10 @@ public class StudyGroupService {
 	public List<StudyGroupVO> searchGroupByManager(String keyword) {
 		return studyGroupDao.searchGroupByManager(keyword);
 	}
+	
+	// 스터디명 또는 스터디장명으로 찾기
+	public List<StudyGroupVO> searchGroupByKeyword(String keyword) {
+		return studyGroupDao.searchGroupByKeyword(keyword);
+	}
 
 }
