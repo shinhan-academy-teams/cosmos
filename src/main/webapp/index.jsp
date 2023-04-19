@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <title>COSMOS</title>
@@ -24,22 +24,21 @@
 		margin: 0 auto;
 		padding: 36px 24px 84px;
 		height: auto;
-		min-height: calc(99vh - 60px);
+	    min-height: calc(100vh - 64px);
 		display: flex;
-		vertical-align: middle;
+	    align-items: center;
+		justify-content: center;
 	}
 	
 	
 	img[alt="home"] {
-		margin: auto 0px;
+		margin-right: 36px;
 		height: 500px;
 	}
 	
 	#home-content {
 		display: inline-block;
 		text-align: center;
-		margin: auto 0px;
-		margin-left: -90px;
 	}
 	
 	#home-content * {

@@ -61,10 +61,6 @@
 		margin-bottom: 4px;
 	}
 	
-	#form-bottom-div {
-		margin-top: 24px;
-	}
-	
 	button[type="submit"] {
 		margin-top: 48px;
 		width: 100%;
@@ -75,6 +71,10 @@
 	
 	button[type="submit"]:hover {
 		background-color: rgba(238, 119, 133, 1);
+	}
+	
+	#form-bottom-div {
+		margin-top: 24px;
 	}
 	
 	#form-bottom-div a {
@@ -120,9 +120,9 @@
 					</div>
 				</form>
 				<div id="form-bottom-div">
-					<span><a href="${path}/forgot.jsp">계정찾기</a></span>
+					<span><a href="${path}/findid.do">계정찾기</a></span>
 					<div aria-hidden="true" class="separator"></div>
-					<span><a href="${path}/sign-up.jsp">회원가입</a></span>
+					<span><a href="${path}/signup.do">회원가입</a></span>
 				</div>
 			</div>
 		</div>
