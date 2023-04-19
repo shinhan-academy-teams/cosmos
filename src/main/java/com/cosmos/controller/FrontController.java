@@ -52,6 +52,10 @@ public class FrontController extends HttpServlet {
 		case "/search.do":
 			controller = new GroupSearchController();
 			break;
+		// 스터디 모집 정보 상세 보기
+		case "/studyintro.do":
+			controller = new StudyIntroduceController();
+			break;
 		default:
 			break;
 		}
@@ -63,8 +67,10 @@ public class FrontController extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		if (page.indexOf("redirect:") >= 0) {
+		if (page.contains("redirect:")) {
 			response.sendRedirect(page.substring(9));
+		} else if(page.contains("responseBody:")) { // ex) ajax
+			response.getWriter().append(page.substring(13));
 		} else {
 			RequestDispatcher rd;
 			rd = request.getRequestDispatcher(page);
