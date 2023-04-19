@@ -1,13 +1,18 @@
 package com.cosmos.model.members;
 
 import java.util.Date;
+import java.util.Properties;
 import java.util.Random;
 
-import javax.servlet.http.HttpServlet;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import com.cosmos.vo.MemberVO;
 
-public class FindService extends HttpServlet{
+public class FindService{
 
 	MemberDAO dao = new MemberDAO();
 	public MemberVO findId(String email) {
@@ -42,7 +47,8 @@ public class FindService extends HttpServlet{
 	public MemberVO updateRndPwd(MemberVO vo) {
 		String tempwd = getRandomString(7);  //7자리 임시비밀번호 생성
 		System.out.println("임시 비밀번호 : "+tempwd);
-		
+		String email = vo.getMember_email();
+		EmailTest.naverMailSend("COSMOS: 임시 비밀번호", "임시비밀번호 : "+tempwd, email); //이메일 전송
 		vo.setMember_pwd(tempwd);  //vo에 임시비밀번호 넣고
 		return dao.updateRndPwd(vo);  //업데이트
 	}
@@ -51,4 +57,59 @@ public class FindService extends HttpServlet{
 	public MemberVO findById(String id) {
 		return dao.findById(id);
 	}
+	//이메일 전송
+	static class EmailTest {
+		private static final String HOST = "smtp.naver.com";
+		/** 메일 PORT **/
+		private static final String PORT = "587";
+		/** 메일 ID **/
+		private static final String MAIL_ID = "bona366@naver.com";  //보내는 사람 이메일
+		/** 메일 PW **/
+		private static final String MAIL_PW = "dlacogml2425!!";  //보내는 사람 비밀번호
+		
+		
+		public static void naverMailSend(String subejct, String body, String email) {
+			try {
+				InternetAddress[] receiverList = new InternetAddress[1];
+				receiverList[0] = new InternetAddress(email);  //받는 사람 이메일(회원이메일)
+				
+				// SMTP 발송 Properties 설정
+				Properties props = new Properties();
+				props.put("mail.transport.protocol", "smtp");
+				props.put("mail.smtp.host", HOST);
+				props.put("mail.smtp.port", PORT);
+				props.put("mail.smtp.starttls.enable", "true");
+				props.put("mail.smtp.ssl.trust", "*");
+				props.put("mail.smtp.ssl.enabled", "true");
+				props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+				props.put("mail.smtp.auth", "true");
+
+				// SMTP Session 생성
+				Session mailSession = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+					protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
+						return new javax.mail.PasswordAuthentication(MAIL_ID, MAIL_PW);
+					}
+				});
+
+				// Mail 조립
+				Message mimeMessage = new MimeMessage(mailSession);
+				mimeMessage.setFrom(new InternetAddress(MAIL_ID));
+				mimeMessage.setRecipients(Message.RecipientType.TO, receiverList);
+				// 메일 제목
+				mimeMessage.setSubject(subejct);
+				// 메일 본문 (.setText를 사용하면 단순 텍스트 전달 가능)
+				mimeMessage.setContent(body, "text/html; charset=UTF-8");
+
+				// Mail 발송
+				Transport.send(mimeMessage);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("메일 발송 오류!!");
+			}
+
+		}
+		 
+	}
+
 }
