@@ -59,24 +59,18 @@
 		margin-bottom: 4px;
 	}
 	
-	#btn-div {
-		display: flex;
-		justify-content: space-between;
-	}
-
-	button[type="submit"] {
+	#find-pw-btn {
 		margin-top: 48px;
-		width: 48%;
+		width: 100%;
 		height: 42px;
 		background-color: rgba(238, 119, 133, 0.6);
 		border: none;
 	}
 	
-	button[type="submit"]:hover {
+	#find-pw-btn:hover {
 		background-color: rgba(238, 119, 133, 1);
 	}
-	
-	
+
 </style>
 </head>
 <body id="top">
@@ -89,19 +83,35 @@
 			<h2>계정 찾기</h2>
 			<p>회원 가입시 입력하신 이메일 주소를 입력해주세요.</p>
 			<div>
-				<form action="" >
+				<form>
 					<div class="form-group">
 						<label for="email">이메일</label>
 						<input type="email" class="form-control" id="email" name="email" required placeholder="이메일을 입력해주세요">
 					</div>
+					<div id="form-id-div" class="form-group">
+						<label for="id">아이디</label>
+						<input type="text" class="form-control" id="id" name="id" placeholder="아이디를 입력해주세요">
+					</div>
+					<div id="form-name-div" class="form-group">
+						<label for="username">실명</label>
+						<input type="text" class="form-control" id="username" name="username" placeholder="실명을 입력해주세요">
+					</div>
 					<div id="btn-div">
-						<button id="find-id-btn" type="submit" class="btn btn-danger">아이디 찾기</button>
-						<button id="find-pw-btn" type="submit" class="btn btn-danger">비밀번호 찾기</button>
+						<button id="find-pw-btn" type="submit" class="btn btn-danger">비밀번호 초기화</button>
 					</div>
 				</form>
-				
 			</div>
 		</div>
 	</div>
+
+	<script>
+		// 비밀번호 찾기
+		// $('#find-pw-btn').click(func_pw_find); // 비밀번호 찾기 버튼 클릭 시
+		// function func_pw_find() {
+		// 	$('#form-id-div').css({'visibility': 'visible', 'height':'auto'});
+		// }
+
+
+	</script>
 </body>
 </html>
