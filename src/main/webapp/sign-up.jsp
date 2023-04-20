@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <title>COSMOS</title>
@@ -54,10 +54,19 @@
 	.form-control {
 		width: 448px;
 	}
+
+	label {
+		margin-bottom: 4px;
+	}
 	
 	label[for="email"] {
 		display: block !important;
-		margin-bottom: 4px;
+	}
+
+	#email-input-div {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
 	}
 
 	#id-value-valid, #id-value-invalid,
@@ -84,8 +93,7 @@
 	}
 
 	#email, #email-list {
-		display: inline-block;
-		width: 49.5773%;
+		width: 47%;
 	}
 	
 	#submit-btn {
@@ -133,15 +141,19 @@
 					</div>
 					<div class="form-group">
 						<label for="email">이메일</label>
-						<input type="text" class="form-control" id="email" name="email" required placeholder="cosmos">
-						<select class="form-select" id="email-list" name="email-list">
-							<option>@gmail.com</option>
-							<option>@naver.com</option>
-							<option>@daum.net</option>
-							<option>@kakao.com</option>
-							<option>@hanmail.com</option>
-							<option>@nate.com</option>
-						</select>
+						<div id="email-input-div">
+							<input type="text" class="form-control" id="email" name="email" required placeholder="cosmos">@
+							<select class="form-select" id="email-list" name="email-list" aria-label="email-list">
+								<option value="gmail.com">gmail.com</option>
+								<option value="naver.com">naver.com</option>
+								<option value="daum.net">daum.net</option>
+								<option value="kakao.com">kakao.com</option>
+								<option value="hanmail.com">hanmail.com</option>
+								<option value="outlook.com">outlook.com</option>
+								<option value="nate.com">nate.com</option>
+								<option value="yahoo.com">yahoo.com</option>
+							</select>
+						</div>
 					</div>
 					<div class="form-group">
 						<label for="username">실명</label>
