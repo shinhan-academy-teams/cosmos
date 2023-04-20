@@ -60,6 +60,10 @@ public class FrontController extends HttpServlet {
 		case "/joinstudy.do":
 			controller = new JoinStudyController();
 			break;
+		// 스터디 생성
+		case "/creategroup.do":
+			controller = new CreateGroupController();
+			break;
 		default:
 			break;
 		}
