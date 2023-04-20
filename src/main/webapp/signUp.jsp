@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<!-- 
+사용자 회원가입 화면
+ -->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -110,7 +112,7 @@
 	
 </style>
 </head>
-<body id="top">
+<body>
 	<%@ include file="common/header.jsp" %>
 	<div id="wrap">
 		<div>

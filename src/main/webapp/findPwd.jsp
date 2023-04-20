@@ -1,7 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<!-- 
+비밀번호 초기화 화면
+ -->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <title>COSMOS</title>
@@ -73,7 +75,7 @@
 
 </style>
 </head>
-<body id="top">
+<body>
 	<%@ include file="common/header.jsp" %>
 	<div id="wrap">
 		<div>

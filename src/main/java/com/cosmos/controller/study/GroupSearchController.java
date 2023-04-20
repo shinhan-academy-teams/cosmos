@@ -1,4 +1,4 @@
-package com.cosmos.controller;
+package com.cosmos.controller.study;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.cosmos.controller.CommonControllerInterface;
 import com.cosmos.model.study.StudyGroupService;
 import com.cosmos.vo.StudyGroupVO;
 

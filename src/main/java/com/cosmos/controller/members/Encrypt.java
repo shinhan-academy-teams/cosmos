@@ -1,4 +1,4 @@
-package com.cosmos.controller;
+package com.cosmos.controller.members;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
