@@ -33,8 +33,15 @@ public class StudyGroupService {
 	}
 	
 	// 스터디 가입
-	public int joinStudyGroup(int memberNo, int studyNo) {
-		return studyGroupDao.joinStudyGroup(memberNo, studyNo);
+	public String joinStudyGroup(int memberNo, int studyNo) {
+		if(!studyGroupDao.canJoinStudy(memberNo, studyNo)) {
+			return "이미 가입된 스터디입니다.";
+		}
+		int result = studyGroupDao.joinStudyGroup(memberNo, studyNo);
+		if(result<1) {
+			return "스터디 가입 실패";
+		}
+		return "스터디에 가입되었습니다.";
 	}
 
 }

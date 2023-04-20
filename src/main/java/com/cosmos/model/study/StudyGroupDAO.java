@@ -171,6 +171,31 @@ public class StudyGroupDAO {
 		}
 		return resultCount;
 	}
+	
+	/*
+	 * 
+	 */
+	
+	// 스터디 가입 가능 여부 확인
+	public boolean canJoinStudy(int memberNo, int studyNo) {
+		conn = OracleUtil.getConnection();
+		// 이미 가입되어 있는지 확인
+		String already = "select * from party where member_no=? and sg_no=?";
+		try {
+			prepared = conn.prepareStatement(already);
+			prepared.setInt(1, memberNo);
+			prepared.setInt(2, studyNo);
+			result = prepared.executeQuery();
+			while (result.next()) {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleUtil.dbDisconnect(result, statement, conn);
+		}
+		return true;
+	}
 
 	// 스터디 그룹 객체를 생성해서 반환해주는 메서드
 	private StudyGroupVO getOneGroup(ResultSet result) throws SQLException {

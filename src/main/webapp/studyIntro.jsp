@@ -107,6 +107,7 @@
 <script>	
 	$("#btnStudyjoin").on("click",function(){
 		if("${user}"===''){
+			alert("로그인이 필요합니다.");
 			location.href="${path}/joinstudy.do"
 		} else {
 			$.ajax({
@@ -115,12 +116,10 @@
 					memberNo:'${user.member_no}',
 					studyNo:'${groupInfo.sg_no}'
 				},
-				success:function(responseData){
-					alert(responseData);
-					location.href="${path}/studygroup.do"
+				success:function(message){
+					alert(message);
 				},
 				error:function(){
-					alert(message);
 					console.log(message)
 				}
 			});
