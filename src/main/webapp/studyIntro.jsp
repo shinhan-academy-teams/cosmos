@@ -96,7 +96,7 @@
 			<p>${groupInfo.sg_created }</p>
 			<hr>
 			<p>현재참여 인원</p>
-			<P>구현 예정</P>
+			<P>${groupInfo.sg_cur }/${groupInfo.sg_max }</P>
 			<button id="btnStudyjoin">가입</button>
 			
 		</div>

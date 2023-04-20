@@ -139,7 +139,8 @@ public class StudyGroupDAO {
 				studyGroup.setSg_name(result.getString("sg_name"));
 				studyGroup.setManager_name(result.getString("member_name"));
 				studyGroup.setSg_created(result.getDate("sg_created"));
-				// 현재 참여 인원 (추후 추가)
+				studyGroup.setSg_max(result.getInt("sg_max"));
+				studyGroup.setSg_cur(result.getInt("sg_cur"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -156,7 +157,7 @@ public class StudyGroupDAO {
 	// 스터디 가입
 	public int joinStudyGroup(int memberNo, int studyNo) {
 		int resultCount = 0;
-		String sql = "insert into party values(?,?,'memeber')";
+		String sql = "insert into party values(?,?,'member')";
 		conn = OracleUtil.getConnection();
 		try {
 			prepared = conn.prepareStatement(sql);
