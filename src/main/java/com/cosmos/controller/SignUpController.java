@@ -45,17 +45,25 @@ public class SignUpController implements CommonControllerInterface {
 		request.setAttribute("idDup", result_id); // 중복 건수: 0 초과이면 중복있음.
 
 		// email 중복체크
-		int result_em = service.emailDupCheck(request.getParameter("email"));
+		String fullemail = request.getParameter("email")+"@"+request.getParameter("email-list");  //full이메일 
+		
+		int result_em = service.emailDupCheck(fullemail);
 		request.setAttribute("emailDup", result_em); // 중복 건수: 0 초과이면 중복있음.
-
+		
+		String pwd = request.getParameter("pw2");
+		//비밀번호 암호화
+		Encrypt en = new Encrypt();
+		String en_pwd = en.getEncrypt(pwd);
+		
+	
 		if (result_id <= 0 && result_em <= 0) {
 			// 중복체크 검사 통과한 경우
 			member = new MemberVO();
 			member.setMember_id(request.getParameter("id"));
-			member.setMember_pwd(request.getParameter("pw2"));
+			member.setMember_pwd(en_pwd);
 			member.setMember_name(request.getParameter("username"));
-			member.setMember_email(request.getParameter("email"));
-
+			member.setMember_email(fullemail);
+			
 			System.out.println("-----------가입한 회원 정보------------");
 			System.out.println("memberid : " + member.getMember_id());
 			System.out.println("memberpwd : " + member.getMember_pwd());

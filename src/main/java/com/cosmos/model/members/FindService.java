@@ -10,6 +10,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import com.cosmos.controller.Encrypt;
 import com.cosmos.vo.MemberVO;
 
 public class FindService{
@@ -39,7 +40,7 @@ public class FindService{
 	    for (int i = 0; i < size; i++) {
 	        sb.append(rndCharSet[rnd.nextInt(len)]);
 	    }
-
+	    
 	    return sb.toString();
 	}
 	
@@ -48,8 +49,13 @@ public class FindService{
 		String tempwd = getRandomString(7);  //7자리 임시비밀번호 생성
 		System.out.println("임시 비밀번호 : "+tempwd);
 		String email = vo.getMember_email();
-		EmailTest.naverMailSend("COSMOS: 임시 비밀번호", "임시비밀번호 : "+tempwd, email); //이메일 전송
-		vo.setMember_pwd(tempwd);  //vo에 임시비밀번호 넣고
+		EmailTest.naverMailSend("COSMOS: 임시 비밀번호", tempwd, email); //이메일 전송
+		
+		//비밀번호 암호화
+		Encrypt en = new Encrypt();
+		String en_pwd = en.getEncrypt(tempwd);
+		
+		vo.setMember_pwd(en_pwd);  //vo에 임시비밀번호 넣고
 		return dao.updateRndPwd(vo);  //업데이트
 	}
 	
@@ -68,7 +74,7 @@ public class FindService{
 		private static final String MAIL_PW = "dlacogml2425!!";  //보내는 사람 비밀번호
 		
 		
-		public static void naverMailSend(String subejct, String body, String email) {
+		public static void naverMailSend(String subejct, String tempwd, String email) {
 			try {
 				InternetAddress[] receiverList = new InternetAddress[1];
 				receiverList[0] = new InternetAddress(email);  //받는 사람 이메일(회원이메일)
@@ -97,8 +103,17 @@ public class FindService{
 				mimeMessage.setRecipients(Message.RecipientType.TO, receiverList);
 				// 메일 제목
 				mimeMessage.setSubject(subejct);
+				
+				
+				
+				
 				// 메일 본문 (.setText를 사용하면 단순 텍스트 전달 가능)
-				mimeMessage.setContent(body, "text/html; charset=UTF-8");
+				mimeMessage.setContent("<div style=\"background-color:#FAE6D4; width: 500px; text-align:center; padding: 15px; margin:auto;\" > \r\n"
+						+ "	<img src=\"https://i.imgur.com/AxVhoO6.png\" width=\"140px\" style=\"margin-bottom:15px\"/>\r\n"
+						+ "	<p style=\"font-weight: bold ;\">임시 비밀번호 : "+tempwd+"</p>\r\n"
+						+ "	<hr style=\"color:black;\">\r\n"
+						+ "	<p>로그인 후 마이페이지>비밀번호 수정 페이지에서 새 비밀번호로 수정해주세요.</p>\r\n"
+						+ "</div>", "text/html; charset=UTF-8");
 
 				// Mail 발송
 				Transport.send(mimeMessage);
