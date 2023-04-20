@@ -65,18 +65,17 @@
 		width: 950px;
 		padding : 10px;
 	}
+	
 </style>
 </head>
 
 <body id="top">
 	<%@ include file="common/header.jsp"%>
-	<div id="wrap">
-		<P>문제집나타내기</P>
 	
-		
-
-		
+	<div id="wrap">
+		<%@ include file="createQuizModal.jsp" %>
 	</div>
+	
 	<%@ include file="common/footer.jsp"%>
 </body>
 </html>
