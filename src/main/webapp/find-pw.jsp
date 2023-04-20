@@ -84,13 +84,13 @@
 			<p>회원 가입시 입력하신 이메일 주소를 입력해주세요.</p>
 			<div>
 				<form action="${path}/findpwd.do" method="post">
-					<div class="form-group">
-						<label for="email">이메일</label>
-						<input type="email" class="form-control" id="email" name="email" required placeholder="이메일을 입력해주세요">
-					</div>
 					<div id="form-id-div" class="form-group">
 						<label for="id">아이디</label>
 						<input type="text" class="form-control" id="id" name="id" placeholder="아이디를 입력해주세요">
+					</div>
+					<div class="form-group">
+						<label for="email">이메일</label>
+						<input type="email" class="form-control" id="email" name="email" required placeholder="이메일을 입력해주세요">
 					</div>
 					<div id="form-name-div" class="form-group">
 						<label for="username">실명</label>

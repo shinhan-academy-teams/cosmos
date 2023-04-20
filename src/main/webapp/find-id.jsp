@@ -133,14 +133,14 @@
 					</div>
 					<div id="form-id-div" class="form-group">
 						<label>아이디</label>
-						<input id="found-id" type="text" class="form-control" readonly value="">
+						<input id="found-id" type="text" class="form-control" readonly>
 					</div>
 					<div id="btn-div">
 						<button id="find-id-btn" type="button" class="btn btn-danger">아이디 찾기</button>
 					</div>
 				</form>
 				<div id="form-bottom-div">
-					<span><a href="${path}/findpwd.do">비밀번호 초기화</a></span>
+					<span><a id="findPwd-a" href="${path}/findpwd.do">비밀번호 초기화</a></span>
 				</div>
 			</div>
 		</div>
@@ -188,12 +188,18 @@
 						} else {
 							$('#form-id-div').css({'visibility': 'visible', 'opacity':'1', 'height': '65.6px'});
 							$('#found-id').val(responseData);
+							
+							let inputEmail = $('#email').val();
+							let foundId = $('#found-id').val();
+							let url = '${path}/findpwd.do?inputEmail=' + inputEmail + '&foundId=' + foundId;
+							$('#findPwd-a').attr('href', url);
 						}
 					},
 					error:function(message){
 						console.log(message);					
 					}
 				});
+
 			});
 		})
 

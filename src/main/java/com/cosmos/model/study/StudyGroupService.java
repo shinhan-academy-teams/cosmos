@@ -26,5 +26,31 @@ public class StudyGroupService {
 	public List<StudyGroupVO> searchGroupByKeyword(String keyword) {
 		return studyGroupDao.searchGroupByKeyword(keyword);
 	}
+	
+	// 스터디 아이디로 스터디 그룹 정보 가져오기
+	public StudyGroupVO getGroupInfo(int studyNo) {
+		return studyGroupDao.getGroupInfo(studyNo);
+	}
+	
+	// 스터디 가입
+	public String joinStudyGroup(int memberNo, int studyNo) {
+		if(!studyGroupDao.canJoinStudy(memberNo, studyNo)) {
+			return "이미 가입된 스터디입니다.";
+		}
+		int result = studyGroupDao.joinStudyGroup(memberNo, studyNo);
+		if(result<1) {
+			return "스터디 가입 실패";
+		}
+		return "스터디에 가입되었습니다.";
+	}
+	
+	// 스터디 생성
+	public String createStudyGroup(StudyGroupVO object) {
+		int result = studyGroupDao.createStudyGroup(object);
+		if(result<1) {
+			return "스터디 생성 실패";
+		}
+		return "스터디가 만들어졌습니다.";
+	}
 
 }

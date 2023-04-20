@@ -1,6 +1,7 @@
 package com.cosmos.model.study;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,6 +16,7 @@ public class StudyGroupDAO {
 	Connection conn;
 	Statement statement;
 	ResultSet result;
+	PreparedStatement prepared;
 
 	// 존재하는 전체 스터디 그룹 목록 보여주기
 	public List<StudyGroupVO> selectAllGroup() {
@@ -115,6 +117,115 @@ public class StudyGroupDAO {
 		return studyGroup;
 	}
 
+	/*
+	 * 
+	 */
+	
+	// 스터디 아이디로 스터디 그룹 정보 가져오기
+	public StudyGroupVO getGroupInfo(int studyNo) {
+		String sql = "select studygroup.*, member_name from studygroup join members "
+				+ "on studygroup.sg_manager = members.member_no "
+				+ "where sg_no=" + studyNo;
+		StudyGroupVO studyGroup = new StudyGroupVO();
+		conn = OracleUtil.getConnection();
+		try {
+			statement = conn.createStatement();
+			result = statement.executeQuery(sql);
+			while (result.next()) {
+				studyGroup.setSg_no(result.getInt("sg_no"));
+				studyGroup.setSg_info(result.getString("sg_info"));
+				// 멤버(추후 추가)
+				studyGroup.setSg_lang(result.getString("sg_lang"));
+				studyGroup.setSg_name(result.getString("sg_name"));
+				studyGroup.setManager_name(result.getString("member_name"));
+				studyGroup.setSg_created(result.getDate("sg_created"));
+				studyGroup.setSg_max(result.getInt("sg_max"));
+				studyGroup.setSg_cur(result.getInt("sg_cur"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleUtil.dbDisconnect(result, statement, conn);
+		}
+		return studyGroup;
+	}
+	
+	/*
+	 * 
+	 */
+	
+	// 스터디 가입
+	public int joinStudyGroup(int memberNo, int studyNo) {
+		int resultCount = 0;
+		String sql = "insert into party values(?,?,'member')";
+		conn = OracleUtil.getConnection();
+		try {
+			prepared = conn.prepareStatement(sql);
+			prepared.setInt(1, memberNo);
+			prepared.setInt(2, studyNo);
+			resultCount = prepared.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			OracleUtil.dbDisconnect(null, prepared, conn);
+		}
+		return resultCount;
+	}
+	
+	/*
+	 * 
+	 */
+	
+	// 스터디 가입 가능 여부 확인
+	public boolean canJoinStudy(int memberNo, int studyNo) {
+		conn = OracleUtil.getConnection();
+		// 이미 가입되어 있는지 확인
+		String already = "select * from party where member_no=? and sg_no=?";
+		try {
+			prepared = conn.prepareStatement(already);
+			prepared.setInt(1, memberNo);
+			prepared.setInt(2, studyNo);
+			result = prepared.executeQuery();
+			while (result.next()) {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleUtil.dbDisconnect(result, statement, conn);
+		}
+		return true;
+	}
+	
+	/*
+	 * 
+	 */
+	
+	// 스터디 생성
+	public int createStudyGroup(StudyGroupVO object) {
+		int resultCount = 0;
+		String createStudy = "insert into studygroup values(sg_seq.nextval,?,?,?,?,sysdate,?,default)";
+		conn = OracleUtil.getConnection();
+		try {
+			// 스터디 그룹 생성
+			prepared = conn.prepareStatement(createStudy);
+			prepared.setString(1, object.getSg_name());
+			prepared.setInt(2, object.getSg_manager());
+			prepared.setInt(3, object.getSg_max());
+			prepared.setString(4, object.getSg_lang());
+			prepared.setString(5, object.getSg_info());
+			resultCount = prepared.executeUpdate();		
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			OracleUtil.dbDisconnect(null, prepared, conn);
+		}
+		return resultCount;
+	}
+	
 	/*
 	 * 
 	 */
