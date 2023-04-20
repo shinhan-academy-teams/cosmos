@@ -84,11 +84,11 @@
 		visibility: hidden;
 		opacity: 0;
 		height: 0px;
-		transition: 2s;
+		transition: height 1s;
 	}
 	
 	#find-id-btn {
-		margin-top: 48px;
+		margin-top: 36px;
 		width: 100%;
 		height: 42px;
 		background-color: rgba(238, 119, 133, 0.6);
@@ -129,18 +129,18 @@
 						<label for="email">이메일</label>
 						<input type="email" class="form-control" id="email" name="email" required placeholder="이메일을 입력해주세요">
 						<span id="email-value-valid"><img alt="valid" src="${path}/images/icon-valid.png">Valid.</span>
-						<span id="email-value-invalid"><img alt="warning" src="${path}/images/icon-warning.png">올바른 이메일 형식으로 입력해주세요</span>
+						<span id="email-value-invalid"><img alt="warning" src="${path}/images/icon-warning.png">올바른 이메일 형식으로 입력해주세요.</span>
 					</div>
 					<div id="form-id-div" class="form-group">
 						<label>아이디</label>
-						<input type="text" class="form-control" readonly value="이메일로 select 해온 아이디 출력">
+						<input id="found-id" type="text" class="form-control" readonly value="">
 					</div>
 					<div id="btn-div">
 						<button id="find-id-btn" type="button" class="btn btn-danger">아이디 찾기</button>
 					</div>
 				</form>
 				<div id="form-bottom-div">
-					<span><a href="${path}/find-pw.jsp">비밀번호 초기화</a></span>
+					<span><a href="${path}/findpwd.do">비밀번호 초기화</a></span>
 				</div>
 			</div>
 		</div>
@@ -148,75 +148,55 @@
 
 	<script>
 		$(function(){
-			let findId = "${id}";
-			if(findId){
-				console.log(findId);
-				findId = null;
+			// 이메일 조건 체크
+			let emailIsOk = false;
+			let regexEmail = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+			$('#email').keyup(func_email_check); // 이메일 조건 체크
+			function func_email_check() {
+				let email = $(this).val(); // 입력된 email
+				
+				if(email.length == 0) { // 길이 0이면 두 알림 숨김.
+					$('#email-value-valid').css('display', 'none');
+					$('#email-value-invalid').css('display', 'none');
+					emailIsOk = false;
+				} else {
+					if(!regexEmail.test(email)) { // 이메일 조건 불충족시 valid 숨기고 invalid 표시.
+						$('#email-value-valid').css('display', 'none');
+						$('#email-value-invalid').html('<img alt="warning" src="${path}/images/icon-warning.png">올바른 이메일 형식으로 입력해주세요.');
+						$('#email-value-invalid').css('display', 'inline-block');
+						emailIsOk = false;
+					} else { // 이메일 조건 충족시 invalid 숨기고 valid 표시.
+						$('#email-value-invalid').css('display', 'none');
+						$('#email-value-valid').css('display', 'inline-block');
+						emailIsOk = true;
+					}
+				}
 			}
 			
 			
 			$('#find-id-btn').click(function() {
 				$.ajax({
-					url : "emailDupCheck.do",
+					url : "${path}/findid.do",
 					method : "post",
 					data : {'email' : $('#email').val()},
 					success : function(responseData){
-						//alert(responseData);
-						$('#message').css('font-weight','bolder');
-						if(responseData == 1){
-							$('#message').css('color','red');
-							$('#message').text("이미 존재하는 이메일입니다.");
-							$('#m_email').val("");
-							$('#m_email').focus();
+						if(responseData == 'none') {
+							$('#form-id-div').css({'visibility': 'hidden', 'opacity':'0', 'height': '0px'});
+							$('#email-value-valid').css('display', 'none');
+							$('#email-value-invalid').html('<img alt="warning" src="${path}/images/icon-warning.png">해당 이메일 주소를 찾을 수 없습니다.');
+							$('#email-value-invalid').css('display', 'inline-block');
 						} else {
-							$('#message').text("사용 가능한 이메일입니다.");
+							$('#form-id-div').css({'visibility': 'visible', 'opacity':'1', 'height': '65.6px'});
+							$('#found-id').val(responseData);
 						}
 					},
 					error:function(message){
-						alert(message);					
+						console.log(message);					
 					}
 				});
 			});
 		})
-	
-		// 이메일 조건 체크
-		let emailIsOk = false;
-		let regexEmail = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-		$('#email').keyup(func_email_check); // 이메일 조건 체크
-		function func_email_check() {
-			let email = $(this).val(); // 입력된 email
-			
-			if(email.length == 0) { // 길이 0이면 두 알림 숨김.
-				$('#email-value-valid').css('display', 'none');
-				$('#email-value-invalid').css('display', 'none');
-				emailIsOk = false;
-			} else {
-				if(!regexEmail.test(email)) { // 이메일 조건 불충족시 valid 숨기고 invalid 표시.
-					$('#email-value-valid').css('display', 'none');
-					$('#email-value-invalid').css('display', 'inline-block');
-					emailIsOk = false;
-				} else { // 이메일 조건 충족시 invalid 숨기고 valid 표시.
-					$('#email-value-invalid').css('display', 'none');
-					$('#email-value-valid').css('display', 'inline-block');
-					emailIsOk = true;
-				}
-			}
-		}
-		
-		// 아이디 찾기
-		$('#find-id-btn').click(func_id_find); // 아이디 찾기 버튼 클릭 시
-		function func_id_find() {
-			if(!$('#email').val()) {
-				console.log('입력없음');
-			} else {
-				console.log($('#email').val());
-				$('#form-id-div').css({'visibility': 'visible', 'opacity':'1', 'height': 'auto'});
-			}
-		}
-		// 백에서 이메일로 아이디를 select해오면 그 결과를 value로 고정해두기
 
 	</script>
-	
-	<c:set var="id" value="" scope="request"/>
 </body>
 </html>

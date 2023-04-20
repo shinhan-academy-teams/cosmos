@@ -32,8 +32,8 @@
 	
 	
 	img[alt="home"] {
-		margin-right: 36px;
-		height: 500px;
+		margin-right: 100px;
+	    height: 550px;
 	}
 	
 	#home-content {

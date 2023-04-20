@@ -55,7 +55,8 @@
 		width: 448px;
 	}
 	
-	label {
+	label[for="email"] {
+		display: block !important;
 		margin-bottom: 4px;
 	}
 
@@ -80,6 +81,11 @@
 		font-size: 13px;
 		font-weight: 100;
 		height: 24px;
+	}
+
+	#email, #email-list {
+		display: inline-block;
+		width: 49.5773%;
 	}
 	
 	#submit-btn {
@@ -127,7 +133,15 @@
 					</div>
 					<div class="form-group">
 						<label for="email">이메일</label>
-						<input type="email" class="form-control" id="email" name="email" required placeholder="cosmos@gmail.com">
+						<input type="text" class="form-control" id="email" name="email" required placeholder="cosmos">
+						<select class="form-select" id="email-list" name="email-list">
+							<option>@gmail.com</option>
+							<option>@naver.com</option>
+							<option>@daum.net</option>
+							<option>@kakao.com</option>
+							<option>@hanmail.com</option>
+							<option>@nate.com</option>
+						</select>
 					</div>
 					<div class="form-group">
 						<label for="username">실명</label>

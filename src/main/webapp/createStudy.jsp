@@ -20,62 +20,74 @@
 		display: flex;
 		vertical-align: middle;
 	}
-	#rightInfo{
-		margin-top : 53px;
-		width: 150px;
-		height: 410px;
-		box-sizing : border-box;
-		padding : 10px;
-		display: inline-flex;
-		flex-direction: column;
-		position sticky;
-		border: 2px solid #ddd;
-		top : 74px;
-		border-radius:4px;
-		float: right;
+	.table>:not(caption)>*>* {
+    padding: 0.5rem 0.5rem;
+    background-color: var(--bs-table-bg);
+    border-bottom-color: white;
+    box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
 	}
 	
-	#contents{
-		margin: 0px auto auto 0px;
-		flex-direction: column;
-		width: auto;
-		box-sizing : border-box;
-		padding : 10px;
-		display: inline-flex;
-		flex-direction: column;
-		
+	#td-right{
+		padding-left: 70%;
 	}
-	.header{
-		margin: auto;
-		width: 950px;
-		padding : 10px;
-		font-weight: 900;
-	}
-	.introduce{
-		margin: auto;
-		width: 950px;
-		padding : 10px;
-		display: inline-flex;
-		box-sizing : border-box;
-		border: 2px solid #ddd;
-		border-radius:4px;
-	}
-	.lang{
-		margin: auto;
-		width: 950px;
-		padding : 10px;
-	}
+	
+	
 </style>
 </head>
 
 <body id="top">
 	<%@ include file="common/header.jsp"%>
-	<div id="wrap">
-		<P>스터디 만들기 화면입니다.</P>
-	
-		
 
-		
+	<div id="wrap">
+			<table class="table table-boardered">
+				<tr>
+					<th>스터디 이름</th>
+					<td><input type="text" class="form-control" name="sgname"></td>
+				</tr>
+				<tr>
+					<!-- 로그인한 사람 아이디 read only로 쏴야함 -->
+					<th>그룹장</th>
+					<td><input type="password" class="form-control"
+						name="sgmanager"></td>
+				</tr>
+
+				<tr>
+					<th>최대인원</th>
+					<td>
+						<!-- select name="job" class="form-control">
+								<option value=""></option>
+								<option value="">1</option>
+								<option value="">2</option>
+								<option value="">3</option>
+								<option value="">4</option>
+						</select> -->
+						<input type="number">
+						
+					</td>
+				</tr>
+				<tr>
+					<th>사용언어</th>
+					<td><select name="job" class="form-control">
+							<option value="java">java</option>
+							<option value="python">python</option>
+							<option value="c">c</option>
+							<option value="c++">c++</option>
+					</select></td>
+				</tr>
+				
+				<tr>
+					<th>그룹소개</th>
+					<td><textarea rows="5" cols="40" name="info"
+							class="form-control" placeholder="1000자 이내로 작성해주세요"></textarea></td>
+				</tr>
+
+				<tr>
+					<td id="td-right" colspan="2"><input type="submit" class="btn btn-primary"
+						value="생성"> <input type="reset" class="btn btn-danger"
+						value="취소"></td>
+				</tr>
+
+			</table>
 	</div>
 	<%@ include file="common/footer.jsp"%>
 </body>

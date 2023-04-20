@@ -105,12 +105,7 @@
 	</div>
 
 	<script>
-		// 비밀번호 찾기
-		// $('#find-pw-btn').click(func_pw_find); // 비밀번호 찾기 버튼 클릭 시
-		// function func_pw_find() {
-		// 	$('#form-id-div').css({'visibility': 'visible', 'height':'auto'});
-		// }
-
+		
 
 	</script>
 </body>
