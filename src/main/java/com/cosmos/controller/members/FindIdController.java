@@ -1,9 +1,10 @@
-package com.cosmos.controller;
+package com.cosmos.controller.members;
 
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.cosmos.controller.CommonControllerInterface;
 import com.cosmos.model.members.FindService;
 import com.cosmos.vo.MemberVO;
 
@@ -15,7 +16,7 @@ public class FindIdController implements CommonControllerInterface {
 		String page = "";
 		
 		if (method.equals("GET")) {
-			page = "find-id.jsp";
+			page = "findId.jsp";
 		} else {
 			HttpServletRequest request = (HttpServletRequest) data.get("request");
 			String email = request.getParameter("email");
