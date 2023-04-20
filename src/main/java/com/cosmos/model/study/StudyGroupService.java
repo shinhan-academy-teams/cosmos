@@ -43,5 +43,14 @@ public class StudyGroupService {
 		}
 		return "스터디에 가입되었습니다.";
 	}
+	
+	// 스터디 생성
+	public String createStudyGroup(StudyGroupVO object) {
+		int result = studyGroupDao.createStudyGroup(object);
+		if(result<1) {
+			return "스터디 생성 실패";
+		}
+		return "스터디가 만들어졌습니다.";
+	}
 
 }
