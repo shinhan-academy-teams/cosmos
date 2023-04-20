@@ -1,10 +1,11 @@
-package com.cosmos.controller;
+package com.cosmos.controller.members;
 
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.cosmos.controller.CommonControllerInterface;
 import com.cosmos.model.members.FindService;
 import com.cosmos.vo.MemberVO;
 
