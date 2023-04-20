@@ -16,7 +16,7 @@ public class FindIdController implements CommonControllerInterface {
 		String page = "";
 		
 		if (method.equals("GET")) {
-			page = "find-id.jsp";
+			page = "findId.jsp";
 		} else {
 			HttpServletRequest request = (HttpServletRequest) data.get("request");
 			String email = request.getParameter("email");

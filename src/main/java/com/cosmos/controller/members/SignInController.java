@@ -17,7 +17,7 @@ public class SignInController implements CommonControllerInterface {
 		String method = (String) data.get("method");
 		String page = "";
 		if (method.equals("GET")) {
-			page = "sign-in.jsp";
+			page = "signIn.jsp";
 		} else {
 			String id = request.getParameter("id");
 			String pw = request.getParameter("pw");

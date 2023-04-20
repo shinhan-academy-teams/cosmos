@@ -82,13 +82,12 @@ public class FrontController extends HttpServlet {
 		try {
 			page = controller.execute(data);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		if (page.contains("redirect:")) {
 			response.sendRedirect(page.substring(9));
-		} else if(page.contains("responseBody:")) { // ex) ajax
+		} else if(page.contains("responseBody:")) {
 			response.setCharacterEncoding("utf-8");
 			response.getWriter().append(page.substring(13));
 		} else {

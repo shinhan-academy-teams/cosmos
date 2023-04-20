@@ -1,3 +1,6 @@
+<!-- 
+메인 홈 화면
+ -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -83,7 +86,7 @@
 </style>
 </head>
 
-<body id="top">
+<body>
 	<%@ include file="common/header.jsp" %>
 	<div id="wrap">
 		<img alt="home" src="${path}/images/img-home.png">

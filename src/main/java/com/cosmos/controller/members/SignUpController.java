@@ -20,7 +20,7 @@ public class SignUpController implements CommonControllerInterface {
 		String page = "";
 
 		if (method.equals("GET")) {
-			page = "sign-up.jsp";
+			page = "signUp.jsp";
 		} else {
 			HttpSession session = request.getSession();
 			MemberVO newMember = doHandle(request);
@@ -28,10 +28,10 @@ public class SignUpController implements CommonControllerInterface {
 			if (newMember != null) {
 				service.signUpMember(newMember);
 				session.setAttribute("message", "from SignUpController");
-				page = "redirect:signin.do";
+				page = "redirect:" + request.getContextPath() + "/signin.do";
 			} else {
 				session.setAttribute("dupCheckResult", -1);
-				page = "redirect:signup.do";
+				page = "redirect:" + request.getContextPath() + "/signup.do";
 			}
 		}
 
