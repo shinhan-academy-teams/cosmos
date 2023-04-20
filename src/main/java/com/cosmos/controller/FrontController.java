@@ -74,6 +74,7 @@ public class FrontController extends HttpServlet {
 		if (page.contains("redirect:")) {
 			response.sendRedirect(page.substring(9));
 		} else if(page.contains("responseBody:")) { // ex) ajax
+			response.setCharacterEncoding("utf-8");
 			response.getWriter().append(page.substring(13));
 		} else {
 			RequestDispatcher rd;
