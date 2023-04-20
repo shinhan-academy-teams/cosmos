@@ -42,53 +42,76 @@
 			<table class="table table-boardered">
 				<tr>
 					<th>스터디 이름</th>
-					<td><input type="text" class="form-control" name="sgname"></td>
+					<td><input type="text" class="form-control" id="studyName"></td>
 				</tr>
 				<tr>
-					<!-- 로그인한 사람 아이디 read only로 쏴야함 -->
 					<th>그룹장</th>
-					<td><input type="password" class="form-control"
-						name="sgmanager"></td>
+					<td><input type="text" class="form-control"
+						name="sg_manager" value="${user.member_name }" readonly></td>
 				</tr>
 
 				<tr>
 					<th>최대인원</th>
 					<td>
-						<!-- select name="job" class="form-control">
-								<option value=""></option>
-								<option value="">1</option>
-								<option value="">2</option>
-								<option value="">3</option>
-								<option value="">4</option>
-						</select> -->
-						<input type="number">
+						<input type="number" id="maxPeople">
 						
 					</td>
 				</tr>
 				<tr>
 					<th>사용언어</th>
-					<td><select name="job" class="form-control">
-							<option value="java">java</option>
-							<option value="python">python</option>
-							<option value="c">c</option>
-							<option value="c++">c++</option>
+					<td><select id="lang" class="form-control">
+							<option value="Java">Java</option>
+							<option value="Python">Python</option>
+							<option value="JavaScript">JavaScript</option>
+							<option value="C">C</option>
+							<option value="C++">C++</option>
+							<option value="C#">C#</option>
 					</select></td>
 				</tr>
 				
 				<tr>
 					<th>그룹소개</th>
-					<td><textarea rows="5" cols="40" name="info"
+					<td><textarea rows="5" cols="40" id="info"
 							class="form-control" placeholder="1000자 이내로 작성해주세요"></textarea></td>
 				</tr>
 
 				<tr>
-					<td id="td-right" colspan="2"><input type="submit" class="btn btn-primary"
-						value="생성"> <input type="reset" class="btn btn-danger"
-						value="취소"></td>
+					<td id="td-right" colspan="2"><button id="create" class="btn btn-primary">생성</button> 
+					<button id="cancle" class="btn btn-danger">취소</button></td>
 				</tr>
 
 			</table>
 	</div>
 	<%@ include file="common/footer.jsp"%>
 </body>
+<script>	
+	$("#create").on("click",function(){
+		if("${user}"===''){
+			alert("로그인이 필요합니다.");
+			location.href="${path}/creategroup.do"
+		} else {
+			$.ajax({
+				url:"${path}/creategroup.do",
+				type:"post",
+				data:{
+					studyName:$('#studyName').val(),
+					memberNo:'${user.member_no}',
+					maxPeople:$('#maxPeople').val(),
+					lang:$('#lang').val(),
+					info:$('#info').val()
+				},
+				success:function(message){
+					alert(message);
+					location.href="${path}/studygroup.do"
+				},
+				error:function(){
+					console.log(message)
+				}
+			});
+		}
+	});
+	
+	$("#cancle").on("click",function(){
+	});
+</script>
 </html>
