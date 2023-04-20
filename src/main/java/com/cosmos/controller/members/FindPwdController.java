@@ -1,10 +1,11 @@
-package com.cosmos.controller;
+package com.cosmos.controller.members;
 
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.cosmos.controller.CommonControllerInterface;
 import com.cosmos.model.members.FindService;
 import com.cosmos.vo.MemberVO;
 
@@ -20,7 +21,7 @@ public class FindPwdController implements CommonControllerInterface {
 		String foundId = request.getParameter("foundId"); // 아이디 가져옴
 		
 		if (method.equals("GET")) {
-			page = "find-pw.jsp";
+			page = "findPwd.jsp";
 		} else {
 			String id = request.getParameter("id"); // 아이디 가져옴
 			FindService service = new FindService();

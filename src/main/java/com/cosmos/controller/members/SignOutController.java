@@ -1,8 +1,10 @@
-package com.cosmos.controller;
+package com.cosmos.controller.members;
 
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+
+import com.cosmos.controller.CommonControllerInterface;
 
 public class SignOutController implements CommonControllerInterface {
 
