@@ -197,6 +197,38 @@ public class StudyGroupDAO {
 		}
 		return true;
 	}
+	
+	/*
+	 * 
+	 */
+	
+	// 스터디 생성
+	public int createStudyGroup(StudyGroupVO object) {
+		int resultCount = 0;
+		String createStudy = "insert into studygroup values(sg_seq.nextval,?,?,?,?,sysdate,?,default)";
+		conn = OracleUtil.getConnection();
+		try {
+			// 스터디 그룹 생성
+			prepared = conn.prepareStatement(createStudy);
+			prepared.setString(1, object.getSg_name());
+			prepared.setInt(2, object.getSg_manager());
+			prepared.setInt(3, object.getSg_max());
+			prepared.setString(4, object.getSg_lang());
+			prepared.setString(5, object.getSg_info());
+			resultCount = prepared.executeUpdate();		
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			OracleUtil.dbDisconnect(null, prepared, conn);
+		}
+		return resultCount;
+	}
+	
+	/*
+	 * 
+	 */
 
 	// 스터디 그룹 객체를 생성해서 반환해주는 메서드
 	private StudyGroupVO getOneGroup(ResultSet result) throws SQLException {

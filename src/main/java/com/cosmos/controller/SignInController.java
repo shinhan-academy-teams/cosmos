@@ -20,10 +20,15 @@ public class SignInController implements CommonControllerInterface {
 		} else {
 			String id = request.getParameter("id");
 			String pw = request.getParameter("pw");
+			//입력한 비밀번호 암호화
+			Encrypt en = new Encrypt();
+			String en_pwd = en.getEncrypt(pw);
+			
+			
 			SignInService service = new SignInService();
-			MemberVO member = service.signInCheck(id, pw);
+			MemberVO member = service.signInCheck(id, en_pwd);
 
-			int result_idPwd = service.idPwdCheck(id, pw);
+			int result_idPwd = service.idPwdCheck(id, en_pwd);
 			if (result_idPwd > 0) {
 				// 계정있음
 				System.out.println(member == null ? "로그인 실패" : member);
