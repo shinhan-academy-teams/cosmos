@@ -35,7 +35,7 @@
 </style>
 </head>
 
-<body id="top">
+<body>
 	<%@ include file="common/header.jsp"%>
 
 	<div id="wrap">
