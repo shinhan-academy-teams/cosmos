@@ -42,12 +42,20 @@
 				<!-- 230419 영선 -->
 				<div id="sign-div">
 					<c:if test="${empty user}">
-					<button id="sign-in" type="button" class="btn btn-outline-light text-dark" onclick="signIn()">로그인</button>
-					<button id="sign-up" type="button" class="btn btn-outline-light text-dark" onclick="signUp()">회원가입</button>
+						<button id="sign-in" type="button" class="btn btn-outline-light text-dark" onclick="signIn()">로그인</button>
+						<button id="sign-up" type="button" class="btn btn-outline-light text-dark" onclick="signUp()">회원가입</button>
 					</c:if>
 					<c:if test="${not empty user}">
-					<label>${user.member_name }님</label>
-					<button id="sign-out" type="button" class="btn btn-outline-light text-dark" onclick="signOut()">로그아웃</button>
+						<div class="dropdown">
+							<button type="button" class="dropbtn">${user.member_name} 님, 반갑습니다!</button>
+							<div class="dropdown-content">
+								<button id="my-page-btn" type="button" class="btn btn-outline-light text-dark" onclick="myPage()">마이페이지</button>
+								<button id="sign-out-btn" type="button" class="btn btn-outline-light text-dark" onclick="signOut()">로그아웃</button>
+							</div>
+						</div>
+
+						<!-- <label>${user.member_name }님</label>
+						<button id="sign-out" type="button" class="btn btn-outline-light text-dark" onclick="signOut()">로그아웃</button> -->
 					</c:if>
 				</div>
 				<!-- 영선 end -->
@@ -59,10 +67,16 @@
 <script>
 	function signIn(){
 		location.href = '${path}/signin.do';
-	}	
+	}
+
 	function signUp(){
 		location.href = '${path}/signup.do';
-	}	
+	}
+
+	function myPage(){
+		location.href = '${path}/myPage.jsp';
+	}
+
 	function signOut(){
 		alert("로그아웃 되었습니다.");
 		location.href = '${path}/signout.do';
@@ -78,6 +92,7 @@
 		background-color: #FAE6D4;
 		position: sticky;
 		top: 0;
+		z-index: 10000;
 	}
 
 	nav {
@@ -85,7 +100,6 @@
 		height: 64px;
 		width: 100%;
 		max-width: 1200px;
-		z-index: 10000;
 		vertical-align: middle;
 	}
 
@@ -116,7 +130,9 @@
     border-bottom-left-radius: 24px;
 	}
 	
-	.form-control:focus, select[name="searchOption"]:focus {
+	.form-control:focus,
+	select[name="searchOption"]:focus,
+	select[name="email-list"]:focus {
 		color: black;
 		border: 1px solid #EE7785;
 		box-shadow: 0 0 0 0 white;
@@ -124,14 +140,14 @@
 	
 	#search-btn {
 		width: 48px;
-    background-color: rgba(238, 119, 133, 0.6);
-    border: 0.8px solid rgb(206, 212, 218);
-    background-image: url(/cosmos/images/icon-search.svg);
-    background-repeat: no-repeat;
-    background-position: 40% center;
-    background-size: 40%;
-    border-top-right-radius: 24px;
-    border-bottom-right-radius: 24px;
+	    background-color: rgba(238, 119, 133, 0.6);
+	    border: 0.8px solid rgb(206, 212, 218);
+	    background-image: url(/cosmos/images/icon-search.svg);
+	    background-repeat: no-repeat;
+	    background-position: 40% center;
+	    background-size: 40%;
+	    border-top-right-radius: 24px;
+	    border-bottom-right-radius: 24px;
 	}
 	
 	#search-btn:hover {
@@ -139,24 +155,75 @@
 	}
 	
 	#sign-div {
-    margin-left: 12px;
-    width: 192px;
-    display: flex;
-    justify-content: flex-end;
+		background-color: #FAE6D4;
+	    margin-left: 12px;
+	    width: 192px;
+	    display: flex;
+	    justify-content: flex-end;
 	}
 
 	#sign-div > button {
 		width: 84px;
 		height: 37.6px;
-    margin-left: 12px;
+		margin-left: 12px;
 		border: 0.8px solid rgb(206, 212, 218);
 		background-color: rgba(238, 119, 133, 0.6);
 		color: #FFFFFF !important;
 		font-size: 15px;
-    font-weight: 500;
+		font-weight: 500;
 	}
 	
 	#sign-div > button:hover {
 		background-color: rgba(238, 119, 133, 1);
 	}
+
+	.dropdown {
+		position: relative;
+		display: inline-block;
+	}
+
+	.dropbtn {
+		background-color: rgba(238, 119, 133, 0.6);
+		border: 0.8px solid rgb(206, 212, 218);
+		color: white;
+		padding: 0px 12px;
+    height: 40px;
+		font-size: 16px;
+		border-radius: 8px;
+	}
+
+	.dropdown-content {
+		display: none;
+		position: absolute;
+		right: 0;
+		border-radius: 8px;
+		background-color: #f1f1f1;
+		min-width: 128px;
+		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		z-index: 1;
+	}
+
+	.dropdown-content button {
+		display: block;
+		padding: 8px 12px;
+		width: 100%;
+		border: none;
+		color: black;
+	}
+
+	.dropdown:hover .dropbtn {
+		cursor: default;
+		background-color: rgba(238, 119, 133, 1);
+	}
+	
+	.dropdown:hover .dropdown-content {
+		display: block;
+	}
+
+	.dropdown-content button:hover {
+		background-color: #ddd;
+	}
+
+
+
 </style>
