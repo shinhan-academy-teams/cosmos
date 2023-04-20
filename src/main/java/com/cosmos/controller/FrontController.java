@@ -48,13 +48,21 @@ public class FrontController extends HttpServlet {
 		case "/studygroup.do":
 			controller = new StudyGroupController();
 			break;
-		// 스터디명으로 검색하기
+		// 스터디 검색하기
 		case "/search.do":
 			controller = new GroupSearchController();
 			break;
 		// 스터디 모집 정보 상세 보기
 		case "/studyintro.do":
 			controller = new StudyIntroduceController();
+			break;
+		// 스터디 가입
+		case "/joinstudy.do":
+			controller = new JoinStudyController();
+			break;
+		// 스터디 생성
+		case "/creategroup.do":
+			controller = new CreateGroupController();
 			break;
 		default:
 			break;
@@ -70,6 +78,7 @@ public class FrontController extends HttpServlet {
 		if (page.contains("redirect:")) {
 			response.sendRedirect(page.substring(9));
 		} else if(page.contains("responseBody:")) { // ex) ajax
+			response.setCharacterEncoding("utf-8");
 			response.getWriter().append(page.substring(13));
 		} else {
 			RequestDispatcher rd;
