@@ -47,7 +47,7 @@ public class StudyGroupService {
 	// 스터디 생성
 	public String createStudyGroup(StudyGroupVO object) {
 		int result = studyGroupDao.createStudyGroup(object);
-		if(result<1) {
+		if(result<2) {
 			return "스터디 생성 실패";
 		}
 		return "스터디가 만들어졌습니다.";

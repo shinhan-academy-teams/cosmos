@@ -78,7 +78,7 @@ html, body {
 
 			<tr>
 				<td id="td-right" colspan="2"><button id="create"
-						class="btn btn-primary">생성</button>
+						class="btn btn-primary">만들기</button>
 					<button id="cancle" class="btn btn-danger">취소</button></td>
 			</tr>
 

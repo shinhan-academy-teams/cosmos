@@ -121,6 +121,7 @@
 				},
 				success:function(message){
 					alert(message);
+					location.reload();
 				},
 				error:function(){
 					console.log(message)

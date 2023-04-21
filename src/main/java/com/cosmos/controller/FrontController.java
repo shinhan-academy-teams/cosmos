@@ -24,6 +24,7 @@ import com.cosmos.controller.study.JoinStudyController;
 import com.cosmos.controller.study.MyStudyController;
 import com.cosmos.controller.study.StudyGroupController;
 import com.cosmos.controller.study.StudyIntroduceController;
+import com.cosmos.controller.study.StudyMainController;
 
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
@@ -107,6 +108,10 @@ public class FrontController extends HttpServlet {
 		// 내 스터디
 		case "/mystudy.do":
 			controller = new MyStudyController();
+			break;
+		// 내 스터디에서 공부 시작
+		case "/studymain.do":
+			controller = new StudyMainController();
 			break;
 		default:
 			break;
