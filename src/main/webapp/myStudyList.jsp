@@ -73,13 +73,12 @@
 					</tr>
 				</thead>
 				<tbody id="tbody">
-					<c:forEach items="${studyGroup }" var="grouplist" varStatus="status" >
+					<c:forEach items="${myGroup }" var="grouplist" varStatus="status" >
 						<tr>
 							<td>상태</td>
 							<td><a href="#">${grouplist.sg_name }</a></td>
-							<td>${grouplist.sg_lang }</td>
-							<td>${grouplist.sg_manager }</td>
-							<td>${grouplist.sg_no }</td>
+							<td>${grouplist.manager_name }</td>
+							<td>${grouplist.sg_cur }/${grouplist.sg_max }</td>
 						</tr>
 					</c:forEach>
 				</tbody>
