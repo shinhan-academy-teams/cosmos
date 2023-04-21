@@ -25,8 +25,8 @@
 			<div class="collapse navbar-collapse" id="mynavbar">
 				<ul class="navbar-nav me-auto">
 					<li class="nav-item"><a class="nav-link" href="studygroup.do">전체 스터디</a></li>
-					<li class="nav-item"><a class="nav-link" href="javascript:void(0)">내 스터디</a></li>
-					<li class="nav-item"><a class="nav-link" href="javascript:void(0)">스터디 생성</a></li>
+					<li class="nav-item"><a class="nav-link" href="mystudy.do">내 스터디</a></li>
+					<li class="nav-item"><a class="nav-link" href="creategroup.do">스터디 만들기</a></li>
 				</ul>
 				<form class="d-flex" action="search.do">
 					<div class="input-group">

@@ -114,27 +114,26 @@
 					<div class="popup-head">
 						<span class="head-title"> Study Create</span>
 					</div>
+					<form action="<%=request.getContextPath()%>/createQuiz.do?studyno=<%=request.getParameter("studyno") %>" method="post">
 					<div class="popup-body">
 						<div class="body-content">
 							<div class="body-titlebox">
 								<h2>스터디 그룹명</h2>
 							</div>
 							<div class="body-contentbox">
-							<form method="post" action="<%=request.getContextPath()%>/emp/empinsert.do" >
+							
 								<table>
 									<tr>
 										<td>문제 제목</td>
-										<td><input type="text" name="" maxlength="20"></td>
+										<td><input type="text" name="quizTitle" maxlength="20"></td>
 									</tr>
 									<tr>
 										<td>문제 링크</td>
-										<td><input type="text" name=""
+										<td><input type="text" name="quizUrl"
 											required="required"></td>
 									</tr>
 								</table>
 							</div>
-
-
 						</div>
 					</div>
 					<div class="popup-foot">
