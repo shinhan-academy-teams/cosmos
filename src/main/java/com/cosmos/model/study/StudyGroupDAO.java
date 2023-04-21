@@ -165,7 +165,6 @@ public class StudyGroupDAO {
 			prepared.setInt(2, studyNo);
 			resultCount = prepared.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			OracleUtil.dbDisconnect(null, prepared, conn);
@@ -204,8 +203,10 @@ public class StudyGroupDAO {
 	
 	// 스터디 생성
 	public int createStudyGroup(StudyGroupVO object) {
-		int resultCount = 0;
+		int resultCount1 = 0;
+		int resultCount2 = 0;
 		String createStudy = "insert into studygroup values(sg_seq.nextval,?,?,?,?,sysdate,?,default)";
+		String insertParty = "insert into party values(?,sg_seq.currval,'manager')";
 		conn = OracleUtil.getConnection();
 		try {
 			// 스터디 그룹 생성
@@ -215,15 +216,20 @@ public class StudyGroupDAO {
 			prepared.setInt(3, object.getSg_max());
 			prepared.setString(4, object.getSg_lang());
 			prepared.setString(5, object.getSg_info());
-			resultCount = prepared.executeUpdate();		
+			resultCount1 = prepared.executeUpdate();
 			
+			// 스터디장을 party테이블에 추가
+			if(resultCount1>0) {
+				prepared = conn.prepareStatement(insertParty);
+				prepared.setInt(1, object.getSg_manager());
+				resultCount2 = prepared.executeUpdate();
+			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			OracleUtil.dbDisconnect(null, prepared, conn);
 		}
-		return resultCount;
+		return resultCount1+resultCount2;
 	}
 	
 	/*
