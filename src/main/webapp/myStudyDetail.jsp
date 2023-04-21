@@ -78,6 +78,9 @@
 	<div id="wrap">
 		<%@ include file="createQuizModal.jsp" %>
 	</div>
+	<div id="wrap2">
+		<%@ include file="quizCalendar.jsp" %>
+	</div>
 	
 	<%@ include file="common/footer.jsp"%>
 </body>
