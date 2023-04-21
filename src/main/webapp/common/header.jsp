@@ -120,6 +120,10 @@
     color: black;
 	}
 
+	form.d-flex {
+		width: 368.8px !important;
+	}
+
 	select[name="searchOption"] {
     display: block;
     width: 96px;
@@ -140,14 +144,14 @@
 	
 	#search-btn {
 		width: 48px;
-	    background-color: rgba(238, 119, 133, 0.6);
-	    border: 0.8px solid rgb(206, 212, 218);
-	    background-image: url(/cosmos/images/icon-search.svg);
-	    background-repeat: no-repeat;
-	    background-position: 40% center;
-	    background-size: 40%;
-	    border-top-right-radius: 24px;
-	    border-bottom-right-radius: 24px;
+		background-color: rgba(238, 119, 133, 0.6);
+		border: 0.8px solid rgb(206, 212, 218);
+		background-image: url(/cosmos/images/icon-search.svg);
+		background-repeat: no-repeat;
+		background-position: 40% center;
+		background-size: 40%;
+		border-top-right-radius: 24px;
+		border-bottom-right-radius: 24px;
 	}
 	
 	#search-btn:hover {
@@ -156,10 +160,10 @@
 	
 	#sign-div {
 		background-color: #FAE6D4;
-	    margin-left: 12px;
-	    width: 192px;
-	    display: flex;
-	    justify-content: flex-end;
+		margin-left: 12px;
+		width: 192px;
+		display: flex;
+		justify-content: flex-end;
 	}
 
 	#sign-div > button {
