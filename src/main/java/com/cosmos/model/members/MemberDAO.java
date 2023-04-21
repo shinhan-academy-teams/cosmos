@@ -210,28 +210,24 @@ public class MemberDAO {
 		
 	}
 	
-//	//아이디로 비밀번호 찾기(임시 비밀번호)
-//	public String findPwById(String id) {
-//		String mempw = "";
-//		//select member_pwd from members where member_id = 'bona366';
-//		String sql = "select member_pwd from members where member_id = ?";
-//		conn = OracleUtil.getConnection();
-//		
-//		try {
-//			st = conn.prepareStatement(sql);
-//			st.setString(1, id);
-//			rs = st.executeQuery();
-//			while(rs.next()) {
-//				mempw = rs.getString("member_pwd");
-//			}
-//				
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}finally {
-//			OracleUtil.dbDisconnect(rs, st, conn);
-//		}
-//		return mempw;
-//	}
+	//비밀번호 변경
+	public int updatePwd(MemberVO member, String pwd) {
+		int resultCount = 0;
+		String sql = "update members set member_pwd=? where member_id=?";
+		conn = OracleUtil.getConnection();
+		try {
+			st = conn.prepareStatement(sql);
+			st.setString(1, pwd);
+			st.setString(2, member.getMember_id());
+			resultCount = st.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			OracleUtil.dbDisconnect(rs, st, conn);
+		}
+		return resultCount;
+	}
 
 }

@@ -86,7 +86,8 @@
 		visibility: hidden;
 		opacity: 0;
 		height: 0px;
-		transition: height 1s;
+		transition: 	height 1s cubic-bezier(0, 0.55, 0.45, 1),
+									opacity 0.8s cubic-bezier(0.55, 0, 1, 0.45);
 	}
 	
 	#find-id-btn {

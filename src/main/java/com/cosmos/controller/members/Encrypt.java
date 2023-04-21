@@ -7,7 +7,6 @@ public class Encrypt {
 	public static void main(String pwd) {
 		Encrypt en = new Encrypt();
 		
-		System.out.println("pwd : "+pwd);
 		//최종 pwd 생성
 		String res = en.getEncrypt(pwd);
 	}
@@ -31,7 +30,6 @@ public class Encrypt {
 			}
 			
 			result = sb.toString();
-			System.out.println("pwd 암호화 후 : "+result);
 			
 		}catch(NoSuchAlgorithmException e) {
 			e.printStackTrace();
