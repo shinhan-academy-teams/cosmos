@@ -107,7 +107,23 @@
 	<%@ include file="common/footer.jsp"%>
 </body>
 
-<script>	
+<script>
+	
+	check();
+	
+	function check(){
+		if(${groupInfo.sg_cur} == ${groupInfo.sg_max}){
+			console.log('같음');
+			$('#btnStudyjoin').attr('disabled', 'disabled');
+			$('#btnStudyjoin').css({'cursor':'not-allowed', 'background-color':'gray', 'pointer-events':'auto' });
+			$('#btnStudyjoin').text('모집 마감');
+			
+		} else {
+			console.log('다름');
+		}
+	}
+	
+	
 	$("#btnStudyjoin").on("click",function(){
 		if("${user}"===''){
 			alert("로그인이 필요합니다.");
@@ -121,6 +137,7 @@
 				},
 				success:function(message){
 					alert(message);
+					location.reload();
 				},
 				error:function(){
 					console.log(message)

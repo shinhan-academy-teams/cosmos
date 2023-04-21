@@ -77,7 +77,7 @@
 							<td><a href="studyintro.do?studyno=${grouplist.sg_no }">${grouplist.sg_name }</a></td>
 							<td>${grouplist.sg_lang }</td>
 							<td>${grouplist.manager_name }</td>
-							<td>${grouplist.sg_max }</td>
+							<td>${grouplist.sg_cur}/${grouplist.sg_max }</td>
 						</tr>
 					</c:forEach>
 				</tbody>
