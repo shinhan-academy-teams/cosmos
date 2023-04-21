@@ -57,7 +57,7 @@
 
 	.btn-toggle-nav a {
 		width: 150px;
-		padding: .3rem .5rem;
+    padding: 0.8rem 0 0.8rem 1.5rem;
 		margin-top: 1rem;
 		margin-left: 1.5rem;
 		color: black;
@@ -65,7 +65,7 @@
 	}
 	.btn-toggle-nav a:hover,
 	.btn-toggle-nav a:focus {
-		background-color: rgba(0, 0, 0, 0.08);
+		background-color: rgba(0, 0, 0, 0.04);
 		color: black;
 		cursor: pointer;
 	}
@@ -86,7 +86,7 @@
 		width: 100%;
     height: 100%;
     margin-top: 28px;
-    padding: 24px 0 0 0;
+    padding: 24px 24px 0;
     background-color: #F9FAFB;
     border-radius: 24px;
     display: flex;
@@ -139,18 +139,33 @@
 		height: 24px;
 	}
 
-	#submit-btn {
+	#submit-btn, #delete-acount-btn {
 		margin-top: 48px;
 		width: 100%;
 		height: 42px;
 		background-color: gray;
 		border: none;
 	}
-	
+
+	#delete-acount-btn {
+		background-color: rgb(238, 119, 133);
+	}
+
+	#delete-acount-btn:hover {
+		background-color: rgb(255, 0, 0);
+	}
 </style>
+
 </head>
 <body>
 	<%@ include file="common/header.jsp" %>
+
+	<script>
+		$(function(){
+			myCodeList();
+		})
+	</script>
+
 	<div id="wrap">
 
 		<sidebar class="d-flex flex-nowrap">
@@ -164,13 +179,10 @@
 						<div class="collapse show" id="home-collapse">
 							<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 								<li>
-									<a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">내 코드 모아보기</a>
+									<a onclick="myCodeList()" class="link-body-emphasis d-inline-flex text-decoration-none rounded">내 코드 모아보기</a>
 								</li>
 								<li>
-									<a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">메뉴 2</a>
-								</li>
-								<li>
-									<a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">메뉴 3</a>
+									<a onclick="myMarkCodeList()" class="link-body-emphasis d-inline-flex text-decoration-none rounded">찜한 코드</a>
 								</li>
 							</ul>
 						</div>
@@ -191,12 +203,22 @@
 
 		<contents>
 			<div id="right-contents">
-				<div id="default" class="my-page-content">
-					<h3>Default</h3>
+				<div id="my-code-list" class="my-page-content">
+					<h3>myCodeList</h3>
+					<div>
+						<div>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tristique sem et scelerisque euismod. Quisque cursus, purus a viverra iaculis, nunc mauris laoreet est, non blandit velit nisi vel metus. Sed purus odio, dapibus id felis a, viverra cursus quam. Quisque pulvinar erat diam, eget tincidunt lacus varius eget. Phasellus vitae vulputate tellus. Aliquam vulputate mi vitae justo semper pharetra. Suspendisse potenti. Phasellus nec congue turpis. Vestibulum suscipit felis scelerisque, vehicula mi eleifend, pharetra est. Etiam viverra, elit sed ultrices tincidunt, neque justo condimentum odio, ut rhoncus turpis ipsum ultrices arcu. Maecenas tincidunt purus a quam pretium, vitae consequat sem feugiat. Mauris vitae eros malesuada, pretium massa ut, posuere lectus. Praesent gravida accumsan ex, ut pulvinar dui venenatis et. Praesent elementum, lacus vel interdum sagittis, nisl enim finibus dui, et pretium nisi odio eu quam.
+							<br><br>
+							Suspendisse sit amet mauris mi. Praesent augue odio, consectetur aliquet libero vel, cursus ornare nisl. In in diam sit amet magna semper condimentum. Mauris eros sem, volutpat vel orci vel, euismod congue magna. Pellentesque nec augue vel dui vestibulum bibendum vitae in nisi. In hac habitasse platea dictumst. In dapibus ex leo, eget pulvinar enim dignissim et. Ut ut lacus sed sapien porta varius eu posuere velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi laoreet ornare odio at suscipit. Cras aliquam eu nibh ut posuere. In mollis sit amet dolor vel pharetra.
+						</div>
+					</div>
+				</div>
+				<div id="my-mark-code-list" class="my-page-content">
+					<h3>myMarkCodeList</h3>
 					<div>
 						<div>
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Suspendisse interdum consectetur libero id faucibus nisl tincidunt. Luctus accumsan tortor posuere ac ut consequat semper. Ornare arcu odio ut sem nulla pharetra diam. Sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper eget. Pharetra et ultrices neque ornare aenean. Consequat id porta nibh venenatis cras sed felis eget velit. Quam pellentesque nec nam aliquam sem et tortor. Placerat orci nulla pellentesque dignissim enim sit amet. Eget dolor morbi non arcu risus. Justo eget magna fermentum iaculis. Pretium vulputate sapien nec sagittis. Fringilla ut morbi tincidunt augue interdum velit euismod in pellentesque.
-
+							<br><br>
 							Ut lectus arcu bibendum at varius. Elementum pulvinar etiam non quam lacus. Viverra maecenas accumsan lacus vel facilisis volutpat est. Viverra tellus in hac habitasse platea. Eu feugiat pretium nibh ipsum consequat nisl vel pretium lectus. Eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. Lectus urna duis convallis convallis tellus id interdum velit. Donec pretium vulputate sapien nec. Mus mauris vitae ultricies leo. In vitae turpis massa sed elementum tempus egestas sed sed. In fermentum et sollicitudin ac orci phasellus.
 						</div>
 					</div>
@@ -204,7 +226,7 @@
 				<div id="my-page" class="my-page-content">
 					<h3>비밀번호 수정</h3>
 					<div>
-						<form action="${path}/" method="post">
+						<form action="${path}/updatePwd.do" method="post">
 							<div class="form-group">
 								<label for="current-pw">현재 비밀번호</label>
 								<input type="password" class="form-control" id="current-pw" name="current-pw" required placeholder="현재 비밀번호를 입력해주세요">
@@ -230,7 +252,15 @@
 				<div id="delete-account" class="my-page-content">
 					<h3>회원 탈퇴</h3>
 					<div>
-						<div>무야호</div>
+						<form action="${path}/" method="post">
+							<div class="form-group">
+								<label for="pw-comfirm">비밀번호</label>
+								<input type="password" class="form-control" id="pw-comfirm" name="pw-comfirm" required placeholder="비밀번호를 입력해주세요">
+							</div>
+							<div>
+								<button id="delete-acount-btn" type="submit" class="btn btn-danger">회원 탈퇴</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -239,11 +269,25 @@
 	</div>
 	<%@ include file="common/footer.jsp" %>
 	<script>
+		function myCodeList(){
+			$('.form-control').val('');
+			$('.my-page-content').css('display', 'none');
+			$('#my-code-list').css('display', 'block');
+		}
+
+		function myMarkCodeList(){
+			$('.form-control').val('');
+			$('.my-page-content').css('display', 'none');
+			$('#my-mark-code-list').css('display', 'block');
+		}
+
 		function modifyAccount(){
+			$('.form-control').val('');
 			$('.my-page-content').css('display', 'none');
 			$('#my-page').css('display', 'block');
 		}
 		function deleteAccount(){
+			$('.form-control').val('');
 			$('.my-page-content').css('display', 'none');
 			$('#delete-account').css('display', 'block');
 		}
@@ -314,7 +358,6 @@
 				$('#submit-btn').hover(function(){
 					$(this).css('background-color','rgba(238, 119, 133, 1)');
 				});
-
 			} else {
 				$('#submit-btn').attr('disabled', 'disabled');
 				$('#submit-btn').css({'cursor':'not-allowed', 'background-color':'gray', 'pointer-events':'auto' });
