@@ -17,10 +17,17 @@ public class FindPwdController implements CommonControllerInterface {
 		HttpSession session = request.getSession();
 		String method = (String) data.get("method");
 		String page = "";
-		String inputEmail = request.getParameter("inputEmail"); // 이메일 가져옴
-		String foundId = request.getParameter("foundId"); // 아이디 가져옴
 		
 		if (method.equals("GET")) {
+			// findId에서 넘어온 파라미터
+			String parameterEmail = request.getParameter("inputEmail");
+			String parameterId = request.getParameter("foundId");
+
+			if(parameterEmail != null && parameterId != null) { // 파라미터가 넘어왔다면
+				request.setAttribute("parameterEmail", parameterEmail);
+				request.setAttribute("parameterId", parameterId);
+			}
+
 			page = "findPwd.jsp";
 		} else {
 			String id = request.getParameter("id"); // 아이디 가져옴
@@ -28,8 +35,8 @@ public class FindPwdController implements CommonControllerInterface {
 			MemberVO vo = service.findById(id);// 아이디로 해당 데이터 찾기
 			service.updateRndPwd(vo); // 해당 데이터를 업데이트하기
 			
-			
 			session.setAttribute("message", "from FindPwdController");
+
 			page = "redirect:"+ request.getContextPath() +"/signin.do";
 		}
 		return page;

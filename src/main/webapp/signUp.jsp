@@ -106,10 +106,6 @@
 		border: none;
 	}
 	
-	#submit-btn:hover {
-		background-color: rgba(238, 119, 133, 1);
-	}
-	
 </style>
 </head>
 <body>
@@ -266,6 +262,9 @@
 				$('#submit-btn').removeAttr('disabled');
 				$('#submit-btn').css({'cursor':'pointer', 'background-color':'rgba(238, 119, 133, 0.6)', 'pointer-events':'auto' });
 				$('#submit-btn').text('회원가입');
+				$('#submit-btn').hover(function(){
+					$(this).css('background-color','rgba(238, 119, 133, 1)');
+				});
 			} else {
 				$('#submit-btn').attr('disabled', 'disabled');
 				$('#submit-btn').css({'cursor':'not-allowed', 'background-color':'gray', 'pointer-events':'auto' });
