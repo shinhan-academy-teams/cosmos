@@ -237,7 +237,7 @@ public class StudyGroupDAO {
 	 */
 
 	// 스터디 그룹 객체를 생성해서 반환해주는 메서드
-	private StudyGroupVO getOneGroup(ResultSet result) throws SQLException {
+	StudyGroupVO getOneGroup(ResultSet result) throws SQLException {
 		StudyGroupVO groupObject = new StudyGroupVO();
 		// 스터디 번호
 		groupObject.setSg_no(result.getInt("sg_no"));
@@ -253,6 +253,8 @@ public class StudyGroupDAO {
 		groupObject.setSg_created(result.getDate("sg_created"));
 		// 스터디장 이름
 		groupObject.setManager_name(result.getString("member_name"));
+		// 스터디 현재 인원
+		groupObject.setSg_cur(result.getInt("sg_cur"));
 		return groupObject;
 
 	}
