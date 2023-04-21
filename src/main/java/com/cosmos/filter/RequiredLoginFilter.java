@@ -37,9 +37,11 @@ public class RequiredLoginFilter extends HttpFilter implements Filter {
 		String uri = req.getRequestURI();
 		
 		// 로그인이 필요한 페이지
-		String joinStudy = "/cosmos/joinstudy.do";
-		String createStudy = "/cosmos/creategroup.do";
-		if(uri.equals(joinStudy) || uri.equals(createStudy)) {
+		String joinStudy = "/cosmos/joinstudy.do"; // 스터디 가입
+		String createStudy = "/cosmos/creategroup.do"; // 스터디 생성
+		String myStudy = "/cosmos/mystudy.do"; // 내 스터디
+		
+		if(uri.equals(joinStudy) || uri.equals(createStudy) || uri.equals(myStudy)) {
 			// 로그인 여부 확인
 			HttpSession session = req.getSession();
 			MemberVO loginUser = (MemberVO)session.getAttribute("user");
