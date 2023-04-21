@@ -16,7 +16,9 @@ import com.cosmos.controller.members.FindPwdController;
 import com.cosmos.controller.members.SignInController;
 import com.cosmos.controller.members.SignOutController;
 import com.cosmos.controller.members.SignUpController;
+import com.cosmos.controller.mypage.UpdatePwdController;
 import com.cosmos.controller.study.CreateGroupController;
+import com.cosmos.controller.study.CreateQuizController;
 import com.cosmos.controller.study.GroupSearchController;
 import com.cosmos.controller.study.JoinStudyController;
 import com.cosmos.controller.study.MyStudyController;
@@ -36,6 +38,9 @@ public class FrontController extends HttpServlet {
 		data.put("request", request);
 
 		switch (path) {
+		/*
+		 * 회원가입,로그인,로그아웃,계정찾기
+		 * */
 		// 회원 가입
 		case "/signup.do":
 			controller = new SignUpController();
@@ -56,6 +61,19 @@ public class FrontController extends HttpServlet {
 		case "/findpwd.do":
 			controller = new FindPwdController();
 			break;
+			
+		/*
+		 * 마이페이지
+		 * */
+		// 비밀번호 변경
+		case "/updatepwd.do":
+			controller = new UpdatePwdController();
+			break;
+			
+		
+		/*
+		* 스터디
+		* */	
 		// 스터디 그룹 목록 보기
 		case "/studygroup.do":
 			controller = new StudyGroupController();
@@ -76,6 +94,11 @@ public class FrontController extends HttpServlet {
 		case "/creategroup.do":
 			controller = new CreateGroupController();
 			break;
+		//데일리 문제 생성
+		case "/createQuiz.do":
+			controller = new CreateQuizController();
+			break;
+			
 			
 		/*
 		 * 여기서부터 메인 스터디 관련 페이지
