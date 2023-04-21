@@ -76,7 +76,7 @@
 					<c:forEach items="${myGroup }" var="grouplist" varStatus="status" >
 						<tr>
 							<td>상태</td>
-							<td><a href="#">${grouplist.sg_name }</a></td>
+							<td><a href="studymain.do?studyno=${grouplist.sg_no }">${grouplist.sg_name }</a></td>
 							<td>${grouplist.manager_name }</td>
 							<td>${grouplist.sg_cur }/${grouplist.sg_max }</td>
 						</tr>
