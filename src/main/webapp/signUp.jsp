@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<!-- 
+사용자 회원가입 화면
+ -->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -110,7 +112,7 @@
 	
 </style>
 </head>
-<body id="top">
+<body>
 	<%@ include file="common/header.jsp" %>
 	<div id="wrap">
 		<div>
@@ -120,16 +122,16 @@
 			<h2>COSMOS에 오신 것을 환영합니다.</h2>
 			<p>COSMOS는 알고리즘 그룹 스터디 플랫폼입니다.</p>
 			<div>
-				<form action="${path}/signup.do" method="post"> <!-- https://www.w3schools.com/bootstrap5/bootstrap_form_validation.php -->
+				<form action="${path}/signup.do" method="post">
 					<div class="form-group">
 						<label for="id">아이디</label>
-						<input type="text" class="form-control" id="id" name="id" required placeholder="4~15자 이내로 입력해주세요">
+						<input type="text" class="form-control" id="id" name="id" required placeholder="4~15자 이내로 입력해주세요 (영문, 숫자 필수)">
 						<span id="id-value-valid"><img alt="valid" src="${path}/images/icon-valid.png">Valid.</span>
 						<span id="id-value-invalid"><img alt="warning" src="${path}/images/icon-warning.png">4~15자 이내로 입력해주세요.</span>
 					</div>
 					<div class="form-group">
 						<label for="pw1">비밀번호</label>
-						<input type="password" class="form-control" id="pw1" name="pw1" required placeholder="최소 6자 이상(영문, 숫자 필수)">
+						<input type="password" class="form-control" id="pw1" name="pw1" required placeholder="최소 6자 이상 (영문, 숫자 필수)">
 						<span id="pw1-value-valid"><img alt="valid" src="${path}/images/icon-valid.png">Valid.</span>
 						<span id="pw1-value-invalid"><img alt="warning" src="${path}/images/icon-warning.png">영문, 숫자를 포함하여 최소 6자 이상 입력해주세요.</span>
 					</div>
@@ -160,7 +162,7 @@
 						<input type="text" class="form-control" id="username" name="username" required placeholder="홍길동">
 					</div>
 					<div>
-						<button id="submit-btn" disabled="disabled" type="submit" class="btn btn-danger">조건을 충족해주세요</button>
+						<button id="submit-btn" type="submit" class="btn btn-danger" style="pointer-events: auto; cursor: not-allowed;" disabled="disabled">조건을 충족해주세요</button>
 					</div>
 				</form>
 			</div>
@@ -178,18 +180,21 @@
 			}
 		})
 		
+		let regexNumber = /[0-9]/; // 정규표현식 숫자
+		let regexAlphabet = /[a-zA-Z]/; // 정규표현식 문자
+		
 		// 아이디 처리
 		let idIsOk = false;
 		$('#id').keyup(func_id_check); // 아이디 input창에 입력이 생길 때
 		function func_id_check() { // 아이디 조건 체크 메서드
-			let length = $(this).val().length; // 입력된 id 길이
+			let userid = $(this).val() // 입력된 id
 
-			if(length == 0) { // 길이 0이면 두 알림 숨김.
+			if(userid.length == 0) { // 길이 0이면 두 알림 숨김.
 				$('#id-value-valid').css('display', 'none');
 				$('#id-value-invalid').css('display', 'none');
 				idIsOk = false;
 			} else {
-				if(length < 4 || length > 15) { // 길이가 4미만이거나 15초과이면 valid 숨기고 invalid 표시.
+				if(userid.length < 4 || userid.length > 15 || !regexNumber.test(userid) || !regexAlphabet.test(userid)) { // 길이가 4미만이거나 15초과이면 valid 숨기고 invalid 표시.
 					$('#id-value-valid').css('display', 'none');
 					$('#id-value-invalid').css('display', 'inline-block');
 					idIsOk = false;
@@ -202,8 +207,6 @@
 		}
 
 		// 비밀번호 처리
-		let regexNumber = /[0-9]/; // 정규표현식 숫자
-		let regexAlphabet = /[a-zA-Z]/; // 정규표현식 문자
 		let pw1IsOk = false;
 		$('#pw1').keyup(func_pw1_check); // 비밀번호-1 조건 체크
 		function func_pw1_check() { // 아이디 조건 체크 메서드
@@ -261,11 +264,11 @@
 		function check(){
 			if(idIsOk && pw2IsOk && $('#email').val() && $('#username').val()){
 				$('#submit-btn').removeAttr('disabled');
-				$('#submit-btn').css('background-color', 'rgba(238, 119, 133, 0.6)');
+				$('#submit-btn').css({'cursor':'pointer', 'background-color':'rgba(238, 119, 133, 0.6)', 'pointer-events':'auto' });
 				$('#submit-btn').text('회원가입');
 			} else {
 				$('#submit-btn').attr('disabled', 'disabled');
-				$('#submit-btn').css('background-color', 'gray');
+				$('#submit-btn').css({'cursor':'not-allowed', 'background-color':'gray', 'pointer-events':'auto' });
 				$('#submit-btn').text('조건을 충족해주세요');
 			}
 		}

@@ -1,6 +1,9 @@
+<!-- 
+스터디 그룹 소개 및 가입 화면
+ -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <title>COSMOS</title>
@@ -16,7 +19,7 @@
 		margin: 0 auto;
 		padding: 36px 24px 84px;
 		height: auto;
-		min-height: calc(99vh - 60px);
+		min-height: calc(100vh - 64px);
 		display: flex;
 		vertical-align: middle;
 	}
@@ -68,7 +71,7 @@
 </style>
 </head>
 
-<body id="top">
+<body>
 	<%@ include file="common/header.jsp"%>
 	<div id="wrap">
 		<div id="contents">

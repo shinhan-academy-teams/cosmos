@@ -1,6 +1,9 @@
+<!-- 
+데일리 문제 생성 모달창
+ -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <title>COSMOS</title>
@@ -100,7 +103,7 @@
 </style>
 </head>
 
-<body id="top">
+<body>
 		<div class="container">
 			<div class="modal-btn-box">
 				<button type="button" id="modal-open">문제 만들기</button>
