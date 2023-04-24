@@ -79,12 +79,7 @@
 		<hr>
 
 		<div>코드 업로드된 창
-		<pre><code id="result" class="language-javascript">
-		function inputComment(){
-		var ic = new Array();
-		var html ='';
-		
-		var comment = $("#comment").val();
+		<pre><code id="content" class="hljs javascript">
 		</code></pre>
 		</div>
 		
@@ -144,31 +139,13 @@
 	 }
 	});
 	
-	window.onload=function(){
-		document.getElementById("inputCode").onclick=inputCode;
-	}
-	
 	function inputCode(){
-		var codecontent = document.getElementById("content");
-		var lines = codecontent.value.split("\n");
-		
-	//code enter html형식으로 뿌리기
-	var resultString = "";
-	for(var i=0;i<lines.length;i++){
-		resultString += lines[i] + "<br />";
-	}
-	resultString = resultString.replaceAll("\t","&emsp;");
-	//resultString += "</p>";
-	
-	//코드 올라가는부분에 출력
-	 var   blk   = document.getElementById("result");
-	 blk.innerHTML  =  resultString; 
+		let content = document.getElementById("content");
+		console.log(content.value);
 	 
 	}
-	
 
 	function inputComment(){
-		var ic = new Array();
 		var html ='';
 		
 		var comment = $("#comment").val();
