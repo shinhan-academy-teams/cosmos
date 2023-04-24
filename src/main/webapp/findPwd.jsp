@@ -83,6 +83,7 @@
 				<img alt="vertical-logo" src="${path}/images/logo-vertical.png"/>
 			</a>
 			<h2>계정 찾기</h2>
+			<p>해당 이메일 주소로 임시 비밀번호가 발송됩니다.</p>
 			<div>
 				<form action="${path}/findpwd.do" method="post">
 					<div id="form-id-div" class="form-group">
@@ -106,8 +107,16 @@
 	</div>
 
 	<script>
-		
-
+		// 비밀번호 초기화 화면에서 오입력 시, 메세지 알림창
+		let message = "${message}";
+		if(message){
+			if(message == "can NOT find user by id or WRONG input datas"){
+				alert('입력한 정보를 다시 확인해주세요');
+			}
+			message = null;
+		}
 	</script>
+
+	<c:set var="message" value="" scope="session"/>
 </body>
 </html>

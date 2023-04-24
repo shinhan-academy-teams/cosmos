@@ -27,10 +27,10 @@ public class SignUpController implements CommonControllerInterface {
 
 			if (newMember != null) {
 				service.signUpMember(newMember);
-				session.setAttribute("message", "from SignUpController");
+				session.setAttribute("message", "sign up SUCCESSFULLY from SignUpController");
 				page = "redirect:" + request.getContextPath() + "/signin.do";
 			} else {
-				session.setAttribute("dupCheckResult", -1);
+				session.setAttribute("message", "id or email is DUPLICATED from SignUpController");
 				page = "redirect:" + request.getContextPath() + "/signup.do";
 			}
 		}
