@@ -1,5 +1,9 @@
 package com.cosmos.model.code;
 
+import java.util.List;
+
+import com.cosmos.vo.CodeVO;
+
 public class CodeService {
 
 	CodeDAO dao = new CodeDAO();
@@ -10,5 +14,10 @@ public class CodeService {
 		}else {
 			return "코드 제출 완료";
 		}
+	}
+	
+	//코드 보기
+	public List<CodeVO> showCode(int quizNo, int sgNo) {
+		return dao.showCode(quizNo, sgNo);
 	}
 }

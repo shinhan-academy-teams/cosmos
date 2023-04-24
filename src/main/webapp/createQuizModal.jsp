@@ -96,49 +96,47 @@
 </style>
 
 
-<body>
-		<div class="container">
-			<div class="modal-btn-box">
-				<button type="button" id="modal-open">문제 만들기</button>
-			</div>
+<div class="container">
+	<div class="modal-btn-box">
+		<button type="button" id="modal-open">문제 만들기</button>
+	</div>
 
-			<div class="popup-wrap" id="popup">
-				<div class="popup">
-					<div class="popup-head">
-						<span class="head-title"> Study Create</span>
+	<div class="popup-wrap" id="popup">
+		<div class="popup">
+			<div class="popup-head">
+				<span class="head-title"> Study Create</span>
+			</div>
+			<form action="<%=request.getContextPath()%>/createQuiz.do?studyno=<%=request.getParameter("studyno") %>" method="post">
+			<div class="popup-body">
+				<div class="body-content">
+					<div class="body-titlebox">
+						<h2>스터디 그룹명</h2>
 					</div>
-					<form action="<%=request.getContextPath()%>/createQuiz.do?studyno=<%=request.getParameter("studyno") %>" method="post">
-					<div class="popup-body">
-						<div class="body-content">
-							<div class="body-titlebox">
-								<h2>스터디 그룹명</h2>
-							</div>
-							<div class="body-contentbox">
-							
-								<table>
-									<tr>
-										<td>문제 제목</td>
-										<td><input type="text" name="quizTitle" maxlength="20"></td>
-									</tr>
-									<tr>
-										<td>문제 링크</td>
-										<td><input type="text" name="quizUrl"
-											required="required"></td>
-									</tr>
-								</table>
-							</div>
-						</div>
+					<div class="body-contentbox">
+					
+						<table>
+							<tr>
+								<td>문제 제목</td>
+								<td><input type="text" name="quizTitle" maxlength="20"></td>
+							</tr>
+							<tr>
+								<td>문제 링크</td>
+								<td><input type="text" name="quizUrl"
+									required="required"></td>
+							</tr>
+						</table>
 					</div>
-					<div class="popup-foot">
-						<input type="submit"  class="pop-btn confirm" value="생성" > 
-						<span class="pop-btn" id="close">창 닫기</span>
-					</div>
-					</form>
 				</div>
 			</div>
+			<div class="popup-foot">
+				<input type="submit"  class="pop-btn confirm" value="생성" > 
+				<span class="pop-btn" id="close">창 닫기</span>
+			</div>
+			</form>
 		</div>
+	</div>
+</div>
 
-</body>
 
 <script>
 	$(function() {

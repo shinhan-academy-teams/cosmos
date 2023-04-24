@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>COSMOS</title>
 <link rel="icon" type="image/x-icon" href="${path}/images/favicon.ico">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/github-dark-dimmed.min.css">
 <style>
 	html, body {
 		height: 100%;
@@ -54,6 +55,9 @@
 	form{
 		height : 100%;
 	}
+	#dynamicTbody td {
+		border-bottom: 1px solid black;
+	}
 	
 	
 </style>
@@ -64,54 +68,68 @@
 
 	<div id="wrap">
 
-		<div id="insertCode">코드 업로드된 창</div>
-
-		<table style="border: 1px;" id="dynamicTable">
-			<thead>
-				<tr>
-					<th>작성자</th>
-					<th>댓글내용</th>
-					<th>작성일자</th>
-				</tr>
-			</thead>
-			<tbody id="dynamicTbody">
-			</tbody>
-		</table>
-		<hr>
-
-		<div id="div-text">
-			<!-- <form name="commentInsertForm" method="post" enctype="multipart/form-data"> -->
-				<div>댓글</div>
-				<div>
-					<textarea id="comment" placeholder="댓글입력해라"></textarea>
-					<div>
-						<button>취소</button>
-						<button onclick="inputComment()">등록</button>
+		<div id="insertCode">
+			<pre>
+				<c:forEach items="${allCode }" var="code">
+					<code>${code.code_content}</code>
+					
+					<table style="border: 1px;" id="dynamicTable">
+						<thead>
+							<tr>
+								<th>작성자</th>
+								<th>댓글내용</th>
+								<th>작성일자</th>
+							</tr>
+						</thead>
+						<tbody id="dynamicTbody">
+						</tbody>
+					</table>
+					<hr>
+			
+					<div id="div-text">
+						<!-- <form name="commentInsertForm" method="post" enctype="multipart/form-data"> -->
+							<div>댓글</div>
+							<div>
+								<textarea id="comment" placeholder="댓글입력해라"></textarea>
+								<div>
+									<button>취소</button>
+									<button onclick="inputComment()">등록</button>
+								</div>
+							</div>
+						<!-- </form> -->
 					</div>
-				</div>
-			<!-- </form> -->
+					
+				</c:forEach>
+			</pre>
 		</div>
+
+		
 	</div>
 	<%@ include file="common/footer.jsp"%>
+	
+	<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js"></script>
+	<script>hljs.highlightAll();</script>
+	
 </body>
 
 <script>
 	function inputComment(){
-		var ic = new Array();
 		var html ='';
-		
 		
 		var comment = $("#comment").val();
 		var today = new Date();
+		var year = today.getFullYear();
+		var month = ('0' + (today.getMonth() + 1)).slice(-2);
+		var day = ('0' + today.getDate()).slice(-2);
+		var dateString = year + '-' + month + '-' + day;
 		
 		html += '<tr>';
 		html += '<td>' + '${user.member_name}' + '</td>';
 		html += '<td>' + comment + '</td>';
-		html += '<td>' + '${today}' + '</td>';
+		html += '<td>' + dateString + '</td>';
 		html += '</tr>';
 
 		$("#dynamicTable").append(html);
-		
 		
 		$("#comment").val('');
 
