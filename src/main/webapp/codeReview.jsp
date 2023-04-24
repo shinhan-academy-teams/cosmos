@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>COSMOS</title>
 <link rel="icon" type="image/x-icon" href="${path}/images/favicon.ico">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/github-dark-dimmed.min.css">
 <style>
 	html, body {
 		height: 100%;
@@ -54,6 +55,9 @@
 	form{
 		height : 100%;
 	}
+	#dynamicTbody td {
+		border-bottom: 1px solid black;
+	}
 	
 	
 </style>
@@ -64,7 +68,35 @@
 
 	<div id="wrap">
 
-		<div id="insertCode">코드 업로드된 창</div>
+		<div id="insertCode">
+			<pre>
+				<code>
+	n = int(input())
+	stack = []
+	result = []
+	
+	cur = 1
+	flag = True
+	for i in range(n):
+	    target = int(input())
+	    while cur<=target:
+	        stack.append(cur)
+	        result.append("+")
+	        cur += 1
+	    if stack[-1] == target:
+	        stack.pop()
+	        result.append("-")
+	    else:
+	        flag = False
+	
+	if (flag == True):
+	    for i in result:
+	        print(i)
+	else:
+	    print("NO")
+				</code>
+			</pre>
+		</div>
 
 		<table style="border: 1px;" id="dynamicTable">
 			<thead>
@@ -93,25 +125,30 @@
 		</div>
 	</div>
 	<%@ include file="common/footer.jsp"%>
+	
+	<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js"></script>
+	<script>hljs.highlightAll();</script>
+	
 </body>
 
 <script>
 	function inputComment(){
-		var ic = new Array();
 		var html ='';
-		
 		
 		var comment = $("#comment").val();
 		var today = new Date();
+		var year = today.getFullYear();
+		var month = ('0' + (today.getMonth() + 1)).slice(-2);
+		var day = ('0' + today.getDate()).slice(-2);
+		var dateString = year + '-' + month + '-' + day;
 		
 		html += '<tr>';
 		html += '<td>' + '${user.member_name}' + '</td>';
 		html += '<td>' + comment + '</td>';
-		html += '<td>' + '${today}' + '</td>';
+		html += '<td>' + dateString + '</td>';
 		html += '</tr>';
 
 		$("#dynamicTable").append(html);
-		
 		
 		$("#comment").val('');
 
