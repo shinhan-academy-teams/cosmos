@@ -14,9 +14,9 @@ public class CodeDAO {
 	ResultSet rs;
 	
 	//코드 추가
-	public int insertCode(int quizNo, int sgNo, String codeContent, int memberNo) {
+	public int insertCode(int quizNo, int sgNo, String codeContent, int memberNo, String lang) {
 		int result = 0;
-		String sql = "insert into code values(code_seq.nextval, ?, ?, to_clob(?), sysdate, ?)";
+		String sql = "insert into code values(code_seq.nextval, ?, ?, to_clob(?), sysdate, ?, ?)";
 		conn = OracleUtil.getConnection();
 		
 		try {
@@ -25,9 +25,9 @@ public class CodeDAO {
 			st.setInt(2, sgNo);
 			st.setString(3, codeContent);
 			st.setInt(4, memberNo);
+			st.setString(5, lang);
 			result = st.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			OracleUtil.dbDisconnect(rs, st, conn);

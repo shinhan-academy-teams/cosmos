@@ -17,10 +17,11 @@ public class CreateCodeController implements CommonControllerInterface {
 		int quizNo = Integer.parseInt(request.getParameter("quizNo"));
 		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
 		int studyNo = Integer.parseInt(request.getParameter("sgNo"));
+		String lang = request.getParameter("lang");
 		String codeContent = request.getParameter("codeContent");
 		
 		CodeService service = new CodeService();
-		String message = service.insertCode(quizNo, studyNo, codeContent, memberNo);
+		String message = service.insertCode(quizNo, studyNo, codeContent, memberNo, lang);
 		
 		return "responseBody:"+message;
 		}
