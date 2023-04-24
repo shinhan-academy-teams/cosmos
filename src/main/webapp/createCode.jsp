@@ -16,7 +16,6 @@
 
 >>>>>>> KKangBro
 <style>
-	
 	#insertCode{
 		background-color: white;
 		width : 100%;
@@ -160,13 +159,13 @@
 =======
 
 <body>
-		<div id="insertCode">
-			<h5>코드 입력창</h5>
-			<form action="" method="post" enctype="multipart/form-data">
-				<textarea name="content"></textarea>
-				<button type="submit">작성</button>
-	       	</form>
-		</div>
+	<div id="insertCode">
+		<h5>코드 입력창</h5>
+		<form action="" method="post" enctype="multipart/form-data">
+			<textarea name="content"></textarea>
+			<button type="submit">작성</button>
+       	</form>
+	</div>
 		
 </body>
 >>>>>>> KKangBro
