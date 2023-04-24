@@ -70,59 +70,40 @@
 
 		<div id="insertCode">
 			<pre>
-				<code>
-	n = int(input())
-	stack = []
-	result = []
-	
-	cur = 1
-	flag = True
-	for i in range(n):
-	    target = int(input())
-	    while cur<=target:
-	        stack.append(cur)
-	        result.append("+")
-	        cur += 1
-	    if stack[-1] == target:
-	        stack.pop()
-	        result.append("-")
-	    else:
-	        flag = False
-	
-	if (flag == True):
-	    for i in result:
-	        print(i)
-	else:
-	    print("NO")
-				</code>
+				<c:forEach items="${allCode }" var="code">
+					<code>${code.code_content}</code>
+					
+					<table style="border: 1px;" id="dynamicTable">
+						<thead>
+							<tr>
+								<th>작성자</th>
+								<th>댓글내용</th>
+								<th>작성일자</th>
+							</tr>
+						</thead>
+						<tbody id="dynamicTbody">
+						</tbody>
+					</table>
+					<hr>
+			
+					<div id="div-text">
+						<!-- <form name="commentInsertForm" method="post" enctype="multipart/form-data"> -->
+							<div>댓글</div>
+							<div>
+								<textarea id="comment" placeholder="댓글입력해라"></textarea>
+								<div>
+									<button>취소</button>
+									<button onclick="inputComment()">등록</button>
+								</div>
+							</div>
+						<!-- </form> -->
+					</div>
+					
+				</c:forEach>
 			</pre>
 		</div>
 
-		<table style="border: 1px;" id="dynamicTable">
-			<thead>
-				<tr>
-					<th>작성자</th>
-					<th>댓글내용</th>
-					<th>작성일자</th>
-				</tr>
-			</thead>
-			<tbody id="dynamicTbody">
-			</tbody>
-		</table>
-		<hr>
-
-		<div id="div-text">
-			<!-- <form name="commentInsertForm" method="post" enctype="multipart/form-data"> -->
-				<div>댓글</div>
-				<div>
-					<textarea id="comment" placeholder="댓글입력해라"></textarea>
-					<div>
-						<button>취소</button>
-						<button onclick="inputComment()">등록</button>
-					</div>
-				</div>
-			<!-- </form> -->
-		</div>
+		
 	</div>
 	<%@ include file="common/footer.jsp"%>
 	

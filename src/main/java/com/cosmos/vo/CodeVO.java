@@ -20,4 +20,5 @@ public class CodeVO {
 	private String code_content;
 	private Date code_date;
 	private int member_no;
+	private String code_lang;
 }

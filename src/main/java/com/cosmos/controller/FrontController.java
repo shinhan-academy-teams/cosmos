@@ -24,6 +24,7 @@ import com.cosmos.controller.study.CreateQuizController;
 import com.cosmos.controller.study.GroupSearchController;
 import com.cosmos.controller.study.JoinStudyController;
 import com.cosmos.controller.study.MyStudyController;
+import com.cosmos.controller.study.ShowCodeController;
 import com.cosmos.controller.study.StudyGroupController;
 import com.cosmos.controller.study.StudyIntroduceController;
 import com.cosmos.controller.study.StudyMainController;
@@ -122,6 +123,10 @@ public class FrontController extends HttpServlet {
 		//코드 추가
 		case "/createcode.do":
 			controller = new CreateCodeController();
+			break;
+		//코드 보기
+		case "/showcode.do":
+			controller = new ShowCodeController();
 			break;
 		default:
 			break;
