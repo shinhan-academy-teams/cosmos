@@ -56,7 +56,11 @@
   			}
   		});
 
-      };
+      }
+      
+      function allCode() {
+    	  location.href = '${path}/showcode.do?studyno='+sgNo+'&quizno='+quiz_no;
+      }
       
     
     $(function(){
