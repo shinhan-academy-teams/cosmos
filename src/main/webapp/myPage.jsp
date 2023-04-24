@@ -78,7 +78,7 @@
 		margin-bottom: 24px;
 	}
 
-	#my-page, #delete-account {
+	#update-pw, #delete-account {
 		height: 500px;
 	}
 
@@ -86,7 +86,7 @@
 		width: 100%;
     height: 100%;
     margin-top: 28px;
-    padding: 24px 24px 0;
+    padding: 24px;
     background-color: #F9FAFB;
     border-radius: 24px;
     display: flex;
@@ -117,8 +117,8 @@
 		margin-bottom: 4px;
 	}
 	
-	#new-pw1-value-valid, #new-pw1-value-invalid,
-	#new-pw2-value-valid, #new-pw2-value-invalid {
+	.new-pw1-state-msg,
+	.new-pw2-state-msg {
 		display: none;
 	}
 
@@ -154,20 +154,27 @@
 	#delete-acount-btn:hover {
 		background-color: rgb(255, 0, 0);
 	}
+
+	thead#thead{
+		background-color: #FAE6D4;
+	}
 </style>
 
 </head>
 <body>
 	<%@ include file="common/header.jsp" %>
-
+	
 	<script>
 		$(function(){
 			myCodeList();
-		})
+			
+			$('#new-pw1').keyup(func_pw1_check);
+			$('#new-pw1, #new-pw2').keyup(func_pw2_check);
+			$('#new-pw1, #new-pw2').keyup(check);
+		});
 	</script>
-
+	
 	<div id="wrap">
-
 		<sidebar class="d-flex flex-nowrap">
 			<div class="flex-shrink-0 p-3">
 				<a id="sidebar-title" href="${path}/myPage.jsp" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
@@ -182,7 +189,7 @@
 									<a onclick="myCodeList()" class="link-body-emphasis d-inline-flex text-decoration-none rounded">내 코드 모아보기</a>
 								</li>
 								<li>
-									<a onclick="myMarkCodeList()" class="link-body-emphasis d-inline-flex text-decoration-none rounded">찜한 코드</a>
+									<a onclick="myMarkCodeList()" class="link-body-emphasis d-inline-flex text-decoration-none rounded">좋아요 표시한 코드</a>
 								</li>
 							</ul>
 						</div>
@@ -204,29 +211,106 @@
 		<contents>
 			<div id="right-contents">
 				<div id="my-code-list" class="my-page-content">
-					<h3>myCodeList</h3>
+					<h3>내 코드 모아보기</h3>
 					<div>
-						<div>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tristique sem et scelerisque euismod. Quisque cursus, purus a viverra iaculis, nunc mauris laoreet est, non blandit velit nisi vel metus. Sed purus odio, dapibus id felis a, viverra cursus quam. Quisque pulvinar erat diam, eget tincidunt lacus varius eget. Phasellus vitae vulputate tellus. Aliquam vulputate mi vitae justo semper pharetra. Suspendisse potenti. Phasellus nec congue turpis. Vestibulum suscipit felis scelerisque, vehicula mi eleifend, pharetra est. Etiam viverra, elit sed ultrices tincidunt, neque justo condimentum odio, ut rhoncus turpis ipsum ultrices arcu. Maecenas tincidunt purus a quam pretium, vitae consequat sem feugiat. Mauris vitae eros malesuada, pretium massa ut, posuere lectus. Praesent gravida accumsan ex, ut pulvinar dui venenatis et. Praesent elementum, lacus vel interdum sagittis, nisl enim finibus dui, et pretium nisi odio eu quam.
-							<br><br>
-							Suspendisse sit amet mauris mi. Praesent augue odio, consectetur aliquet libero vel, cursus ornare nisl. In in diam sit amet magna semper condimentum. Mauris eros sem, volutpat vel orci vel, euismod congue magna. Pellentesque nec augue vel dui vestibulum bibendum vitae in nisi. In hac habitasse platea dictumst. In dapibus ex leo, eget pulvinar enim dignissim et. Ut ut lacus sed sapien porta varius eu posuere velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi laoreet ornare odio at suscipit. Cras aliquam eu nibh ut posuere. In mollis sit amet dolor vel pharetra.
+						<div class="container mt-3">
+							<table class="table table-striped table-hover">
+								<thead id="thead">
+									<tr>
+										<th>코드 번호</th>
+										<th>문제명</th>
+										<th>스터디명</th>
+										<th>언어</th>
+										<th>생성 날짜</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>56524</td>
+										<td><a href="#">시험 감독</a></td>
+										<td><a href="#">파이썬 정복</a></td>
+										<td>Java</td>
+										<td>2023-04-23</td>
+									</tr>
+									<tr>
+										<td>56525</td>
+										<td><a href="#">시험 감독</a></td>
+										<td><a href="#">파이썬 정복</a></td>
+										<td>Python</td>
+										<td>2023-04-23</td>
+									</tr>
+									<tr>
+										<td>56169</td>
+										<td><a href="#">병든 나이트</a></td>
+										<td><a href="#">파이썬 정복</a></td>
+										<td>Java</td>
+										<td>2023-04-15</td>
+									</tr>
+									<tr>
+										<td>55281</td>
+										<td><a href="#">강의실 배정</a></td>
+										<td><a href="#">파이썬 정복</a></td>
+										<td>Java</td>
+										<td>2023-04-03</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>
 				<div id="my-mark-code-list" class="my-page-content">
-					<h3>myMarkCodeList</h3>
+					<h3>좋아요 표시한 코드</h3>
 					<div>
-						<div>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Suspendisse interdum consectetur libero id faucibus nisl tincidunt. Luctus accumsan tortor posuere ac ut consequat semper. Ornare arcu odio ut sem nulla pharetra diam. Sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper eget. Pharetra et ultrices neque ornare aenean. Consequat id porta nibh venenatis cras sed felis eget velit. Quam pellentesque nec nam aliquam sem et tortor. Placerat orci nulla pellentesque dignissim enim sit amet. Eget dolor morbi non arcu risus. Justo eget magna fermentum iaculis. Pretium vulputate sapien nec sagittis. Fringilla ut morbi tincidunt augue interdum velit euismod in pellentesque.
-							<br><br>
-							Ut lectus arcu bibendum at varius. Elementum pulvinar etiam non quam lacus. Viverra maecenas accumsan lacus vel facilisis volutpat est. Viverra tellus in hac habitasse platea. Eu feugiat pretium nibh ipsum consequat nisl vel pretium lectus. Eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. Lectus urna duis convallis convallis tellus id interdum velit. Donec pretium vulputate sapien nec. Mus mauris vitae ultricies leo. In vitae turpis massa sed elementum tempus egestas sed sed. In fermentum et sollicitudin ac orci phasellus.
+						<div class="container mt-3">
+							<table class="table table-striped table-hover">
+								<thead id="thead">
+									<tr>
+										<th>코드 번호</th>
+										<th>문제명</th>
+										<th>스터디명</th>
+										<th>언어</th>
+										<th>작성자</th>
+										<th>생성 날짜</th>
+										<th>좋아요 표시한 날짜</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>56521</td>
+										<td><a href="#">시험 감독</a></td>
+										<td><a href="#">파이썬 정복</a></td>
+										<td>Java</td>
+										<td>영선쓰</td>
+										<td>2023-04-11</td>
+										<td>2023-04-24</td>
+									</tr>
+									<tr>
+										<td>56515</td>
+										<td><a href="#">시험 감독</a></td>
+										<td><a href="#">파이썬 정복</a></td>
+										<td>Python</td>
+										<td>채희짱짱</td>
+										<td>2023-04-15</td>
+										<td>2023-04-23</td>
+									</tr>
+									<tr>
+										<td>56524</td>
+										<td><a href="#">시험 감독</a></td>
+										<td><a href="#">파이썬 정복</a></td>
+										<td>Java</td>
+										<td>김경윤</td>
+										<td>2023-04-23</td>
+										<td>2023-04-23</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>
-				<div id="my-page" class="my-page-content">
+				<div id="update-pw" class="my-page-content">
 					<h3>비밀번호 수정</h3>
 					<div>
-						<form action="${path}/updatePwd.do" method="post">
+						<form action="${path}/updatepwd.do" method="post">
 							<div class="form-group">
 								<label for="current-pw">현재 비밀번호</label>
 								<input type="password" class="form-control" id="current-pw" name="current-pw" required placeholder="현재 비밀번호를 입력해주세요">
@@ -234,14 +318,14 @@
 							<div class="form-group">
 								<label for="new-pw1">새로운 비밀번호</label>
 								<input type="password" class="form-control" id="new-pw1" name="new-pw1" required placeholder="최소 6자 이상 (영문, 숫자 필수)">
-								<span id="new-pw1-value-valid"><img alt="valid" src="${path}/images/icon-valid.png">Valid.</span>
-								<span id="new-pw1-value-invalid"><img alt="warning" src="${path}/images/icon-warning.png">영문, 숫자를 포함하여 최소 6자 이상 입력해주세요.</span>
+								<span id="new-pw1-value-valid" class="new-pw1-state-msg"><img alt="valid" src="${path}/images/icon-valid.png">Valid.</span>
+								<span id="new-pw1-value-invalid" class="new-pw1-state-msg"><img alt="warning" src="${path}/images/icon-warning.png">영문, 숫자를 포함하여 최소 6자 이상 입력해주세요.</span>
 							</div>
 							<div class="form-group">
 								<label for="new-pw2">새로운 비밀번호 확인</label>
 								<input type="password" class="form-control" id="new-pw2" name="new-pw2" required placeholder="동일한 비밀번호를 입력해주세요">
-								<span id="new-pw2-value-valid"><img alt="valid" src="${path}/images/icon-valid.png">Valid.</span>
-								<span id="new-pw2-value-invalid"><img alt="warning" src="${path}/images/icon-warning.png">Text</span>
+								<span id="new-pw2-value-valid" class="new-pw2-state-msg"><img alt="valid" src="${path}/images/icon-valid.png">Valid.</span>
+								<span id="new-pw2-value-invalid" class="new-pw2-state-msg"><img alt="warning" src="${path}/images/icon-warning.png">Text</span>
 							</div>
 							<div>
 								<button id="submit-btn" type="submit" class="btn btn-danger" style="pointer-events: auto; cursor: not-allowed;" disabled="disabled">조건을 충족해주세요</button>
@@ -265,10 +349,24 @@
 				</div>
 			</div>
 		</contents>
-
 	</div>
 	<%@ include file="common/footer.jsp" %>
+
 	<script>
+		// 비밀번호 수정하고나서 메세지 알림창
+		let message = "${message}";
+		if(message){
+			if(message == "current password is WRONG"){
+				alert('현재 비밀번호가 올바르지 않습니다.');
+			} else if(message == "password modified successfully"){
+				alert('비밀번호가 정상적으로 수정되었습니다.');
+			}
+			message = null;
+			$(function(){
+				modifyAccount();
+			})
+		}
+
 		function myCodeList(){
 			$('.form-control').val('');
 			$('.my-page-content').css('display', 'none');
@@ -284,7 +382,7 @@
 		function modifyAccount(){
 			$('.form-control').val('');
 			$('.my-page-content').css('display', 'none');
-			$('#my-page').css('display', 'block');
+			$('#update-pw').css('display', 'block');
 		}
 		function deleteAccount(){
 			$('.form-control').val('');
@@ -292,26 +390,23 @@
 			$('#delete-account').css('display', 'block');
 		}
 
-		let regexNumber = /[0-9]/; // 정규표현식 숫자
-		let regexAlphabet = /[a-zA-Z]/; // 정규표현식 문자
+		const regexNumber = /[0-9]/; // 정규표현식 숫자
+		const regexAlphabet = /[a-zA-Z]/; // 정규표현식 문자
 
-		// 비밀번호 처리
 		let pw1IsOk = false;
-		$('#new-pw1').keyup(func_pw1_check); // 비밀번호-1 조건 체크
-		function func_pw1_check() { // 아이디 조건 체크 메서드
+		function func_pw1_check() { // 비밀번호-1 조건 체크 메서드
 			let pw1 = $(this).val(); // 입력된 pw1
 
 			if(pw1.length == 0) { // 길이 0이면 두 알림 숨김.
-				$('#new-pw1-value-valid').css('display', 'none');
-				$('#new-pw1-value-invalid').css('display', 'none');
+				$('.new-pw1-state-msg').css('display', 'none');
 				pw1IsOk = false;
 			} else {
 				if(pw1.length < 6 || !regexNumber.test(pw1) || !regexAlphabet.test(pw1)) { // 길이가 6미만이거나 영문, 숫자 포함하지 않으면 valid 숨기고 invalid 표시.
-					$('#new-pw1-value-valid').css('display', 'none');
+					$('.new-pw1-state-msg').css('display', 'none');
 					$('#new-pw1-value-invalid').css('display', 'inline-block');
 					pw1IsOk = false;
 				} else { // 비밀번호 조건 통과시 invalid 숨기고 valid 표시.
-					$('#new-pw1-value-invalid').css('display', 'none');
+					$('.new-pw1-state-msg').css('display', 'none');
 					$('#new-pw1-value-valid').css('display', 'inline-block');
 					pw1IsOk = true;
 				}
@@ -319,29 +414,26 @@
 		}
 
 		let pw2IsOk = false;
-		$('#new-pw1').keyup(func_pw2_check);
-		$('#new-pw2').keyup(func_pw2_check);
 		function func_pw2_check() { // 비밀번호-2 조건 체크
 			let pw2 = $('#new-pw2').val(); // 입력된 pw2
 
 			if(pw2.length == 0) { // 길이 0이면 두 알림 숨김.
-				$('#new-pw2-value-valid').css('display', 'none');
-				$('#new-pw2-value-invalid').css('display', 'none');
+				$('.new-pw2-state-msg').css('display', 'none');
 				pw2IsOk = false;
 			} else {
 				if(pw1IsOk){ // 비밀번호-1 조건 통과 시
 					if($('#new-pw1').val() === pw2){ // pw1과 pw2가 같으면
-						$('#new-pw2-value-invalid').css('display', 'none');
+						$('.new-pw2-state-msg').css('display', 'none');
 						$('#new-pw2-value-valid').css('display', 'inline-block');
 						pw2IsOk = true;
 					} else { // pw1과 pw2가 다르면
-						$('#new-pw2-value-valid').css('display', 'none');
+						$('.new-pw2-state-msg').css('display', 'none');
 						$('#new-pw2-value-invalid').html('<img alt="warning" src="${path}/images/icon-warning.png">동일한 비밀번호를 입력해주세요.');
 						$('#new-pw2-value-invalid').css('display', 'inline-block');
 						pw2IsOk = false;
 					}
-				} else { // 비밀번호-1 조건 불충족시
-					$('#new-pw2-value-valid').css('display', 'none');
+				} else { // 비밀번호-1 조건 불충족 시
+					$('.new-pw2-state-msg').css('display', 'none');
 					$('#new-pw2-value-invalid').html('<img alt="warning" src="${path}/images/icon-warning.png">조건에 맞춰 비밀번호를 다시 입력해주세요.');
 					$('#new-pw2-value-invalid').css('display', 'inline-block');
 					pw2IsOk = false;
@@ -349,8 +441,7 @@
 			}
 		}
 
-		setInterval(check, 500, pw2IsOk);
-		function check(){
+		function check(){ // 조건 충족 여부를 판단하는 메서드
 			if(pw2IsOk){
 				$('#submit-btn').removeAttr('disabled');
 				$('#submit-btn').css({'cursor':'pointer', 'background-color':'rgba(238, 119, 133, 0.6)', 'pointer-events':'auto' });
@@ -366,5 +457,7 @@
 		}
 
 	</script>
+
+	<c:set var="message" value="" scope="session"/>
 </body>
 </html>

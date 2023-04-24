@@ -16,6 +16,7 @@ import com.cosmos.controller.members.FindPwdController;
 import com.cosmos.controller.members.SignInController;
 import com.cosmos.controller.members.SignOutController;
 import com.cosmos.controller.members.SignUpController;
+import com.cosmos.controller.mypage.MyPageController;
 import com.cosmos.controller.mypage.UpdatePwdController;
 import com.cosmos.controller.study.CreateGroupController;
 import com.cosmos.controller.study.CreateQuizController;
@@ -66,6 +67,10 @@ public class FrontController extends HttpServlet {
 		/*
 		 * 마이페이지
 		 * */
+		// 마이페이지
+		case "/mypage.do":
+			controller = new MyPageController();
+			break;
 		// 비밀번호 변경
 		case "/updatepwd.do":
 			controller = new UpdatePwdController();

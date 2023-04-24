@@ -39,7 +39,6 @@
 						<button id="search-btn" aria-label="search-btn" class="btn" type="submit"></button>
 					</div>
 				</form>
-				<!-- 230419 영선 -->
 				<div id="sign-div">
 					<c:if test="${empty user}">
 						<button id="sign-in" type="button" class="btn btn-outline-light text-dark" onclick="signIn()">로그인</button>
@@ -47,24 +46,23 @@
 					</c:if>
 					<c:if test="${not empty user}">
 						<div class="dropdown">
-							<button type="button" class="dropbtn">${user.member_name} 님, 반갑습니다!</button>
+							<button type="button" id="dropbtn">
+								<div>${user.member_name} 님, 반갑습니다!</div>
+							</button>
 							<div class="dropdown-content">
 								<button id="my-page-btn" type="button" class="btn btn-outline-light text-dark" onclick="myPage()">마이페이지</button>
 								<button id="sign-out-btn" type="button" class="btn btn-outline-light text-dark" onclick="signOut()">로그아웃</button>
 							</div>
 						</div>
-
-						<!-- <label>${user.member_name }님</label>
-						<button id="sign-out" type="button" class="btn btn-outline-light text-dark" onclick="signOut()">로그아웃</button> -->
 					</c:if>
 				</div>
-				<!-- 영선 end -->
 			</div>
 		</div>
 	</nav>
 </div>
 
 <script>
+
 	function signIn(){
 		location.href = '${path}/signin.do';
 	}
@@ -74,13 +72,14 @@
 	}
 
 	function myPage(){
-		location.href = '${path}/myPage.jsp';
+		location.href = '${path}/mypage.do';
 	}
 
 	function signOut(){
-		alert("로그아웃 되었습니다.");
+		alert("정상적으로 로그아웃 되었습니다.");
 		location.href = '${path}/signout.do';
 	}
+
 </script>
 
 <style>
@@ -116,8 +115,8 @@
 	}
 
 	.nav-item > .nav-link:hover {
-    font-weight: 500;
-    color: black;
+		font-weight: 500;
+		color: black;
 	}
 
 	form.d-flex {
@@ -125,13 +124,13 @@
 	}
 
 	select[name="searchOption"] {
-    display: block;
-    width: 96px;
-    padding: 0px 0px 1px 8px;
-    margin-right: -14px;
-    border: 0.8px solid rgb(206, 212, 218);
-    border-top-left-radius: 24px;
-    border-bottom-left-radius: 24px;
+		display: block;
+		width: 96px;
+		padding: 0px 0px 1px 8px;
+		margin-right: -14px;
+		border: 0.8px solid rgb(206, 212, 218);
+		border-top-left-radius: 24px;
+		border-bottom-left-radius: 24px;
 	}
 	
 	.form-control:focus,
@@ -186,14 +185,21 @@
 		display: inline-block;
 	}
 
-	.dropbtn {
+	#dropbtn {
 		background-color: rgba(238, 119, 133, 0.6);
 		border: 0.8px solid rgb(206, 212, 218);
 		color: white;
 		padding: 0px 12px;
-    height: 40px;
+		height: 40px;
 		font-size: 16px;
 		border-radius: 8px;
+	}
+	
+	#dropbtn > div {
+		width: 151.07px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
 	}
 
 	.dropdown-content {
@@ -207,7 +213,7 @@
 		z-index: 1;
 	}
 
-	.dropdown-content button {
+	.dropdown-content button.btn {
 		display: block;
 		padding: 8px 12px;
 		width: 100%;
@@ -215,19 +221,23 @@
 		color: black;
 	}
 
-	.dropdown:hover .dropbtn {
+	.dropdown:hover #dropbtn {
 		cursor: default;
 		background-color: rgba(238, 119, 133, 1);
+	}
+
+	.dropdown:hover #dropbtn > div {
+		overflow: auto;
+		text-overflow: initial;
 	}
 	
 	.dropdown:hover .dropdown-content {
 		display: block;
 	}
 
-	.dropdown-content button:hover {
+	.dropdown-content button.btn:hover {
 		background-color: #ddd;
 	}
-
 
 
 </style>

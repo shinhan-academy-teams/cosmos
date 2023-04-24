@@ -71,9 +71,9 @@
 		align-items: baseline;
 	}
 
-	#id-value-valid, #id-value-invalid,
-	#pw1-value-valid, #pw1-value-invalid,
-	#pw2-value-valid, #pw2-value-invalid {
+	.id-state-msg,
+	.pw1-state-msg,
+	.pw2-state-msg {
 		display: none;
 	}
 
@@ -110,6 +110,16 @@
 </head>
 <body>
 	<%@ include file="common/header.jsp" %>
+
+	<script>
+		$(function(){
+			$('#id').keyup(func_id_check); // 아이디 input창에 입력이 생길 때
+			$('#pw1').keyup(func_pw1_check); // 비밀번호-1 조건 체크
+			$('#pw1, #pw2').keyup(func_pw2_check); // 비밀번호-2 조건 체크
+			$('#id, #pw1, #pw2').keyup(check);
+		});
+	</script>
+	
 	<div id="wrap">
 		<div>
 			<a href="${path}">
@@ -122,20 +132,20 @@
 					<div class="form-group">
 						<label for="id">아이디</label>
 						<input type="text" class="form-control" id="id" name="id" required placeholder="4~15자 이내로 입력해주세요 (영문, 숫자 필수)">
-						<span id="id-value-valid"><img alt="valid" src="${path}/images/icon-valid.png">Valid.</span>
-						<span id="id-value-invalid"><img alt="warning" src="${path}/images/icon-warning.png">4~15자 이내로 입력해주세요.</span>
+						<span id="id-value-valid" class="id-state-msg"><img alt="valid" src="${path}/images/icon-valid.png">Valid.</span>
+						<span id="id-value-invalid" class="id-state-msg"><img alt="warning" src="${path}/images/icon-warning.png">영문, 숫자를 포함하여 4~15자 이내로 입력해주세요.</span>
 					</div>
 					<div class="form-group">
 						<label for="pw1">비밀번호</label>
-						<input type="password" class="form-control" id="pw1" name="pw1" required placeholder="최소 6자 이상 (영문, 숫자 필수)">
-						<span id="pw1-value-valid"><img alt="valid" src="${path}/images/icon-valid.png">Valid.</span>
-						<span id="pw1-value-invalid"><img alt="warning" src="${path}/images/icon-warning.png">영문, 숫자를 포함하여 최소 6자 이상 입력해주세요.</span>
+						<input type="password" class="form-control" id="pw1" name="pw1" required placeholder="최소 6자 이상 입력해주세요 (영문, 숫자 필수)">
+						<span id="pw1-value-valid" class="pw1-state-msg"><img alt="valid" src="${path}/images/icon-valid.png">Valid.</span>
+						<span id="pw1-value-invalid" class="pw1-state-msg"><img alt="warning" src="${path}/images/icon-warning.png">영문, 숫자를 포함하여 최소 6자 이상 입력해주세요.</span>
 					</div>
 					<div class="form-group">
 						<label for="pw2">비밀번호 확인</label>
 						<input type="password" class="form-control" id="pw2" name="pw2" required placeholder="동일한 비밀번호를 입력해주세요">
-						<span id="pw2-value-valid"><img alt="valid" src="${path}/images/icon-valid.png">Valid.</span>
-						<span id="pw2-value-invalid"><img alt="warning" src="${path}/images/icon-warning.png">Text</span>
+						<span id="pw2-value-valid" class="pw2-state-msg"><img alt="valid" src="${path}/images/icon-valid.png">Valid.</span>
+						<span id="pw2-value-invalid" class="pw2-state-msg"><img alt="warning" src="${path}/images/icon-warning.png">Text</span>
 					</div>
 					<div class="form-group">
 						<label for="email">이메일</label>
@@ -169,33 +179,31 @@
 	<script>
 		// 중복 체크하고나서 메세지 알림창
 		$(function(){
-			let dupCheckResult = "${dupCheckResult}";
-			if(dupCheckResult){
+			let message = "${message}";
+			if(message == 'id or email is DUPLICATED from SignUpController'){
 				alert('아이디 혹은 이메일이 이미 존재합니다.');
-				dupCheckResult = null;
+				message = null;
 			}
 		})
 		
-		let regexNumber = /[0-9]/; // 정규표현식 숫자
-		let regexAlphabet = /[a-zA-Z]/; // 정규표현식 문자
+		const regexNumber = /[0-9]/; // 정규표현식 숫자
+		const regexAlphabet = /[a-zA-Z]/; // 정규표현식 문자
 		
 		// 아이디 처리
 		let idIsOk = false;
-		$('#id').keyup(func_id_check); // 아이디 input창에 입력이 생길 때
 		function func_id_check() { // 아이디 조건 체크 메서드
 			let userid = $(this).val() // 입력된 id
 
 			if(userid.length == 0) { // 길이 0이면 두 알림 숨김.
-				$('#id-value-valid').css('display', 'none');
-				$('#id-value-invalid').css('display', 'none');
+				$('.id-state-msg').css('display', 'none');
 				idIsOk = false;
 			} else {
 				if(userid.length < 4 || userid.length > 15 || !regexNumber.test(userid) || !regexAlphabet.test(userid)) { // 길이가 4미만이거나 15초과이면 valid 숨기고 invalid 표시.
-					$('#id-value-valid').css('display', 'none');
+					$('.id-state-msg').css('display', 'none');
 					$('#id-value-invalid').css('display', 'inline-block');
 					idIsOk = false;
 				} else { // 길이가 4이상이고 15이하이면 invalid 숨기고 valid 표시.
-					$('#id-value-invalid').css('display', 'none');
+					$('.id-state-msg').css('display', 'none');
 					$('#id-value-valid').css('display', 'inline-block');
 					idIsOk = true;
 				}
@@ -204,21 +212,19 @@
 
 		// 비밀번호 처리
 		let pw1IsOk = false;
-		$('#pw1').keyup(func_pw1_check); // 비밀번호-1 조건 체크
-		function func_pw1_check() { // 아이디 조건 체크 메서드
+		function func_pw1_check() { // 비밀번호-1 조건 체크 메서드
 			let pw1 = $(this).val(); // 입력된 pw1
 
 			if(pw1.length == 0) { // 길이 0이면 두 알림 숨김.
-				$('#pw1-value-valid').css('display', 'none');
-				$('#pw1-value-invalid').css('display', 'none');
+				$('.pw1-state-msg').css('display', 'none');
 				pw1IsOk = false;
 			} else {
 				if(pw1.length < 6 || !regexNumber.test(pw1) || !regexAlphabet.test(pw1)) { // 길이가 6미만이거나 영문, 숫자 포함하지 않으면 valid 숨기고 invalid 표시.
-					$('#pw1-value-valid').css('display', 'none');
+					$('.pw1-state-msg').css('display', 'none');
 					$('#pw1-value-invalid').css('display', 'inline-block');
 					pw1IsOk = false;
 				} else { // 비밀번호 조건 통과시 invalid 숨기고 valid 표시.
-					$('#pw1-value-invalid').css('display', 'none');
+					$('.pw1-state-msg').css('display', 'none');
 					$('#pw1-value-valid').css('display', 'inline-block');
 					pw1IsOk = true;
 				}
@@ -226,29 +232,26 @@
 		}
 
 		let pw2IsOk = false;
-		$('#pw1').keyup(func_pw2_check);
-		$('#pw2').keyup(func_pw2_check);
 		function func_pw2_check() { // 비밀번호-2 조건 체크
 			let pw2 = $('#pw2').val(); // 입력된 pw2
 
 			if(pw2.length == 0) { // 길이 0이면 두 알림 숨김.
-				$('#pw2-value-valid').css('display', 'none');
-				$('#pw2-value-invalid').css('display', 'none');
+				$('.pw2-state-msg').css('display', 'none');
 				pw2IsOk = false;
 			} else {
 				if(pw1IsOk){ // 비밀번호-1 조건 통과 시
 					if($('#pw1').val() === pw2){ // pw1과 pw2가 같으면
-						$('#pw2-value-invalid').css('display', 'none');
+						$('.pw2-state-msg').css('display', 'none');
 						$('#pw2-value-valid').css('display', 'inline-block');
 						pw2IsOk = true;
 					} else { // pw1과 pw2가 다르면
-						$('#pw2-value-valid').css('display', 'none');
+						$('.pw2-state-msg').css('display', 'none');
 						$('#pw2-value-invalid').html('<img alt="warning" src="${path}/images/icon-warning.png">동일한 비밀번호를 입력해주세요.');
 						$('#pw2-value-invalid').css('display', 'inline-block');
 						pw2IsOk = false;
 					}
 				} else { // 비밀번호-1 조건 불충족시
-					$('#pw2-value-valid').css('display', 'none');
+					$('.pw2-state-msg').css('display', 'none');
 					$('#pw2-value-invalid').html('<img alt="warning" src="${path}/images/icon-warning.png">조건에 맞춰 비밀번호를 다시 입력해주세요.');
 					$('#pw2-value-invalid').css('display', 'inline-block');
 					pw2IsOk = false;
@@ -256,7 +259,6 @@
 			}
 		}
 		
-		setInterval(check, 500, idIsOk, pw2IsOk);
 		function check(){
 			if(idIsOk && pw2IsOk && $('#email').val() && $('#username').val()){
 				$('#submit-btn').removeAttr('disabled');
@@ -274,6 +276,6 @@
 
 	</script>
 	
-	<c:set var="dupCheckResult" value="" scope="session"/>
+	<c:set var="message" value="" scope="session"/>
 </body>
 </html>
