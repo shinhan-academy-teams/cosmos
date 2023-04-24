@@ -20,16 +20,14 @@ public class QuizVO {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("{\"quiz_no\":");
-		builder.append(quiz_no);
-		builder.append(",\"sg_no\":");
-		builder.append(sg_no);
-		builder.append(",\"quiz_url\":");
-		builder.append("\""+quiz_url+"\"");
-		builder.append(",\"quiz_title\":");
+		builder.append("{\"title\":");
 		builder.append("\""+quiz_title+"\"");
-		builder.append(",\"quiz_date\":");
-		builder.append("\"" + quiz_date + "\"}");
+		builder.append(",\"start\":");
+		builder.append("\"" + quiz_date + "\"");
+		builder.append(",\"end\":");
+		builder.append("\"" + quiz_date + "\"");
+		builder.append(",\"url\":");
+		builder.append("\""+quiz_url+"\"}");
 		return builder.toString();
 	}
 } // 230421 영선

@@ -10,10 +10,10 @@
 <link rel="icon" type="image/x-icon" href="${path}/images/favicon.ico">
 <style>
 	@font-face {
-	    font-family: 'GmarketSansMedium';
-	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-	    font-weight: normal;
-	    font-style: normal;
+		font-family: 'GmarketSansMedium';
+		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+		font-weight: normal;
+		font-style: normal;
 	}
 
 	html, body {
@@ -27,16 +27,16 @@
 		margin: 0 auto;
 		padding: 36px 24px 84px;
 		height: auto;
-	    min-height: calc(100vh - 64px);
+		min-height: calc(100vh - 64px);
 		display: flex;
-	    align-items: center;
+		align-items: center;
 		justify-content: center;
 	}
 	
 	
 	img[alt="home"] {
 		margin-right: 100px;
-	    height: 550px;
+		height: 550px;
 	}
 	
 	#home-content {
@@ -46,6 +46,10 @@
 	
 	#home-content * {
 		font-family: 'GmarketSansMedium';
+	}
+
+	#home-content > span {
+		cursor: default;
 	}
 	
 	#content1-span{
@@ -96,14 +100,15 @@
 			</span>
 			<span id="content2-span">나에게 맞는 스터디를 찾아<br>코드 리뷰도 편하게</span><br>
 			<span id="content3-span">코스모스를 지금 시작하세요!</span><br>
-			<button id="studyList" type="button" class="btn btn-danger">스터디 찾으러 가기</button>
+			<button onclick="studyGroup()" type="button" class="btn btn-danger">스터디 찾으러 가기</button>
 		</div>
 	</div>
 	<%@ include file="common/footer.jsp" %>
+	
 	<script>
-		document.getElementById('studyList').addEventListener('click', function(){
+		function studyGroup() {
 			location.href = '${path}/studygroup.do';
-		});
+		}
 	</script>
 </body>
 </html>
