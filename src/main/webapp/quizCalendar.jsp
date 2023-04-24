@@ -9,6 +9,9 @@
     let arr;
     let href;
     let quiz_no;
+    const urlParams = new URL(location.href).searchParams;
+
+    const sgNo = urlParams.get('studyno');
     
       document.addEventListener("DOMContentLoaded", function () {
         var calendarEl = document.getElementById("calendar");
@@ -32,11 +35,33 @@
          		console.log(href);
         	    console.log(quiz_no);
         	    
+        	    
         	    info.el.style.borderColor = 'red';
         	  }
         });
         calendar.render();
       });
+      
+      function createcode() {
+  		$.ajax({
+  			url : "${path}/createcode.do",
+  			method : "post",
+  			data : {
+  				quizNo : quiz_no,
+  				memberNo : '${user.member_no}',
+  				sgNo : sgNo,
+  				codeContent : $('#content').val()
+  			},
+  			success : function(message) {
+  				alert(message);
+  				location.reload();
+  			},
+  			error : function() {
+  				console.log(message);
+  			}
+  		});
+
+      };
       
     
     $(function(){

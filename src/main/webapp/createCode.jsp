@@ -28,12 +28,11 @@
 
 
 
-
 <div id="insertCode">
 	<h5>코드 입력창</h5>
-	<form action="${path}/createcode.do" method="post" enctype="multipart/form-data">
-		<textarea name="content"></textarea>
-		<button type="submit">작성</button>
-	</form>
+	
+		<textarea id="content"></textarea>
+		<button id="submit" onclick="createcode()">작성</button>
+	
 </div>
 
