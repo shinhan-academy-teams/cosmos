@@ -57,7 +57,7 @@
 
 	.btn-toggle-nav a {
 		width: 150px;
-    padding: 0.8rem 0 0.8rem 1.5rem;
+		padding: 0.8rem 0 0.8rem 1rem;
 		margin-top: 1rem;
 		margin-left: 1.5rem;
 		color: black;
