@@ -26,7 +26,7 @@
 	#rightInfo{
 		margin-top : 53px;
 		width: 150px;
-		height: 410px;
+		height: 426px;
 		box-sizing : border-box;
 		padding : 10px;
 		display: inline-flex;
@@ -67,6 +67,19 @@
 		margin: auto;
 		width: 950px;
 		padding : 10px;
+	}
+	button {
+		width: 110px;
+		height: 37.6px;
+		border: 0.8px solid rgb(206, 212, 218);
+		background-color: rgba(238, 119, 133, 0.6);
+		color: #FFFFFF !important;
+		font-size: 15px;
+		font-weight: 500;
+	}
+	
+	button:hover {
+		background-color: rgba(238, 119, 133, 1);
 	}
 </style>
 </head>
