@@ -1,5 +1,5 @@
 <!-- 
-문제 풀이 코드 및 댓글 화면
+문제 풀이 코드 입력 화면
  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
@@ -24,7 +24,6 @@
 		float:right;
 	}
 	
-	
 </style>
 
 
@@ -36,6 +35,4 @@
 			<button type="submit">작성</button>
        	</form>
 	</div>
-		
 </body>
-
