@@ -18,6 +18,7 @@ import com.cosmos.controller.members.SignOutController;
 import com.cosmos.controller.members.SignUpController;
 import com.cosmos.controller.mypage.MyPageController;
 import com.cosmos.controller.mypage.UpdatePwdController;
+import com.cosmos.controller.study.CreateCodeController;
 import com.cosmos.controller.study.CreateGroupController;
 import com.cosmos.controller.study.CreateQuizController;
 import com.cosmos.controller.study.GroupSearchController;
@@ -117,6 +118,10 @@ public class FrontController extends HttpServlet {
 		// 내 스터디에서 공부 시작
 		case "/studymain.do":
 			controller = new StudyMainController();
+			break;
+		//코드 추가
+		case "/createcode.do":
+			controller = new CreateCodeController();
 			break;
 		default:
 			break;
