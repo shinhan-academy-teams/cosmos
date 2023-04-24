@@ -12,6 +12,7 @@ public class CreateQuizController implements CommonControllerInterface {
 	@Override
 	public String execute(Map<String, Object> data) throws Exception {
 		HttpServletRequest request = (HttpServletRequest)data.get("request");
+		request.setCharacterEncoding("utf-8");
 		String method = (String)data.get("method");
 		
 		//int sgNo, String quizUrl, String quizTitle
@@ -26,8 +27,8 @@ public class CreateQuizController implements CommonControllerInterface {
 		String quizTitle = request.getParameter("quizTitle");
 	
 		QuizService service = new QuizService();
-		String message = service.insertQuiz(studyNo, quizUrl, quizTitle);
-		return "myStudyDetail.jsp";
+		service.insertQuiz(studyNo, quizUrl, quizTitle);
+		return "redirect:" + request.getContextPath() + "/studymain.do?studyno=" + studyNo;
 	}
 
 }
