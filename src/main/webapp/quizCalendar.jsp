@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="utf-8" />
+
+
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js"></script>
     <script>
     var allQuiz ='${allQuiz}';
     var data = eval("(" + allQuiz + ")");
+    let arr;
+    let href;
+    let quiz_no;
     
       document.addEventListener("DOMContentLoaded", function () {
         var calendarEl = document.getElementById("calendar");
@@ -22,16 +23,33 @@
           },
           editable: false,
           events: data,
-        });
+          eventClick: function(info) {
+        	    arr = info.event.url.split('*');
+        	    
+        	    href = arr[0];
+         	    quiz_no = arr[1];
 
+         		console.log(href);
+        	    console.log(quiz_no);
+        	    
+        	    info.el.style.borderColor = 'red';
+        	  }
+        });
         calendar.render();
       });
+      
+    
+    $(function(){
+    	$('.fc-daygrid-event-harness > a').removeAttr('href');
+    });
+    
+    
     </script>
     
     <style>
     	#calendar {
     		margin-top: 24px;
-    		height: 30%;
+    		height: 300px;
     	}
     	
     	.fc .fc-button-primary {
@@ -55,8 +73,8 @@
       }
 
     </style>
-  </head>
+
   <body>
     <div id="calendar"></div>
+    
   </body>
-</html>

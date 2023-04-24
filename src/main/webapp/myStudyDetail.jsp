@@ -33,6 +33,7 @@
 	<div id="wrap">
 		<%@ include file="createQuizModal.jsp" %>
 		<%@ include file="quizCalendar.jsp" %>
+		<%@ include file="createCode.jsp"%>
 	</div>
 	
 	<%@ include file="common/footer.jsp"%>

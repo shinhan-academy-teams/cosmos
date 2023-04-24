@@ -2,6 +2,7 @@
 문제 풀이 코드 및 댓글 화면
  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -11,42 +12,31 @@
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs2015.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
+=======
+
+>>>>>>> KKangBro
 <style>
-	html, body {
-		height: 100%;
-	}
-	#wrap {
-		background-color: #FFFFFF;
-		width: 100%;
-		max-width: 1200px;
-		margin: 0 auto;
-		padding: 36px 24px 84px;
-		height: auto;
-		min-height: calc(100vh - 64px);
-		display: flex;
-		flex-direction: column;
-		vertical-align: middle;
-	}
-	#wrap > div{
-		background-color: red;
-		width : 100%;
-		height : fit-content;
-	}
-	.code-border{
-		border: 1xp solid black;
-	}
-	#wrap > #insertCode{
+	
+	#insertCode{
 		background-color: white;
 		width : 100%;
 		height: 600px;
+		margin-top: 36px;
 		border: 2px solid #ddd;
 		border-radius: 4px;
 	}
-	#wrap button{
+	
+	#insertCode textarea {
+		width: 100%;
+		height: 50vh;
+	}
+	
+	#insertCode button{
 		width: fit-content;
 		margin-inline-start: auto;
 		float:right;
 	}
+<<<<<<< HEAD
 	#div-text{
 		padding: 10px;
 	}
@@ -60,11 +50,13 @@
 	#dynamicTbody td{
 		border-bottom: 1px solid black;
 	}
+=======
+>>>>>>> KKangBro
 	
 	
 </style>
-</head>
 
+<<<<<<< HEAD
 <body>
 	<%@ include file="common/header.jsp"%>
 
@@ -165,7 +157,17 @@
 		html += '</tr>';
 
 		$("#dynamicTable").append(html);
+=======
 
-	}
-</script>
-</html>
+<body>
+		<div id="insertCode">
+			<h5>코드 입력창</h5>
+			<form action="" method="post" enctype="multipart/form-data">
+				<textarea name="content"></textarea>
+				<button type="submit">작성</button>
+	       	</form>
+		</div>
+		
+</body>
+>>>>>>> KKangBro
+
