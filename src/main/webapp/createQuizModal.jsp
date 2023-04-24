@@ -11,6 +11,7 @@
 <style>
 .container{
   width:100%;
+  z-index: 100;
 }
 .modal-btn-box{
   width:100%;
@@ -22,8 +23,6 @@
   height:50px;
   background-color:#ffffff;
   border:1px solid #e1e1e1;
-  cursor:pointer;
-  padding-top:8px;
 }
 .popup-wrap{
   background-color:rgba(0,0,0,.3);
