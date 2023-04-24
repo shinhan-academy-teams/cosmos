@@ -27,7 +27,7 @@ public class QuizVO {
 		builder.append(",\"end\":");
 		builder.append("\"" + quiz_date + "\"");
 		builder.append(",\"url\":");
-		builder.append("\""+quiz_url+"\"}");
+		builder.append("\""+quiz_url+"*"+quiz_no+"\"}");
 		return builder.toString();
 	}
 } // 230421 영선
