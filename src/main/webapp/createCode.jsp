@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <style>
-	#insertCode{
+	#insertCode, #dailyQuiz{
 		background-color: white;
 		width : 100%;
 		height: 600px;
@@ -24,15 +24,25 @@
 		float:right;
 	}
 	
+
+	
 </style>
 
-
-
+<div>
+<span id="dailyQuiz"></span>
+</div>
 <div id="insertCode">
-	<h5>코드 입력창</h5>
-	
+	<h5>코드 입력창</h5>	
+		<select id="lang" class="form-control">
+			<option value="Java">Java</option>
+			<option value="Python">Python</option>
+			<option value="JavaScript">JavaScript</option>
+			<option value="C">C</option>
+			<option value="C++">C++</option>
+			<option value="C#">C#</option>
+		</select>
 		<textarea id="content"></textarea>
+		<button id="submit" onclick="allCode()">다른 풀이 보기</button>
 		<button id="submit" onclick="createcode()">작성</button>
-	
 </div>
 

@@ -4,13 +4,12 @@
 
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js"></script>
     <script>
-    var allQuiz ='${allQuiz}';
-    var data = eval("(" + allQuiz + ")");
+    let allQuiz ='${allQuiz}';
+    let data = eval("(" + allQuiz + ")");
     let arr;
     let href;
     let quiz_no;
     const urlParams = new URL(location.href).searchParams;
-
     const sgNo = urlParams.get('studyno');
     
       document.addEventListener("DOMContentLoaded", function () {
@@ -27,16 +26,11 @@
           editable: false,
           events: data,
           eventClick: function(info) {
-        	    arr = info.event.url.split('*');
-        	    
+        	    arr = info.event.url.split('*');       	    
         	    href = arr[0];
          	    quiz_no = arr[1];
-
-         		console.log(href);
-        	    console.log(quiz_no);
-        	    
-        	    
-        	    info.el.style.borderColor = 'red';
+         	    
+         	    $('#dailyQuiz').text(info.event.title + " " + href);
         	  }
         });
         calendar.render();
@@ -50,7 +44,8 @@
   				quizNo : quiz_no,
   				memberNo : '${user.member_no}',
   				sgNo : sgNo,
-  				codeContent : $('#content').val()
+  				codeContent : $('#content').val(),
+  				lang : $('#lang').val()
   			},
   			success : function(message) {
   				alert(message);
@@ -61,7 +56,11 @@
   			}
   		});
 
-      };
+      }
+      
+      function allCode() {
+    	  location.href = '${path}/showcode.do?studyno='+sgNo+'&quizno='+quiz_no;
+      }
       
     
     $(function(){
