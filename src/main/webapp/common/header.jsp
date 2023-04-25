@@ -134,8 +134,8 @@
 	}
 	
 	.form-control:focus,
-	select[name="searchOption"]:focus,
-	select[name="email-list"]:focus {
+	.form-select:focus,
+	select[name="searchOption"]:focus {
 		color: black;
 		border: 1px solid #EE7785;
 		box-shadow: 0 0 0 0 white;
