@@ -24,4 +24,5 @@ public class CodeVO {
 	private Date code_date;
 	private int member_no;
 	private String code_lang;
+	private int mark_count;
 }

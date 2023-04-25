@@ -16,12 +16,13 @@ public class MarkcodeController implements CommonControllerInterface {
 		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
 		int codeNo = Integer.parseInt(request.getParameter("codeNo"));
 		MarkService service = new MarkService();
-		String message = service.insertMark(memberNo, codeNo);
 		
 		
-		int markCount = service.countMark(codeNo);
-		request.setAttribute("markCount", markCount);
-		return "responseBody:"+message;
+		if(service.isAlreadyMarked(memberNo, codeNo)) {
+			return "responseBody:already marked";
+		}
+		service.insertMark(memberNo, codeNo);
+		return "responseBody:mark OK";
 	}
 
 }
