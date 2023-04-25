@@ -81,7 +81,8 @@ public class CodeDAO {
 	
 	// 내 코드 목록 보기
 	public List<MyCodeVO> showMyCode(int memberNo) {
-		String sql = "select code.code_no, quiz.quiz_title, quiz.quiz_url, studygroup.sg_no, studygroup.sg_name, code.code_lang, code.code_date "
+		String sql = "select code.code_no, code.quiz_no, quiz.quiz_title, quiz.quiz_url, "
+				+ "studygroup.sg_no, studygroup.sg_name, code.code_lang, code.code_date "
 				+ "from code join quiz on code.quiz_no=quiz.quiz_no "
 				+ "join studygroup on code.sg_no = studygroup.sg_no "
 				+ "where code.member_no = ?"; 
@@ -95,6 +96,7 @@ public class CodeDAO {
 			while(rs.next()) {
 				MyCodeVO code = new MyCodeVO();
 				code.setCode_no(rs.getInt("code_no"));
+				code.setQuiz_no(rs.getInt("quiz_no"));
 				code.setQuiz_title(rs.getString("quiz_title"));
 				code.setQuiz_url(rs.getString("quiz_url"));
 				code.setSg_no(rs.getInt("sg_no"));
