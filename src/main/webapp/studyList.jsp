@@ -27,14 +27,14 @@
 	
 	table {
 		font-size: 18px;
-    margin-top: 48px;
+    	margin-top: 48px;
 		width: 100%;
 		height: fit-content;
 		text-align: center;
 	}
 
 	th, td {
-		height: 36px !important;
+		height: 45px !important;
 	}
 	
 	thead > tr {
@@ -64,7 +64,7 @@
 	}
 
 	img[alt="hit"] {
-    height: 43px;
+   		height: 43px;
 		width: auto;
 	}
 
@@ -101,7 +101,12 @@
 				<tbody id="tbody">
 					<c:forEach items="${studyGroup }" var="grouplist" varStatus="status" >
 						<tr>
+							<c:if test ="${grouplist.sg_max - grouplist.sg_cur <= 3}">
 							<td><img alt="hit" src="${path}/images/icon-hit.png"></td>
+							</c:if>
+							<c:if test ="${grouplist.sg_max - grouplist.sg_cur > 3}">
+							<td></td>
+							</c:if>
 							<td><a href="studyintro.do?studyno=${grouplist.sg_no}">${grouplist.sg_name}</a></td>
 							<td>${grouplist.sg_lang}</td>
 							<td>${grouplist.manager_name}</td>
