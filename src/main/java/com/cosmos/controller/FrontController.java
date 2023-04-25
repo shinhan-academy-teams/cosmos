@@ -19,18 +19,18 @@ import com.cosmos.controller.members.SignUpController;
 import com.cosmos.controller.mypage.MyCodeContentController;
 import com.cosmos.controller.mypage.MyPageController;
 import com.cosmos.controller.mypage.UpdatePwdController;
-import com.cosmos.controller.study.CreateCodeController;
-import com.cosmos.controller.study.CreateCommentsController;
-import com.cosmos.controller.study.CreateGroupController;
-import com.cosmos.controller.study.CreateQuizController;
-import com.cosmos.controller.study.GroupSearchController;
-import com.cosmos.controller.study.JoinStudyController;
-import com.cosmos.controller.study.MarkcodeController;
-import com.cosmos.controller.study.MyStudyController;
-import com.cosmos.controller.study.ShowCodeController;
-import com.cosmos.controller.study.StudyGroupController;
-import com.cosmos.controller.study.StudyIntroduceController;
-import com.cosmos.controller.study.StudyMainController;
+import com.cosmos.controller.study.common.CreateGroupController;
+import com.cosmos.controller.study.common.GroupSearchController;
+import com.cosmos.controller.study.common.JoinStudyController;
+import com.cosmos.controller.study.common.StudyGroupController;
+import com.cosmos.controller.study.common.StudyIntroduceController;
+import com.cosmos.controller.study.mystudy.CreateCodeController;
+import com.cosmos.controller.study.mystudy.CreateQuizController;
+import com.cosmos.controller.study.mystudy.MarkcodeController;
+import com.cosmos.controller.study.mystudy.MyStudyListController;
+import com.cosmos.controller.study.mystudy.CommentsController;
+import com.cosmos.controller.study.mystudy.MyStudyMainController;
+import com.cosmos.controller.study.mystudy.ShowCodeController;
 
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
@@ -41,13 +41,13 @@ public class FrontController extends HttpServlet {
 		String path = request.getServletPath();
 		CommonControllerInterface controller = null;
 		Map<String, Object> data = new HashMap<>();
-		data.put("method", request.getMethod()); // get인지 post인지 모르니까 받아옴
+		data.put("method", request.getMethod());
 		data.put("request", request);
 
 		switch (path) {
 		/*
 		 * 회원가입,로그인,로그아웃,계정찾기
-		 * */
+		 */
 		// 회원 가입
 		case "/signup.do":
 			controller = new SignUpController();
@@ -68,11 +68,11 @@ public class FrontController extends HttpServlet {
 		case "/findpwd.do":
 			controller = new FindPwdController();
 			break;
-			
+
 		/*
 		 * 마이페이지
-		 * */
-		// 마이페이지
+		 */
+		// 마이페이지 메인
 		case "/mypage.do":
 			controller = new MyPageController();
 			break;
@@ -80,13 +80,14 @@ public class FrontController extends HttpServlet {
 		case "/updatepwd.do":
 			controller = new UpdatePwdController();
 			break;
+		// 내 코드 모아보기
 		case "/mypage/mycode.do":
 			controller = new MyCodeContentController();
 			break;
-		
+
 		/*
-		* 스터디
-		* */	
+		 * 스터디(공통)
+		 */
 		// 스터디 그룹 목록 보기
 		case "/studygroup.do":
 			controller = new StudyGroupController();
@@ -103,43 +104,41 @@ public class FrontController extends HttpServlet {
 		case "/joinstudy.do":
 			controller = new JoinStudyController();
 			break;
-		// 스터디 생성
+		// 스터디 만들기
 		case "/creategroup.do":
 			controller = new CreateGroupController();
 			break;
-		//데일리 문제 생성
+
+		/*
+		 * 스터디(개인)
+		 */
+		// 내가 속한 스터디 목록
+		case "/mystudy.do":
+			controller = new MyStudyListController();
+			break;
+		// 선택한 내 스터디 메인
+		case "/studymain.do":
+			controller = new MyStudyMainController();
+			break;
+		// 데일리 문제 생성
 		case "/createQuiz.do":
 			controller = new CreateQuizController();
 			break;
-			
-			
-		/*
-		 * 여기서부터 메인 스터디 관련 페이지
-		 */
-			
-		// 내 스터디
-		case "/mystudy.do":
-			controller = new MyStudyController();
-			break;
-		// 내 스터디에서 공부 시작
-		case "/studymain.do":
-			controller = new StudyMainController();
-			break;
-		//코드 추가
+		// 코드 제출
 		case "/createcode.do":
 			controller = new CreateCodeController();
 			break;
-		//코드 보기
+		// 다른 사람 코드 보기
 		case "/showcode.do":
 			controller = new ShowCodeController();
 			break;
-		//코드 좋아요 누르기
+		// 코드 좋아요 누르기
 		case "/markcode.do":
 			controller = new MarkcodeController();
 			break;
-		//댓글 추가
+		// 댓글 작성
 		case "/createcomments.do":
-			controller = new CreateCommentsController();
+			controller = new CommentsController();
 			break;
 		default:
 			break;
@@ -150,18 +149,19 @@ public class FrontController extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
+		// 새로운 페이지로 redirect
 		if (page.contains("redirect:")) {
 			response.sendRedirect(page.substring(9));
-		} else if(page.contains("responseBody:")) {
+		// ajax로 처리후 메세지 값 넘겨주기
+		} else if (page.contains("responseBody:")) {
 			response.setCharacterEncoding("utf-8");
 			response.getWriter().append(page.substring(13));
+		// 지정한 jsp파일로 forward
 		} else {
 			RequestDispatcher rd;
 			rd = request.getRequestDispatcher(page);
 			rd.forward(request, response);
 		}
-
 	}
-
 }

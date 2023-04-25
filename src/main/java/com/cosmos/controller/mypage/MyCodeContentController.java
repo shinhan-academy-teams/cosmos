@@ -7,8 +7,8 @@ import javax.servlet.http.HttpSession;
 
 import com.cosmos.controller.CommonControllerInterface;
 import com.cosmos.model.code.CodeService;
-import com.cosmos.vo.CodeVO;
 import com.cosmos.vo.MemberVO;
+import com.cosmos.vo.code.CodeVO;
 
 public class MyCodeContentController implements CommonControllerInterface {
 

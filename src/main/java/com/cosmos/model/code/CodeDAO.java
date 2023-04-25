@@ -9,7 +9,9 @@ import java.util.List;
 
 import com.cosmos.model.mark.MarkDAO;
 import com.cosmos.util.OracleUtil;
-import com.cosmos.vo.CodeVO;
+import com.cosmos.vo.code.CodeVO;
+import com.cosmos.vo.code.MarkCodeVO;
+import com.cosmos.vo.code.MyCodeVO;
 
 public class CodeDAO {
 
@@ -40,10 +42,13 @@ public class CodeDAO {
 	}
 	
 	//코드 보기
-	public List<CodeVO> showCode(int quizNo, int sgNo) {
-		String sql = "select * from code where quiz_no =? and sg_no=?";
+	public List<MarkCodeVO> showCode(int quizNo, int sgNo) {
+		String sql = "select code.*, members.member_name "
+				+ "from code join members on code.member_no = members.member_no "
+				+ "where quiz_no =? and sg_no=? "
+				+ "order by code_date desc";
 		conn = OracleUtil.getConnection();
-		List<CodeVO> codes = new ArrayList<>();
+		List<MarkCodeVO> codes = new ArrayList<>();
 		
 		try {
 			st = conn.prepareStatement(sql);
@@ -51,7 +56,7 @@ public class CodeDAO {
 			st.setInt(2, sgNo);
 			rs = st.executeQuery();
 			while(rs.next()) {
-				CodeVO code = new CodeVO();
+				MarkCodeVO code = new MarkCodeVO();
 				code.setCode_no(rs.getInt("code_no"));
 				MarkDAO markDao = new MarkDAO();
 				int mark_count = markDao.countMark(code.getCode_no());
@@ -62,6 +67,7 @@ public class CodeDAO {
 				code.setCode_date(rs.getDate("code_date"));
 				code.setMember_no(rs.getInt("member_no"));
 				code.setCode_lang(rs.getString("code_lang"));
+				code.setMember_name(rs.getString("member_name"));
 				codes.add(code);
 			}
 			
@@ -74,21 +80,23 @@ public class CodeDAO {
 	}
 	
 	// 내 코드 목록 보기
-	public List<CodeVO> showMyCode(int memberNo) {
-		String sql = "select code.code_no, quiz.quiz_title, quiz.quiz_url, studygroup.sg_no, studygroup.sg_name, code.code_lang, code.code_date "
+	public List<MyCodeVO> showMyCode(int memberNo) {
+		String sql = "select code.code_no, code.quiz_no, quiz.quiz_title, quiz.quiz_url, "
+				+ "studygroup.sg_no, studygroup.sg_name, code.code_lang, code.code_date "
 				+ "from code join quiz on code.quiz_no=quiz.quiz_no "
 				+ "join studygroup on code.sg_no = studygroup.sg_no "
 				+ "where code.member_no = ?"; 
 		conn = OracleUtil.getConnection();
-		List<CodeVO> codes = new ArrayList<>();
+		List<MyCodeVO> codes = new ArrayList<>();
 		
 		try {
 			st = conn.prepareStatement(sql);
 			st.setInt(1, memberNo);
 			rs = st.executeQuery();
 			while(rs.next()) {
-				CodeVO code = new CodeVO();
+				MyCodeVO code = new MyCodeVO();
 				code.setCode_no(rs.getInt("code_no"));
+				code.setQuiz_no(rs.getInt("quiz_no"));
 				code.setQuiz_title(rs.getString("quiz_title"));
 				code.setQuiz_url(rs.getString("quiz_url"));
 				code.setSg_no(rs.getInt("sg_no"));
