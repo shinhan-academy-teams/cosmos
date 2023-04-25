@@ -16,7 +16,10 @@ import lombok.ToString;
 public class CodeVO {
 	private int code_no;
 	private int quiz_no;
+	private String quiz_title;
+	private String quiz_url;
 	private int sg_no;
+	private String sg_name;
 	private String code_content;
 	private Date code_date;
 	private int member_no;
