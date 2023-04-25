@@ -23,6 +23,7 @@ import com.cosmos.controller.study.CreateGroupController;
 import com.cosmos.controller.study.CreateQuizController;
 import com.cosmos.controller.study.GroupSearchController;
 import com.cosmos.controller.study.JoinStudyController;
+import com.cosmos.controller.study.MarkcodeController;
 import com.cosmos.controller.study.MyStudyController;
 import com.cosmos.controller.study.ShowCodeController;
 import com.cosmos.controller.study.StudyGroupController;
@@ -127,6 +128,10 @@ public class FrontController extends HttpServlet {
 		//코드 보기
 		case "/showcode.do":
 			controller = new ShowCodeController();
+			break;
+		//코드 좋아요 누르기
+		case "/markcode.do":
+			controller = new MarkcodeController();
 			break;
 		default:
 			break;
