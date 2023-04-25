@@ -55,7 +55,6 @@ public class CodeDAO {
 				code.setQuiz_no(rs.getInt("quiz_no"));
 				code.setSg_no(rs.getInt("sg_no"));
 				code.setCode_content(rs.getString("code_content"));
-				//System.out.println(rs.getString("code_content"));
 				code.setCode_date(rs.getDate("code_date"));
 				code.setMember_no(rs.getInt("member_no"));
 				code.setCode_lang(rs.getString("code_lang"));
@@ -63,11 +62,66 @@ public class CodeDAO {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			OracleUtil.dbDisconnect(rs, st, conn);
 		}
 		return codes;
+	}
+	
+	// 내 코드 목록 보기
+	public List<CodeVO> showMyCode(int memberNo) {
+		String sql = "select code.code_no, quiz.quiz_title, quiz.quiz_url, studygroup.sg_no, studygroup.sg_name, code.code_lang, code.code_date "
+				+ "from code join quiz on code.quiz_no=quiz.quiz_no "
+				+ "join studygroup on code.sg_no = studygroup.sg_no "
+				+ "where code.member_no = ?"; 
+		conn = OracleUtil.getConnection();
+		List<CodeVO> codes = new ArrayList<>();
+		
+		try {
+			st = conn.prepareStatement(sql);
+			st.setInt(1, memberNo);
+			rs = st.executeQuery();
+			while(rs.next()) {
+				CodeVO code = new CodeVO();
+				code.setCode_no(rs.getInt("code_no"));
+				code.setQuiz_title(rs.getString("quiz_title"));
+				code.setQuiz_url(rs.getString("quiz_url"));
+				code.setSg_no(rs.getInt("sg_no"));
+				code.setSg_name(rs.getString("sg_name"));
+				code.setCode_lang(rs.getString("code_lang"));
+				code.setCode_date(rs.getDate("code_date"));
+				codes.add(code);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			OracleUtil.dbDisconnect(rs, st, conn);
+		}
+		return codes;
+	}
+	
+	// 내 코드 상세 보기
+	public CodeVO showMyCodeContent(int codeNo, int memberNo) {
+		String sql = "select code_content from code where code_no=? and member_no=?"; 
+		conn = OracleUtil.getConnection();
+		CodeVO code = new CodeVO();
+		
+		try {
+			st = conn.prepareStatement(sql);
+			st.setInt(1, codeNo);
+			st.setInt(2, memberNo);
+			rs = st.executeQuery();
+			while(rs.next()) {
+				code.setCode_content(rs.getString("code_content"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			OracleUtil.dbDisconnect(rs, st, conn);
+		}
+		return code;
 	}
 }
