@@ -84,7 +84,7 @@
 		<c:forEach items="${allCode}" var="code">
 		<div class="code-div">
 			<div>
-				<h4>${code.member_no} 님의 풀이</h4>
+				<h4>${code.member_name} 님의 풀이</h4>
 				<c:set var="codeNumber" value="${code.code_no}"/>
 				<button type="button" class="btn btn-outline-light text-dark" onclick="pressMark(${code.code_no})" value="${code.code_no}">❤️ ${code.mark_count}</button>
 			</div>

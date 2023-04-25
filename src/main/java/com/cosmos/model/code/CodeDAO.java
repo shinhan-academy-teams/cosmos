@@ -43,7 +43,10 @@ public class CodeDAO {
 	
 	//코드 보기
 	public List<MarkCodeVO> showCode(int quizNo, int sgNo) {
-		String sql = "select * from code where quiz_no =? and sg_no=?";
+		String sql = "select code.*, members.member_name "
+				+ "from code join members on code.member_no = members.member_no "
+				+ "where quiz_no =? and sg_no=? "
+				+ "order by code_date desc";
 		conn = OracleUtil.getConnection();
 		List<MarkCodeVO> codes = new ArrayList<>();
 		
@@ -64,6 +67,7 @@ public class CodeDAO {
 				code.setCode_date(rs.getDate("code_date"));
 				code.setMember_no(rs.getInt("member_no"));
 				code.setCode_lang(rs.getString("code_lang"));
+				code.setMember_name(rs.getString("member_name"));
 				codes.add(code);
 			}
 			
