@@ -12,8 +12,8 @@ import javax.servlet.http.HttpSession;
 import com.cosmos.controller.CommonControllerInterface;
 import com.cosmos.model.code.CodeService;
 import com.cosmos.model.mark.MarkService;
-import com.cosmos.vo.CodeVO;
 import com.cosmos.vo.MemberVO;
+import com.cosmos.vo.code.MarkCodeVO;
 
 public class ShowCodeController implements CommonControllerInterface {
 
@@ -23,7 +23,7 @@ public class ShowCodeController implements CommonControllerInterface {
 		CodeService codeService = new CodeService();
 		int quizNo = Integer.parseInt(request.getParameter("quizno"));
 		int sgNo = Integer.parseInt(request.getParameter("studyno"));
-		List<CodeVO> allCode = codeService.showCode(quizNo, sgNo);
+		List<MarkCodeVO> allCode = codeService.showCode(quizNo, sgNo);
 		request.setAttribute("allCode", allCode);
 		
 		HttpSession session = request.getSession();
