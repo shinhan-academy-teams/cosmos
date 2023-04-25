@@ -12,6 +12,7 @@
 	html, body {
 		height: 100%;
 	}
+	
 	#wrap {
 		background-color: #FFFFFF;
 		width: 100%;
@@ -20,9 +21,14 @@
 		padding: 36px 24px 84px;
 		height: auto;
 		min-height: calc(100vh - 64px);
-		display: grid;
-    	vertical-align: middle;
+		display: block;
 	}
+	
+	#go {
+		position: absolute;
+	    top: 428px;
+	}
+	
 	
 </style>
 </head>
@@ -33,6 +39,7 @@
 	<div id="wrap">
 		<%@ include file="createQuizModal.jsp" %>
 		<%@ include file="quizCalendar.jsp" %>
+		<span id="go"></span>
 		<%@ include file="createCode.jsp"%>
 	</div>
 	

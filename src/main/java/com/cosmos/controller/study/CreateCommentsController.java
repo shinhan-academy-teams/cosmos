@@ -14,7 +14,7 @@ public class CreateCommentsController implements CommonControllerInterface {
 		HttpServletRequest request = (HttpServletRequest)data.get("request");
 		request.setCharacterEncoding("utf-8");
 		
-		int codeNo = Integer.parseInt(request.getParameter("quizNo"));
+		int codeNo = Integer.parseInt(request.getParameter("codeNo"));
 		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
 		String cmtContent = request.getParameter("cmtContent");
 		

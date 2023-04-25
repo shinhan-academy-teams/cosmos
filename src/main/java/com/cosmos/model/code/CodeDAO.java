@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.cosmos.model.mark.MarkDAO;
 import com.cosmos.util.OracleUtil;
 import com.cosmos.vo.CodeVO;
 
@@ -40,7 +41,7 @@ public class CodeDAO {
 	
 	//코드 보기
 	public List<CodeVO> showCode(int quizNo, int sgNo) {
-		String sql = "select * from code where quiz_no =? and sg_no=?"; 
+		String sql = "select * from code where quiz_no =? and sg_no=?";
 		conn = OracleUtil.getConnection();
 		List<CodeVO> codes = new ArrayList<>();
 		
@@ -52,6 +53,9 @@ public class CodeDAO {
 			while(rs.next()) {
 				CodeVO code = new CodeVO();
 				code.setCode_no(rs.getInt("code_no"));
+				MarkDAO markDao = new MarkDAO();
+				int mark_count = markDao.countMark(code.getCode_no());
+				code.setMark_count(mark_count);
 				code.setQuiz_no(rs.getInt("quiz_no"));
 				code.setSg_no(rs.getInt("sg_no"));
 				code.setCode_content(rs.getString("code_content"));

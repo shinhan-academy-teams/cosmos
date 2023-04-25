@@ -4,36 +4,59 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <style>
-	#insertCode, #dailyQuiz{
-		background-color: white;
-		width : 100%;
-		height: 600px;
-		margin-top: 36px;
-		border: 2px solid #ddd;
-		border-radius: 4px;
+	#insertCode {
+		background-color: #F9FAFB;
+		width: 100%;
+		height: auto;
+		margin: 24px 0;
+		padding: 24px;
+		border-radius: 12px;
+		display: none;
+	}
+	
+	#quizTitle {
+		width: 100%;
+		margin: 4px 0 12px;
+		text-align: center;
+	}
+	
+	#quizTitle + div {
+	    display: flex;
+	    align-items: baseline;
+	    justify-content: space-between;
+	}
+	
+	#quizTitle + div {
+		margin-bottom: 12px;
+	}
+	
+	#lang {
+		width: 180px;
 	}
 	
 	#insertCode textarea {
 		width: 100%;
-		height: 50vh;
+		height: 400px;
+		resize: none;
 	}
 	
-	#insertCode button{
+	#create-code-btn-div {
+		margin: 18px 0 0 auto;
+	    width: max-content;
+	}
+	
+	#insertCode button {
+		margin-left: 8px;
 		width: fit-content;
-		margin-inline-start: auto;
-		float:right;
 	}
-	
-
 	
 </style>
 
-<div>
-<span id="dailyQuiz"></span>
-</div>
 <div id="insertCode">
-	<h5>코드 입력창</h5>	
-		<select id="lang" class="form-control">
+	<div id="quizTitle"></div>
+	<div>
+		<div id="quizURL"></div>
+		<select id="lang" class="form-select" aria-label="lang-select">
 			<option value="Java">Java</option>
 			<option value="Python">Python</option>
 			<option value="JavaScript">JavaScript</option>
@@ -41,8 +64,11 @@
 			<option value="C++">C++</option>
 			<option value="C#">C#</option>
 		</select>
-		<textarea id="content"></textarea>
-		<button id="submit" onclick="allCode()">다른 풀이 보기</button>
-		<button id="submit" onclick="createcode()">작성</button>
+	</div>
+	<textarea id="content" class="form-control" placeholder="나의 풀이를 입력하세요"></textarea>
+	<div id="create-code-btn-div">
+		<button id="submit" class="btn btn-danger" onclick="allCode()">다른 사람의 풀이</button>
+		<button id="submit" class="btn btn-danger" onclick="createcode()">제출</button>
+	</div>
 </div>
 
