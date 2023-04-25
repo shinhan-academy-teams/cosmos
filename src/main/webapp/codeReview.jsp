@@ -73,6 +73,8 @@
 				<c:forEach items="${allCode }" var="code">
 					<code>${code.code_content}</code>
 					
+					<button type="button" id="mark" onclick="pressMark()" value = "${code.code_no }">❤️좋아요</button>
+					
 					<table style="border: 1px;" id="dynamicTable">
 						<thead>
 							<tr>
@@ -105,11 +107,11 @@
 
 		
 	</div>
-	<%@ include file="common/footer.jsp"%>
+	
 	
 	<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js"></script>
 	<script>hljs.highlightAll();</script>
-	
+	<%@ include file="common/footer.jsp"%>
 </body>
 
 <script>
@@ -133,6 +135,25 @@
 		
 		$("#comment").val('');
 
+	}
+	
+	function pressMark(){
+		$.ajax({
+			url : "${path}/markcode.do",
+			method : "post",
+			data : {
+				memberNo : '${user.member_no}',
+				codeNo : $('#mark').val()
+			},
+			success : function(message){
+				alert(message);
+				location.reload();
+			},
+			error: function(){
+				console.log(message);
+			}
+			
+		});
 	}
 </script>
 </html>
