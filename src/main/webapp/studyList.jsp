@@ -27,14 +27,14 @@
 	
 	table {
 		font-size: 18px;
-    margin-top: 48px;
+    	margin-top: 48px;
 		width: 100%;
 		height: fit-content;
 		text-align: center;
 	}
 
 	th, td {
-		height: 36px !important;
+		height: 45px !important;
 	}
 	
 	thead > tr {
@@ -64,7 +64,7 @@
 	}
 
 	img[alt="hit"] {
-    height: 43px;
+   		height: 43px;
 		width: auto;
 	}
 

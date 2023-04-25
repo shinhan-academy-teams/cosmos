@@ -24,11 +24,11 @@
 		vertical-align: middle;
 	}
 	#rightInfo{
-		margin-top : 53px;
+		margin-top : 56px;
 		width: 150px;
-		height: 426px;
+		height: 475px;
 		box-sizing : border-box;
-		padding : 10px;
+		padding : 5px;
 		display: inline-flex;
 		flex-direction: column;
 		position sticky;
@@ -36,6 +36,16 @@
 		top : 74px;
 		border-radius:4px;
 		float: right;
+		font-size: 18px;
+	}
+	#rightInfo > p{
+		margin: auto;
+		font-size: 16px;
+	}
+	#rightInfo > hr{
+	    margin: 0.5rem 0;
+   		color: solid #ddd;
+		border-top: 2px solid;
 	}
 	
 	#contents{
@@ -52,9 +62,20 @@
 		margin: auto;
 		width: 950px;
 		padding : 10px;
-		font-weight: 900;
+		font-size: 18px;
+		font-weight: bold;
 	}
 	.introduce{
+		margin: auto;
+		width: 950px;
+		height: 475px;
+		padding : 10px;
+		display: inline-flex;
+		box-sizing : border-box;
+		border: 2px solid #ddd;
+		border-radius:4px;
+	}
+	.introduce-2{
 		margin: auto;
 		width: 950px;
 		padding : 10px;
@@ -62,13 +83,11 @@
 		box-sizing : border-box;
 		border: 2px solid #ddd;
 		border-radius:4px;
+	
 	}
-	.lang{
-		margin: auto;
-		width: 950px;
-		padding : 10px;
-	}
-	button {
+	
+	#btnStudyjoin {
+		margin: auto
 		width: 110px;
 		height: 37.6px;
 		border: 0.8px solid rgb(206, 212, 218);
@@ -76,11 +95,13 @@
 		color: #FFFFFF !important;
 		font-size: 15px;
 		font-weight: 500;
+		border-radius: 8px;
+		
 	}
-	
-	button:hover {
+	#btnStudyjoin:hover {
 		background-color: rgba(238, 119, 133, 1);
 	}
+	
 </style>
 </head>
 
@@ -93,28 +114,30 @@
 				<p>${groupInfo.sg_info }</p>
 			</div>
 			<span class="header">멤버</span>
-			<div class="introduce">
-				<p>구현 예정</p>
+			<div class="introduce-2">
+				<p>멤버아이디 끌어넣기</p>
 			</div>
-			<hr>
-			<div class="lang">사용언어</div>
-			<p>${groupInfo.sg_lang }</p>
-			<hr>
+			<span class="header">사용언어</span>
+			<div class="introduce-2">
+				<p>${groupInfo.sg_lang }</p>
+			</div>
+			
 		</div>
 		<div id="rightInfo">
-			<p>그룹 이름</p>
+			<div class="header">그룹 이름</div>
 			<p>${groupInfo.sg_name }</p>
 			<hr>
-			<p>그룹 장</p>
+			<div class="header">그룹 장</div>
 			<p>${groupInfo.manager_name }</p>
 			<hr>
-			<p>그룹 생성 날짜</p>
+			<div class="header">그룹 생성 날짜</div>
 			<p>${groupInfo.sg_created }</p>
 			<hr>
-			<p>현재참여 인원</p>
+			<div class="header">현재참여 인원</div>
 			<P>${groupInfo.sg_cur }/${groupInfo.sg_max }</P>
+			<hr>
 			<button id="btnStudyjoin">가입</button>
-			
+			</div>
 		</div>
 	</div>
 	<%@ include file="common/footer.jsp"%>
