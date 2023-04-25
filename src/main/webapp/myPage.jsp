@@ -221,38 +221,19 @@
 										<th>문제명</th>
 										<th>스터디명</th>
 										<th>언어</th>
-										<th>생성 날짜</th>
+										<th>제출 날짜</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>56524</td>
-										<td><a href="#">시험 감독</a></td>
-										<td><a href="#">파이썬 정복</a></td>
-										<td>Java</td>
-										<td>2023-04-23</td>
-									</tr>
-									<tr>
-										<td>56525</td>
-										<td><a href="#">시험 감독</a></td>
-										<td><a href="#">파이썬 정복</a></td>
-										<td>Python</td>
-										<td>2023-04-23</td>
-									</tr>
-									<tr>
-										<td>56169</td>
-										<td><a href="#">병든 나이트</a></td>
-										<td><a href="#">파이썬 정복</a></td>
-										<td>Java</td>
-										<td>2023-04-15</td>
-									</tr>
-									<tr>
-										<td>55281</td>
-										<td><a href="#">강의실 배정</a></td>
-										<td><a href="#">파이썬 정복</a></td>
-										<td>Java</td>
-										<td>2023-04-03</td>
-									</tr>
+									<c:forEach items="${myCodes }" var="codelist">
+										<tr>
+											<td><a href="mypage/mycode.do?codeno=${codelist.code_no }">${codelist.code_no }</a></td>
+											<td><a href="${codelist.quiz_url }" target="_blank">${codelist.quiz_title }</a></td>
+											<td><a href="studymain.do?studyno=${codelist.sg_no }">${codelist.sg_name }</a></td>
+											<td>${codelist.code_lang }</td>
+											<td>${codelist.code_date }</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>

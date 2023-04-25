@@ -1,6 +1,5 @@
 package com.cosmos.controller.mypage;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,17 +10,19 @@ import com.cosmos.model.code.CodeService;
 import com.cosmos.vo.CodeVO;
 import com.cosmos.vo.MemberVO;
 
-public class MyPageController implements CommonControllerInterface {
+public class MyCodeContentController implements CommonControllerInterface {
 
 	@Override
 	public String execute(Map<String, Object> data) throws Exception {
 		HttpServletRequest request = (HttpServletRequest)data.get("request");
 		HttpSession session = request.getSession();
 		MemberVO nowUser = (MemberVO) session.getAttribute("user");
+		int codeNo = Integer.parseInt(request.getParameter("codeno"));
 		int memberNo = nowUser.getMember_no();
 		CodeService service = new CodeService();
-		List<CodeVO> myCodes = service.showMyCode(memberNo);
-		request.setAttribute("myCodes", myCodes);
-		return "myPage.jsp";
+		CodeVO code = service.showMyCodeContent(codeNo, memberNo);
+		request.setAttribute("myCode", code);
+		return "myCode.jsp";
 	}
+
 }

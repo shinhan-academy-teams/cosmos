@@ -16,13 +16,16 @@ import com.cosmos.controller.members.FindPwdController;
 import com.cosmos.controller.members.SignInController;
 import com.cosmos.controller.members.SignOutController;
 import com.cosmos.controller.members.SignUpController;
+import com.cosmos.controller.mypage.MyCodeContentController;
 import com.cosmos.controller.mypage.MyPageController;
 import com.cosmos.controller.mypage.UpdatePwdController;
 import com.cosmos.controller.study.CreateCodeController;
+import com.cosmos.controller.study.CreateCommentsController;
 import com.cosmos.controller.study.CreateGroupController;
 import com.cosmos.controller.study.CreateQuizController;
 import com.cosmos.controller.study.GroupSearchController;
 import com.cosmos.controller.study.JoinStudyController;
+import com.cosmos.controller.study.MarkcodeController;
 import com.cosmos.controller.study.MyStudyController;
 import com.cosmos.controller.study.ShowCodeController;
 import com.cosmos.controller.study.StudyGroupController;
@@ -77,7 +80,9 @@ public class FrontController extends HttpServlet {
 		case "/updatepwd.do":
 			controller = new UpdatePwdController();
 			break;
-			
+		case "/mypage/mycode.do":
+			controller = new MyCodeContentController();
+			break;
 		
 		/*
 		* 스터디
@@ -127,6 +132,14 @@ public class FrontController extends HttpServlet {
 		//코드 보기
 		case "/showcode.do":
 			controller = new ShowCodeController();
+			break;
+		//코드 좋아요 누르기
+		case "/markcode.do":
+			controller = new MarkcodeController();
+			break;
+		//댓글 추가
+		case "/createcomments.do":
+			controller = new CreateCommentsController();
 			break;
 		default:
 			break;
