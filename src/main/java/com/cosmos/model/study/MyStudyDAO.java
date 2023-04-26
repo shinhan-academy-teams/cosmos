@@ -11,6 +11,7 @@ import java.util.List;
 import com.cosmos.util.OracleUtil;
 import com.cosmos.vo.QuizVO;
 import com.cosmos.vo.StudyGroupVO;
+import com.cosmos.vo.StudyMemberVO;
 
 // 내 스터디 그룹 관련
 public class MyStudyDAO {
@@ -88,6 +89,33 @@ public class MyStudyDAO {
 			OracleUtil.dbDisconnect(null, prepared, conn);
 		}
 		return resultCount;
+	}
+	
+	// 스터디 관리하기
+	public List<StudyMemberVO> manageStudy(int studyNo) {
+		String sql = "select party.position, party.member_no, members.member_id, members.member_name, members.member_email "
+				+ "from party join members on party.member_no = members.member_no "
+				+ "where sg_no=" + studyNo; 
+		List<StudyMemberVO> studyMembers = new ArrayList<>();
+		conn = OracleUtil.getConnection();
+		try {
+			statement = conn.createStatement();
+			result = statement.executeQuery(sql);
+			while (result.next()) {
+				StudyMemberVO member = new StudyMemberVO();
+				member.setPosition(result.getString("position"));
+				member.setMember_no(result.getInt("member_no"));
+				member.setMember_id(result.getString("member_id"));
+				member.setMember_name(result.getString("member_name"));
+				member.setMember_email(result.getString("member_email"));
+				studyMembers.add(member);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleUtil.dbDisconnect(result, statement, conn);
+		}
+		return studyMembers;
 	}
 	
 
