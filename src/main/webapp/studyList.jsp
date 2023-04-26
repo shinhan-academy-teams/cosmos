@@ -67,6 +67,11 @@
    		height: 43px;
 		width: auto;
 	}
+	img[alt="soldout"] {
+   		height: 43px;
+		width: auto;
+	}
+	
 
 	#tbody tr {
 		font-weight: 300;
@@ -101,12 +106,19 @@
 				<tbody id="tbody">
 					<c:forEach items="${studyGroup }" var="grouplist" varStatus="status" >
 						<tr>
-							<c:if test ="${grouplist.sg_max - grouplist.sg_cur <= 3}">
-							<td><img alt="hit" src="${path}/images/icon-hit.png"></td>
-							</c:if>
-							<c:if test ="${grouplist.sg_max - grouplist.sg_cur > 3}">
-							<td></td>
-							</c:if>
+							<c:choose>
+								<c:when test ="${grouplist.sg_max eq grouplist.sg_cur}">
+									<td><img alt="soldout" src="${path}/images/icon-soldout.png"></td>
+								</c:when>
+								<c:otherwise>
+									<c:if test ="${(grouplist.sg_cur / grouplist.sg_max)*100 >= 65}">
+										<td><img alt="hit" src="${path}/images/icon-hit.png"></td>
+									</c:if>
+									<c:if test ="${(grouplist.sg_cur / grouplist.sg_max)*100 < 65}">
+										<td></td>
+									</c:if>
+								</c:otherwise>
+							</c:choose>
 							<td><a href="studyintro.do?studyno=${grouplist.sg_no}">${grouplist.sg_name}</a></td>
 							<td>${grouplist.sg_lang}</td>
 							<td>${grouplist.manager_name}</td>
