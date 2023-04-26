@@ -92,7 +92,7 @@
 		width: 50%;
 	}
 	
-	#btnEscape{
+	.btnEscape{
 		border-radius: 8px;
 		font-size: 16px;
 		color: white;
@@ -100,18 +100,18 @@
 		border: 0.8px solid rgb(206, 212, 218);
 	}
 	
-	#btnEscape:hover {
+	.btnEscape:hover {
 		background-color: rgb(255, 0, 0);
 	}
 	
-	#btnManage{
+	.btnManage{
 		border-radius: 8px;
 		font-size: 16px;
 		color: white;
 		background-color: #aacd6e;
 		border: 0.8px solid rgb(206, 212, 218);
 	}
-	#btnManage:hover {
+	.btnManage:hover {
 		background-color: rgb(137, 178, 66);
 	}
 	
@@ -148,7 +148,6 @@
 			<table>
 				<thead>
 					<tr>
-						<th scope="col">포지션</th>
 						<th scope="col">아이디</th>
 						<th scope="col">이름</th>
 						<th scope="col">이메일</th>
@@ -157,13 +156,14 @@
 				</thead>
 				<tbody id="tbody">
 					<c:forEach items="${studyMembers }" var="memberlist" varStatus="status">
-						<tr>
-							<td>${memberlist.position }</td>
-							<td>${memberlist.member_id }</td>
-							<td>${memberlist.member_name }</a></td>
-							<td>${memberlist.member_email }</td>
-							<td class='td-button'><button id="btnManage">삭제</button></td>
-						</tr>
+						<c:if test="${memberlist.position eq 'member' }">
+							<tr>
+								<td>${memberlist.member_id }</td>
+								<td>${memberlist.member_name }</td>
+								<td>${memberlist.member_email }</td>
+								<td class='td-button'><button class="btnManage" value="${memberlist.member_no }">강퇴</button></td>
+							</tr>
+						</c:if>
 					</c:forEach>
 				</tbody>
 			</table>
@@ -171,4 +171,29 @@
 	</div>
 	<%@ include file="common/footer.jsp"%>
 </body>
+<script>
+$(".btnManage").on("click", function() {
+	let check = confirm("해당 멤버를 내보내시겠습니까?\n멤버가 작성한 코드와 좋아요가 삭제됩니다.");
+	if(check){
+		$.ajax({
+			url : "${path}/leavestudy.do",
+			data : {
+				memberNo : this.value,
+				studyNo : ${studyNo}
+			},
+			success : function(message) {
+				if(message=='1'){
+					alert("해당 멤버를 내보냈습니다.");
+				} else {
+					alert("실패");
+				}
+				location.reload();
+			},
+			error : function() {
+				console.log(message)
+			}
+		});
+	}
+});
+</script>
 </html>
