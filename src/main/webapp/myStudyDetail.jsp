@@ -29,7 +29,6 @@
 	    top: 428px;
 	}
 	
-	
 </style>
 </head>
 
@@ -44,5 +43,14 @@
 	</div>
 	
 	<%@ include file="common/footer.jsp"%>
+	
+	<script>
+		$(function(){
+			$('body').on('click', function(){
+				$('.fc-daygrid-event-harness > a').attr('href', '#go');
+			});
+		});
+	
+	</script>
 </body>
 </html>
