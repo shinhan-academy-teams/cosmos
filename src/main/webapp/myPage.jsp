@@ -251,38 +251,20 @@
 										<th>스터디명</th>
 										<th>언어</th>
 										<th>작성자</th>
-										<th>생성 날짜</th>
-										<th>좋아요 표시한 날짜</th>
+										<th>제출 날짜</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>56521</td>
-										<td><a href="#">시험 감독</a></td>
-										<td><a href="#">파이썬 정복</a></td>
-										<td>Java</td>
-										<td>영선쓰</td>
-										<td>2023-04-11</td>
-										<td>2023-04-24</td>
-									</tr>
-									<tr>
-										<td>56515</td>
-										<td><a href="#">시험 감독</a></td>
-										<td><a href="#">파이썬 정복</a></td>
-										<td>Python</td>
-										<td>채희짱짱</td>
-										<td>2023-04-15</td>
-										<td>2023-04-23</td>
-									</tr>
-									<tr>
-										<td>56524</td>
-										<td><a href="#">시험 감독</a></td>
-										<td><a href="#">파이썬 정복</a></td>
-										<td>Java</td>
-										<td>김경윤</td>
-										<td>2023-04-23</td>
-										<td>2023-04-23</td>
-									</tr>
+									<c:forEach items="${markCodes}" var="codelist">
+										<tr>
+											<td><a href="${path}/showcode.do?studyno=${codelist.sg_no}&quizno=${codelist.quiz_no}#${codelist.code_no}">${codelist.code_no}</a></td>
+											<td><a href="${codelist.quiz_url}" target="_blank">${codelist.quiz_title}</a></td>
+											<td><a href="${path}/studymain.do?studyno=${codelist.sg_no}">${codelist.sg_name}</a></td>
+											<td>${codelist.code_lang}</td>
+											<td>${codelist.member_name}</td>
+											<td>${codelist.code_date}</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>

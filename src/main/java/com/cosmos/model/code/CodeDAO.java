@@ -85,7 +85,8 @@ public class CodeDAO {
 				+ "studygroup.sg_no, studygroup.sg_name, code.code_lang, code.code_date "
 				+ "from code join quiz on code.quiz_no=quiz.quiz_no "
 				+ "join studygroup on code.sg_no = studygroup.sg_no "
-				+ "where code.member_no = ?"; 
+				+ "where code.member_no = ? "
+				+ "order by code_date desc"; 
 		conn = OracleUtil.getConnection();
 		List<MyCodeVO> codes = new ArrayList<>();
 		
@@ -114,19 +115,36 @@ public class CodeDAO {
 		return codes;
 	}
 	
-	// 내 코드 상세 보기
-	public CodeVO showMyCodeContent(int codeNo, int memberNo) {
-		String sql = "select code_content from code where code_no=? and member_no=?"; 
+	// 내가 좋아요 표시한 코드 보기
+	public List<MyCodeVO> showMarkedCode(int memberNo) {
+		String sql = "select mark.code_no, code.quiz_no, quiz.quiz_title, quiz.quiz_url, "
+				+ "studygroup.sg_no, studygroup.sg_name, "
+				+ "code.code_lang, members.member_name writer, code.code_date "
+				+ "from mark join code on mark.code_no= code.code_no "
+				+ "join studygroup on code.sg_no=studygroup.sg_no "
+				+ "join quiz on code.quiz_no=quiz.quiz_no "
+				+ "join members on code.member_no=members.member_no "
+				+ "where mark.member_no = ? "
+				+ "order by code_date desc"; 
 		conn = OracleUtil.getConnection();
-		CodeVO code = new CodeVO();
+		List<MyCodeVO> codes = new ArrayList<>();
 		
 		try {
 			st = conn.prepareStatement(sql);
-			st.setInt(1, codeNo);
-			st.setInt(2, memberNo);
+			st.setInt(1, memberNo);
 			rs = st.executeQuery();
 			while(rs.next()) {
-				code.setCode_content(rs.getString("code_content"));
+				MyCodeVO code = new MyCodeVO();
+				code.setCode_no(rs.getInt("code_no"));
+				code.setQuiz_no(rs.getInt("quiz_no"));
+				code.setQuiz_title(rs.getString("quiz_title"));
+				code.setQuiz_url(rs.getString("quiz_url"));
+				code.setSg_no(rs.getInt("sg_no"));
+				code.setSg_name(rs.getString("sg_name"));
+				code.setCode_lang(rs.getString("code_lang"));
+				code.setMember_name(rs.getString("writer"));
+				code.setCode_date(rs.getDate("code_date"));
+				codes.add(code);
 			}
 			
 		} catch (SQLException e) {
@@ -134,6 +152,6 @@ public class CodeDAO {
 		}finally {
 			OracleUtil.dbDisconnect(rs, st, conn);
 		}
-		return code;
-	}
+		return codes;
+	} 
 }
