@@ -1,4 +1,7 @@
-package com.cosmos.controller.study;
+/*
+ * 스터디 그룹 만들기
+ */
+package com.cosmos.controller.study.common;
 
 import java.util.Map;
 

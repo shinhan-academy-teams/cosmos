@@ -27,7 +27,6 @@ public class MarkDAO {
 			st.setInt(2, codeNo);
 			result = st.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			OracleUtil.dbDisconnect(rs, st, conn);
@@ -39,7 +38,6 @@ public class MarkDAO {
 	// 좋아요 갯수 출력
 	public int countMark(int codeNo) {
 		int count = 0;
-		// select count(*) from mark where code_no=10;
 		String sql = "select count(*) from mark where code_no=?";
 		conn = OracleUtil.getConnection();
 
@@ -51,7 +49,6 @@ public class MarkDAO {
 				count = rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			OracleUtil.dbDisconnect(rs, st, conn);

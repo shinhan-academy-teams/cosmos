@@ -8,8 +8,8 @@ import javax.servlet.http.HttpSession;
 
 import com.cosmos.controller.CommonControllerInterface;
 import com.cosmos.model.code.CodeService;
-import com.cosmos.vo.CodeVO;
 import com.cosmos.vo.MemberVO;
+import com.cosmos.vo.code.MyCodeVO;
 
 public class MyPageController implements CommonControllerInterface {
 
@@ -20,7 +20,7 @@ public class MyPageController implements CommonControllerInterface {
 		MemberVO nowUser = (MemberVO) session.getAttribute("user");
 		int memberNo = nowUser.getMember_no();
 		CodeService service = new CodeService();
-		List<CodeVO> myCodes = service.showMyCode(memberNo);
+		List<MyCodeVO> myCodes = service.showMyCode(memberNo);
 		request.setAttribute("myCodes", myCodes);
 		return "myPage.jsp";
 	}
