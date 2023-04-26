@@ -15,7 +15,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
 
-
 <div id="nav-wrap">
 	<nav class="navbar navbar-expand-sm navbar-light">
 		<div class="container-fluid">
@@ -24,13 +23,13 @@
 			</a>
 			<div class="collapse navbar-collapse" id="mynavbar">
 				<ul class="navbar-nav me-auto">
-					<li class="nav-item"><a class="nav-link" href="studygroup.do">전체 스터디</a></li>
-					<li class="nav-item"><a class="nav-link" href="mystudy.do">내 스터디</a></li>
-					<li class="nav-item"><a class="nav-link" href="creategroup.do">스터디 만들기</a></li>
+					<li class="nav-item"><a class="nav-link" href="${path}/studygroup.do">전체 스터디</a></li>
+					<li class="nav-item"><a class="nav-link" href="${path}/mystudy.do">내 스터디</a></li>
+					<li class="nav-item"><a class="nav-link" href="${path}/creategroup.do">스터디 만들기</a></li>
 				</ul>
-				<form class="d-flex" action="search.do">
+				<form class="d-flex" action="${path}/search.do">
 					<div class="input-group">
-						<select name="searchOption" aria-label="searchOption" class="">
+						<select name="searchOption" aria-label="searchOption">
 							<option value="study_all">전체</option>
 							<option value="study_name">스터디명</option>
 							<option value="study_manager">스터디장</option>
@@ -62,21 +61,20 @@
 </div>
 
 <script>
-
-	function signIn(){
+	function signIn() {
 		location.href = '${path}/signin.do';
 	}
 
-	function signUp(){
+	function signUp() {
 		location.href = '${path}/signup.do';
 	}
 
-	function myPage(){
+	function myPage() {
 		location.href = '${path}/mypage.do';
 	}
 
-	function signOut(){
-		alert("정상적으로 로그아웃 되었습니다.");
+	function signOut() {
+		alert('정상적으로 로그아웃 되었습니다.');
 		location.href = '${path}/signout.do';
 	}
 
@@ -138,7 +136,7 @@
 	select[name="searchOption"]:focus {
 		color: black;
 		border: 1px solid #EE7785;
-		box-shadow: 0 0 0 0 white;
+		box-shadow: 0 0 0 0 transparent;
 	}
 	
 	#search-btn {
@@ -238,6 +236,5 @@
 	.dropdown-content button.btn:hover {
 		background-color: #ddd;
 	}
-
 
 </style>
