@@ -9,7 +9,6 @@ import java.util.List;
 
 import com.cosmos.model.mark.MarkDAO;
 import com.cosmos.util.OracleUtil;
-import com.cosmos.vo.code.CodeVO;
 import com.cosmos.vo.code.MarkCodeVO;
 import com.cosmos.vo.code.MyCodeVO;
 
@@ -154,4 +153,26 @@ public class CodeDAO {
 		}
 		return codes;
 	} 
+	
+	//멤버no로 코드 있는지 판단
+	public int codeMemCheck(int memberNo, int sgNo, int quizNo) {
+		int count = 0;
+		String sql = "select count(*) from code where member_no=? and sg_no=? and quiz_no=?";
+		conn = OracleUtil.getConnection();
+		try {
+			st = conn.prepareStatement(sql);
+			st.setInt(1, memberNo);
+			st.setInt(2, sgNo);
+			st.setInt(3, quizNo);
+			rs = st.executeQuery();
+			while(rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			OracleUtil.dbDisconnect(rs, st, conn);
+		}
+		return count;
+	}
 }
