@@ -50,16 +50,20 @@
 		padding: 10px;
 	}
 	
-	textarea {
+	input {
 		width: 100%;
-		height: 90%
+		height: 90%;
 	}
 	
-	form {
-		height: 100%;
+	table.dynamicTable {
+		width: 100%;
 	}
 	
-	#dynamicTbody td {
+	.dynamicTable thead {
+		border-bottom: 1px solid black;
+	}
+	
+	.dynamicTbody td {
 		border-bottom: 1px solid black;
 	}
 	
@@ -70,30 +74,61 @@
 	<%@ include file="common/header.jsp"%>
 	
 	<script>
-	$(function(){
-		${markList}.forEach(function (codeNo) {
-			let button = $('[value='+codeNo+']');
-			if(button.val() == codeNo){
-				button.css('backgroundColor', '#FAE6D4');
+		$(function(){
+			${markList}.forEach(function (codeNo) {
+				let button = $('[value='+codeNo+']');
+				if(button.val() == codeNo){
+					button.css('backgroundColor', '#FAE6D4');
+				}
+			});
+			/* 
+			let cmtMap ='${cmtMap}';
+			*/
+			
+			let cmtData = eval("(" + '${cmtMap}' + ")");
+			
+			for(let key in cmtData) {
+			    //console.log(key, ' 번 코드에 대한 댓글들.. ');
+			    
+			    let valueList = cmtData[key];
+			    valueList.forEach(function(item, index, array) {
+			    	/* console.log(item.cmt_no);
+			    	console.log(item.member_name);
+			    	console.log(item.cmt_content);
+			    	console.log(item.cmt_date); */
+			    	
+			    	let thInComment = '<tr>';
+			    	thInComment += '<th>' + item.member_name + '</th>';
+			    	thInComment += '<th>' + item.cmt_content + '</th>';
+			    	thInComment += '<th>' + item.cmt_date + '</th>';
+			    	thInComment += '</tr>';
+			    	//console.log(thInComment);
+			    	
+			    	let idElement = $('#' + key + ' + div').find('tbody');
+			    	
+			    	idElement.append(thInComment);
+			    });
 			}
+			
 		});
-	});
+	
+	
 	</script>
 
 	<div id="wrap">
 		<c:forEach items="${allCode}" var="code">
-		<div class="code-div">
-			<div>
-				<h4 id="${code.code_no}">${code.member_name} 님의 풀이</h4>
-				<c:set var="codeNumber" value="${code.code_no}"/>
-				<button type="button" class="btn btn-outline-light text-dark" onclick="pressMark(${code.code_no})" value="${code.code_no}">❤️ ${code.mark_count}</button>
+			<div id="${code.code_no}" class="code-div">
+				<div>
+					<h4>${code.member_name} 님의 풀이</h4>
+				<%-- 	<c:set var="codeNumber" value="${code.code_no}"/> --%>
+					<button type="button" class="btn btn-outline-light text-dark" onclick="pressMark(${code.code_no})" value="${code.code_no}">❤️ ${code.mark_count}</button>
+				</div>
+				<pre>
+					<code>${code.code_content}</code>
+				</pre>
 			</div>
-			<pre>
-				<code>${code.code_content}</code>
-			</pre>
-		</div>
 			<div class="comment-div">
-				<table style="border: 1px;" id="dynamicTable">
+				<table class="dynamicTable">
 					<thead>
 						<tr>
 							<th>작성자</th>
@@ -101,19 +136,17 @@
 							<th>작성일자</th>
 						</tr>
 					</thead>
-					<tbody id="dynamicTbody"></tbody>
+					<tbody class="dynamicTbody"></tbody>
 				</table>
 				<hr>
-				<div id="div-text">
-					<form name="commentInsertForm" method="post" enctype="multipart/form-data">
-						<div>댓글</div>
+				<div class="div-text">
+					<div>댓글</div>
+					<div>
+						<input name="${code.code_no}" class="comment-textarea form-control" placeholder="댓글을 입력하세요"></input>
 						<div>
-							<textarea id="comment-textarea" placeholder="댓글을 입력하세요"></textarea>
-							<div>
-								<button onclick="inputComment(${code.code_no})">등록</button>
-							</div>
+							<button onclick="inputComment(${code.code_no})">등록</button>
 						</div>
-					</form>
+					</div>
 				</div>
 				<br><br>
 			</div>
@@ -127,26 +160,20 @@
 </body>
 
 <script>
-
+	const urlParams = new URL(location.href).searchParams;
+	const sgNo = urlParams.get('studyno');
+	const quizNo = urlParams.get('quizno');
+	
+	
+	$('input').on('keyup', function(e){ // 엔터로 댓글 등록함.
+		let codeNo = $(this).attr("name");
+		if(e.keyCode === 13){
+			inputComment(codeNo);
+		}
+	});
+	
 	function inputComment(codeNo){
-		/* var html ='';
-		
-		var comment = $("#comment-textarea").val();
-		var today = new Date();
-		var year = today.getFullYear();
-		var month = ('0' + (today.getMonth() + 1)).slice(-2);
-		var day = ('0' + today.getDate()).slice(-2);
-		var dateString = year + '-' + month + '-' + day;
-		
-		html += '<tr>';
-		html += '<td>' + '${user.member_name}' + '</td>';
-		html += '<td>' + comment + '</td>';
-		html += '<td>' + dateString + '</td>';
-		html += '</tr>';
-
-		$("#dynamicTable").append(html);
-		
-		$("#comment-textarea").val(''); */
+		let inputElement = $('#' + codeNo + ' + div').find('input');
 		
 		$.ajax({
 			url : "${path}/createcomments.do",
@@ -154,7 +181,9 @@
 			data : {
 				memberNo : '${user.member_no}',
 				codeNo : codeNo,
-				cmtContent : $("#comment-textarea").val()
+				cmtContent : inputElement.val(),
+				sgNo : sgNo,
+				quizNo : quizNo
 			},
 			success : function(message){
 				alert(message);
@@ -165,7 +194,6 @@
 			}
 		});
 	}
-	
 	
 	function pressMark(codeNo){
 		$.ajax({
