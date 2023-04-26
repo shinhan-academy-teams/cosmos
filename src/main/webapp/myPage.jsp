@@ -170,7 +170,7 @@
 			
 			$('#new-pw1').keyup(func_pw1_check);
 			$('#new-pw1, #new-pw2').keyup(func_pw2_check);
-			$('#new-pw1, #new-pw2').keyup(check);
+			$('.form-control').keyup(check);
 		});
 	</script>
 	
@@ -225,13 +225,13 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${myCodes }" var="codelist">
+									<c:forEach items="${myCodes}" var="codelist">
 										<tr>
-											<td><a href="mypage/mycode.do?codeno=${codelist.code_no }">${codelist.code_no }</a></td>
-											<td><a href="${codelist.quiz_url }" target="_blank">${codelist.quiz_title }</a></td>
-											<td><a href="studymain.do?studyno=${codelist.sg_no }">${codelist.sg_name }</a></td>
-											<td>${codelist.code_lang }</td>
-											<td>${codelist.code_date }</td>
+											<td><a href="${path}/showcode.do?studyno=${codelist.sg_no}&quizno=${codelist.quiz_no}#${codelist.code_no}">${codelist.code_no}</a></td>
+											<td><a href="${codelist.quiz_url}" target="_blank">${codelist.quiz_title}</a></td>
+											<td><a href="${path}/studymain.do?studyno=${codelist.sg_no}">${codelist.sg_name}</a></td>
+											<td>${codelist.code_lang}</td>
+											<td>${codelist.code_date}</td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -395,7 +395,7 @@
 		}
 
 		let pw2IsOk = false;
-		function func_pw2_check() { // 비밀번호-2 조건 체크
+		function func_pw2_check() { // 비밀번호-2 조건 체크 메서드
 			let pw2 = $('#new-pw2').val(); // 입력된 pw2
 
 			if(pw2.length == 0) { // 길이 0이면 두 알림 숨김.
@@ -423,16 +423,18 @@
 		}
 
 		function check(){ // 조건 충족 여부를 판단하는 메서드
-			if(pw2IsOk){
+			if(pw2IsOk && $('#current-pw').val()){
 				$('#submit-btn').removeAttr('disabled');
-				$('#submit-btn').css({'cursor':'pointer', 'background-color':'rgba(238, 119, 133, 0.6)', 'pointer-events':'auto' });
+				$('#submit-btn').css({'cursor':'pointer', 'background-color':'rgba(238, 119, 133, 0.6)', 'pointer-events':'auto'});
 				$('#submit-btn').text('수정');
 				$('#submit-btn').hover(function(){
 					$(this).css('background-color','rgba(238, 119, 133, 1)');
+				}, function() {
+					$(this).css('background-color','rgba(238, 119, 133, 0.6)');
 				});
 			} else {
 				$('#submit-btn').attr('disabled', 'disabled');
-				$('#submit-btn').css({'cursor':'not-allowed', 'background-color':'gray', 'pointer-events':'auto' });
+				$('#submit-btn').css({'cursor':'not-allowed', 'background-color':'gray', 'pointer-events':'auto'});
 				$('#submit-btn').text('조건을 충족해주세요');
 			}
 		}
