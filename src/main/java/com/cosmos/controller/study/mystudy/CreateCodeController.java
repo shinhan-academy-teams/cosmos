@@ -1,4 +1,7 @@
-package com.cosmos.controller.study;
+/*
+ * 코드 제출
+ */
+package com.cosmos.controller.study.mystudy;
 
 import java.util.Map;
 

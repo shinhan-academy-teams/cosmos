@@ -1,4 +1,4 @@
-package com.cosmos.controller.study;
+package com.cosmos.controller.study.mystudy;
 
 import java.util.List;
 import java.util.Map;
@@ -11,7 +11,7 @@ import com.cosmos.model.study.MyStudyService;
 import com.cosmos.vo.MemberVO;
 import com.cosmos.vo.StudyGroupVO;
 
-public class MyStudyController implements CommonControllerInterface {
+public class MyStudyListController implements CommonControllerInterface {
 
 	@Override
 	public String execute(Map<String, Object> data) throws Exception {

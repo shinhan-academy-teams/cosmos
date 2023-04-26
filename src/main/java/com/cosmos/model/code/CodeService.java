@@ -2,7 +2,9 @@ package com.cosmos.model.code;
 
 import java.util.List;
 
-import com.cosmos.vo.CodeVO;
+import com.cosmos.vo.code.CodeVO;
+import com.cosmos.vo.code.MarkCodeVO;
+import com.cosmos.vo.code.MyCodeVO;
 
 public class CodeService {
 
@@ -17,12 +19,12 @@ public class CodeService {
 	}
 	
 	//코드 보기
-	public List<CodeVO> showCode(int quizNo, int sgNo) {
+	public List<MarkCodeVO> showCode(int quizNo, int sgNo) {
 		return dao.showCode(quizNo, sgNo);
 	}
 	
 	// 내 코드 목록 보기
-	public List<CodeVO> showMyCode(int memberNo) {
+	public List<MyCodeVO> showMyCode(int memberNo) {
 		return dao.showMyCode(memberNo);
 	}
 	
