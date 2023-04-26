@@ -15,6 +15,7 @@ import com.cosmos.model.comments.CommentsService;
 import com.cosmos.model.mark.MarkService;
 import com.cosmos.vo.MemberVO;
 import com.cosmos.vo.code.MarkCodeVO;
+import com.cosmos.vo.comments.CmtJoinMemVO;
 
 public class ShowCodeController implements CommonControllerInterface {
 
@@ -37,7 +38,22 @@ public class ShowCodeController implements CommonControllerInterface {
 		
 		//댓글
 		CommentsService cmtService = new CommentsService();
-		request.setAttribute("cmtMap", cmtService.selectCmtByCode(quizNo,sgNo));
+		Map<Integer, List<CmtJoinMemVO>> map = cmtService.selectCmtByCode(quizNo,sgNo);
+		
+		StringBuilder cmtMapToString = new StringBuilder();
+		cmtMapToString.append("{");
+		for (Integer key : map.keySet()) {
+			cmtMapToString.append(key)
+				.append(":")
+				.append(map.get(key))
+				.append(",");
+		}
+		if(cmtMapToString.length() > 0) {
+			cmtMapToString.deleteCharAt(cmtMapToString.length() - 1);
+		}
+		cmtMapToString.append("}");
+		
+		request.setAttribute("cmtMap", cmtMapToString);
 		
 		return "codeReview.jsp";
 	}

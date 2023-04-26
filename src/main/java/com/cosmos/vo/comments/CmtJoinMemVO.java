@@ -15,13 +15,10 @@ public class CmtJoinMemVO extends CommentsVO {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("{" + super.toString())
-			.append(", member_name=")
-			.append(member_name + "}");
+		builder.append(super.toString())
+			.append(",\"member_name\":")
+			.append("\""+member_name+"\"}");
 		return builder.toString();
 	}
-
-	
-	
 	
 }
