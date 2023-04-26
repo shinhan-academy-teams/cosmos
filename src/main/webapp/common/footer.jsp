@@ -88,7 +88,8 @@
 		margin-left: 24px;
 	}
 	
-	img[alt="logo-cosmos"], img[alt="logo-shinhanDS"] {
+	img[alt="logo-cosmos"],
+	img[alt="logo-shinhanDS"] {
 		opacity: 0.5;
 	}
 	

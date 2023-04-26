@@ -137,9 +137,9 @@
 				<form action="${path}/findid.do" method="post">
 					<div class="form-group">
 						<label for="email">이메일</label>
-						<input type="email" class="form-control" id="email" name="email" required placeholder="이메일을 입력해주세요">
-						<span id="email-value-valid" class="email-state-msg"><img alt="valid" src="${path}/images/icon-valid.png" class="email-state-msg">Valid.</span>
-						<span id="email-value-invalid"><img alt="warning" src="${path}/images/icon-warning.png">올바른 이메일 형식으로 입력해주세요.</span>
+						<input type="email" class="form-control" id="email" name="email" required autofocus placeholder="이메일을 입력해주세요">
+						<span id="email-value-valid" class="email-state-msg"><img alt="valid" src="${path}/images/icon-valid.png">Valid.</span>
+						<span id="email-value-invalid" class="email-state-msg"><img alt="warning" src="${path}/images/icon-warning.png">올바른 이메일 형식으로 입력해주세요.</span>
 					</div>
 					<div id="form-id-div" class="form-group">
 						<label>아이디</label>
@@ -160,6 +160,7 @@
 		// 이메일 조건 체크
 		const regexEmail = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 		let emailIsOk = false;
+		
 		function func_email_check(e) {
 			if(e.keyCode === 13){ // 이메일 입력하고 엔터로 아이디 찾기
 				$('#find-id-btn').click();

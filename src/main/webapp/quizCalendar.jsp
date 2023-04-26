@@ -20,10 +20,10 @@ document.addEventListener("DOMContentLoaded", function () {
 	var calendarEl = document.getElementById("calendar");
 	
 	var calendar = new FullCalendar.Calendar(calendarEl, {
-		timeZone: "UTC",
+		timeZone: "Asia/Seoul",
 		initialView: "dayGridWeek",
 		headerToolbar: {
-			left: "prev,next",
+			left: "prev,next today",
 			center: "title",
 			right: "dayGridWeek,dayGridDay",
 		},
@@ -34,10 +34,9 @@ document.addEventListener("DOMContentLoaded", function () {
 			href = arr[0];
 			quiz_no = arr[1];
       
-			// $('#dailyQuiz').text(info.event.title + " " + href);
-      $('#quizTitle').html('<h2>' + info.event.title + '</h2>');
-      $('#quizURL').html('<a target="_blank" href="' + href + '">' + href + '</a>');
-      $('#insertCode').css('display', 'block');
+			$('#quizTitle').html('<h2>' + info.event.title + '</h2>');
+			$('#quizURL').html('<a target="_blank" href="' + href + '">' + href + '</a>');
+			$('#insertCode').css('display', 'block');
 		}
 	});
 	

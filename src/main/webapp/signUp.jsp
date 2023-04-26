@@ -113,10 +113,10 @@
 
 	<script>
 		$(function(){
-			$('#id').keyup(func_id_check); // 아이디 input창에 입력이 생길 때
+			$('#id').keyup(func_id_check); // 아이디 조건 체크
 			$('#pw1').keyup(func_pw1_check); // 비밀번호-1 조건 체크
 			$('#pw1, #pw2').keyup(func_pw2_check); // 비밀번호-2 조건 체크
-			$('#id, #pw1, #pw2').keyup(check);
+			$('.form-control, .form-select').keyup(check); // 조건 충족 여부로 버튼 활성화
 		});
 	</script>
 	
@@ -232,7 +232,7 @@
 		}
 
 		let pw2IsOk = false;
-		function func_pw2_check() { // 비밀번호-2 조건 체크
+		function func_pw2_check() { // 비밀번호-2 조건 체크 메서드
 			let pw2 = $('#pw2').val(); // 입력된 pw2
 
 			if(pw2.length == 0) { // 길이 0이면 두 알림 숨김.
@@ -259,13 +259,15 @@
 			}
 		}
 		
-		function check(){
+		function check(){ // 조건 충족 여부를 판단하는 메서드
 			if(idIsOk && pw2IsOk && $('#email').val() && $('#username').val()){
 				$('#submit-btn').removeAttr('disabled');
 				$('#submit-btn').css({'cursor':'pointer', 'background-color':'rgba(238, 119, 133, 0.6)', 'pointer-events':'auto' });
 				$('#submit-btn').text('회원가입');
 				$('#submit-btn').hover(function(){
 					$(this).css('background-color','rgba(238, 119, 133, 1)');
+				}, function() {
+					$(this).css('background-color','rgba(238, 119, 133, 0.6)');
 				});
 			} else {
 				$('#submit-btn').attr('disabled', 'disabled');

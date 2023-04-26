@@ -88,15 +88,15 @@
 				<form action="${path}/findpwd.do" method="post">
 					<div id="form-id-div" class="form-group">
 						<label for="id">아이디</label>
-						<input type="text" class="form-control" id="id" name="id" placeholder="아이디를 입력해주세요" value="${parameterId}">
+						<input type="text" class="form-control" id="id" name="id" placeholder="아이디를 입력해주세요" value="${parameterId}" required autofocus>
 					</div>
 					<div class="form-group">
 						<label for="email">이메일</label>
-						<input type="email" class="form-control" id="email" name="email" required placeholder="이메일을 입력해주세요" value="${parameterEmail}">
+						<input type="email" class="form-control" id="email" name="email" placeholder="이메일을 입력해주세요" value="${parameterEmail}" required>
 					</div>
 					<div id="form-name-div" class="form-group">
 						<label for="username">실명</label>
-						<input type="text" class="form-control" id="username" name="username" placeholder="실명을 입력해주세요">
+						<input type="text" class="form-control" id="username" name="username" placeholder="실명을 입력해주세요" required>
 					</div>
 					<div id="btn-div">
 						<button id="find-pw-btn" type="submit" class="btn btn-danger">비밀번호 초기화</button>
