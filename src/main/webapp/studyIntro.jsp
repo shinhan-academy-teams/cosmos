@@ -68,7 +68,7 @@
 	.introduce{
 		margin: auto;
 		width: 950px;
-		height: 475px;
+		height: 362px;
 		padding : 10px;
 		display: inline-flex;
 		box-sizing : border-box;
@@ -101,6 +101,9 @@
 	#btnStudyjoin:hover {
 		background-color: rgba(238, 119, 133, 1);
 	}
+	.null-info{
+		color : gray;
+	}
 	
 </style>
 </head>
@@ -111,11 +114,12 @@
 		<div id="contents">
 			<span class="header">그룹 소개</span>
 			<div class="introduce">
+				<c:if test="${groupInfo.sg_info eq null }">
+				<p class="null-info">"소개글이 없습니다"</p>
+				</c:if>
+				<c:if test="${groupInfo.sg_info ne null }">
 				<p>${groupInfo.sg_info }</p>
-			</div>
-			<span class="header">멤버</span>
-			<div class="introduce-2">
-				<p>멤버아이디 끌어넣기</p>
+				</c:if>
 			</div>
 			<span class="header">사용언어</span>
 			<div class="introduce-2">
