@@ -72,5 +72,23 @@ public class MyStudyDAO {
 		
 	}
 	
+	// 스터디 탈퇴하기
+	public int leaveStudy(int memberNo, int studyNo) {
+		int resultCount = 0;
+		String sql = "delete from party where member_no=? and sg_no=?";
+		conn = OracleUtil.getConnection();
+		try {
+			prepared = conn.prepareStatement(sql);
+			prepared.setInt(1, memberNo);
+			prepared.setInt(2, studyNo);
+			resultCount = prepared.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleUtil.dbDisconnect(null, prepared, conn);
+		}
+		return resultCount;
+	}
+	
 
 }
