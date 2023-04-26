@@ -23,12 +23,13 @@ import com.cosmos.controller.study.common.GroupSearchController;
 import com.cosmos.controller.study.common.JoinStudyController;
 import com.cosmos.controller.study.common.StudyGroupController;
 import com.cosmos.controller.study.common.StudyIntroduceController;
+import com.cosmos.controller.study.mystudy.CommentsController;
 import com.cosmos.controller.study.mystudy.CreateCodeController;
 import com.cosmos.controller.study.mystudy.CreateQuizController;
+import com.cosmos.controller.study.mystudy.IsMemOnCodeController;
 import com.cosmos.controller.study.mystudy.LeaveStudyController;
 import com.cosmos.controller.study.mystudy.MarkcodeController;
 import com.cosmos.controller.study.mystudy.MyStudyListController;
-import com.cosmos.controller.study.mystudy.CommentsController;
 import com.cosmos.controller.study.mystudy.MyStudyMainController;
 import com.cosmos.controller.study.mystudy.ShowCodeController;
 
@@ -123,6 +124,10 @@ public class FrontController extends HttpServlet {
 		// 데일리 문제 생성
 		case "/createQuiz.do":
 			controller = new CreateQuizController();
+			break;
+		// 코드제출 했는지 안했는지 판단
+		case "/isMemOnCode.do":
+			controller = new IsMemOnCodeController();
 			break;
 		// 코드 제출
 		case "/createcode.do":
