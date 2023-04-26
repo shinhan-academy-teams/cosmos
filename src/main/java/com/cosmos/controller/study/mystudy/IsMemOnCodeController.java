@@ -1,6 +1,3 @@
-/*
- * 코드 제출
- */
 package com.cosmos.controller.study.mystudy;
 
 import java.util.Map;
@@ -10,27 +7,22 @@ import javax.servlet.http.HttpServletRequest;
 import com.cosmos.controller.CommonControllerInterface;
 import com.cosmos.model.code.CodeService;
 
-public class CreateCodeController implements CommonControllerInterface {
+public class IsMemOnCodeController implements CommonControllerInterface {
 
 	@Override
 	public String execute(Map<String, Object> data) throws Exception {
-		HttpServletRequest request = (HttpServletRequest)data.get("request");
-		request.setCharacterEncoding("utf-8");
 		
-		//퀴즈 작성
-		int quizNo = Integer.parseInt(request.getParameter("quizNo"));
+		HttpServletRequest request = (HttpServletRequest)data.get("request");
+		//int memberNo, int sgNo, int quizNo
+		
 		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
-		int studyNo = Integer.parseInt(request.getParameter("sgNo"));
-		String lang = request.getParameter("lang");
-		String codeContent = request.getParameter("codeContent");
+		int sgNo = Integer.parseInt(request.getParameter("sgNo"));
+		int quizNo = Integer.parseInt(request.getParameter("quizNo"));
 		
 		CodeService service = new CodeService();
-		String message = service.insertCode(quizNo, studyNo, codeContent, memberNo, lang);
-		
-		
+		String message = service.codeMemCheck(memberNo, sgNo, quizNo);
 		
 		return "responseBody:"+message;
-		}
+	}
 
 }
-

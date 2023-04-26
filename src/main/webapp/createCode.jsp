@@ -51,7 +51,17 @@
 	}
 	
 </style>
+<script>
+	//코드 제출 여부에 따른 버튼 활성화
 
+
+	function isSubmit(message){
+		if(message == '작성한 코드 없음'){
+			$('#submit-other').attr('disabled', 'disabled');
+			$('#submit-other').css({'cursor':'not-allowed', 'background-color':'gray','border':'gray' ,'pointer-events':'auto' });
+		}
+	}
+</script>
 <div id="insertCode">
 	<div id="quizTitle"></div>
 	<div>
@@ -67,7 +77,7 @@
 	</div>
 	<textarea id="content" class="form-control" placeholder="나의 풀이를 입력하세요"></textarea>
 	<div id="create-code-btn-div">
-		<button id="submit" class="btn btn-danger" onclick="allCode()">다른 사람의 풀이</button>
+		<button id="submit-other" class="btn btn-danger" onclick="allCode()">다른 사람의 풀이</button>
 		<button id="submit" class="btn btn-danger" onclick="createcode()">제출</button>
 	</div>
 </div>

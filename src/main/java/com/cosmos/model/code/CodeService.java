@@ -2,7 +2,6 @@ package com.cosmos.model.code;
 
 import java.util.List;
 
-import com.cosmos.vo.code.CodeVO;
 import com.cosmos.vo.code.MarkCodeVO;
 import com.cosmos.vo.code.MyCodeVO;
 
@@ -28,8 +27,19 @@ public class CodeService {
 		return dao.showMyCode(memberNo);
 	}
 	
-	// 내 코드 상세 보기
-	public CodeVO showMyCodeContent(int codeNo, int memberNo) {
-		return dao.showMyCodeContent(codeNo, memberNo);
+	// 내가 좋아요 표시한 코드 보기
+	public List<MyCodeVO> showMarkedCode(int memberNo) {
+		return dao.showMarkedCode(memberNo);
+	}
+	
+	//코드 제출했었는지 판단
+	public String codeMemCheck(int memberNo, int sgNo, int quizNo) {
+		int result = dao.codeMemCheck(memberNo,sgNo, quizNo);
+		if(result<1) {
+			return "작성한 코드 없음";
+		}else {
+			return "작성한 코드 있음";
+		}
+		
 	}
 }
