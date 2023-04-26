@@ -59,6 +59,14 @@
 		if(message == '작성한 코드 없음'){
 			$('#submit-other').attr('disabled', 'disabled');
 			$('#submit-other').css({'cursor':'not-allowed', 'background-color':'gray','border':'gray' ,'pointer-events':'auto' });
+		}else{
+			$('#submit-other').removeAttr('disabled');
+			$('#submit-other').css({'cursor':'pointer', 'background-color':'rgba(238, 119, 133, 0.6)', 'pointer-events':'auto' });
+			$('#submit-other').hover(function(){
+				$(this).css('background-color','rgba(238, 119, 133, 1)');
+			}, function() {
+				$(this).css('background-color','rgba(238, 119, 133, 0.6)');
+			});
 		}
 	}
 </script>

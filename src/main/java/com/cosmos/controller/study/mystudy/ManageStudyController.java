@@ -18,6 +18,7 @@ public class ManageStudyController implements CommonControllerInterface {
 		MyStudyService service = new MyStudyService();
 		List<StudyMemberVO> studyMembers = service.manageStudy(studyNo);
 		request.setAttribute("studyMembers", studyMembers);
+		request.setAttribute("studyNo", studyNo);
 		return "myStudyManage.jsp";
 	}
 
