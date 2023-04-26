@@ -87,7 +87,7 @@
 		width: 50%;
 	}
 	
-	#btnEscape{
+	.btnEscape{
 		border-radius: 8px;
 		font-size: 16px;
 		color: white;
@@ -95,18 +95,18 @@
 		border: 0.8px solid rgb(206, 212, 218);
 	}
 	
-	#btnEscape:hover {
+	.btnEscape:hover {
 		background-color: rgb(255, 0, 0);
 	}
 	
-	#btnManage{
+	.btnManage{
 		border-radius: 8px;
 		font-size: 16px;
 		color: white;
 		background-color: #aacd6e;
 		border: 0.8px solid rgb(206, 212, 218);
 	}
-	#btnManage:hover {
+	.btnManage:hover {
 		background-color: rgb(137, 178, 66);
 	}
 	
@@ -126,18 +126,27 @@
 						<th scope="col">관리자</th>
 						<th scope="col">인원수</th>
 						<th scope="col"></th>
-						<th scope="col"></th>
 					</tr>
 				</thead>
 				<tbody id="tbody">
 					<c:forEach items="${myGroup }" var="grouplist" varStatus="status" >
 						<tr>
-							<td><img alt="star" src="${path}/images/icon-star.png"></td>
-							<td><a href="studymain.do?studyno=${grouplist.sg_no }">${grouplist.sg_name }</a></td>
-							<td>${grouplist.manager_name }</td>
-							<td>${grouplist.sg_cur }/${grouplist.sg_max }</td>
-							<td class='td-button'><button id="btnEscape">탈퇴</button></td>
-							<td class='td-button'><button id="btnManage">관리</button></td>
+							<c:choose>
+								<c:when test ="${grouplist.sg_manager eq  user.member_no}">
+									<td><img alt="star" src="${path}/images/icon-star.png"></td>
+									<td><a href="studymain.do?studyno=${grouplist.sg_no }">${grouplist.sg_name }</a></td>
+									<td>${grouplist.manager_name }</td>
+									<td>${grouplist.sg_cur }/${grouplist.sg_max }</td>
+									<td class='td-button'><button class="btnManage">관리</button></td>
+								</c:when>
+								<c:otherwise>
+									<td></td>
+									<td><a href="studymain.do?studyno=${grouplist.sg_no }">${grouplist.sg_name }</a></td>
+									<td>${grouplist.manager_name }</td>
+									<td>${grouplist.sg_cur }/${grouplist.sg_max }</td>
+									<td class='td-button'><button class="btnEscape" value="${grouplist.sg_no }">탈퇴</button></td>
+								</c:otherwise>
+							</c:choose>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -145,4 +154,29 @@
 	</div>
 	<%@ include file="common/footer.jsp"%>
 </body>
+<script>
+$(".btnEscape").on("click", function() {
+	let check = confirm("스터디를 탈퇴하시겠습니까?\n스터디에서 제출 및 좋아요한 코드가 전부 삭제됩니다.");
+	if(check){
+		$.ajax({
+			url : "${path}/leavestudy.do",
+			data : {
+				memberNo : '${user.member_no}',
+				studyNo : this.value
+			},
+			success : function(message) {
+				if(message=='1'){
+					alert("스터디를 탈퇴하였습니다.");
+				} else {
+					alert("스터디 탈퇴 실패");
+				}
+				location.reload();
+			},
+			error : function() {
+				console.log(message)
+			}
+		});
+	}
+});
+</script>
 </html>

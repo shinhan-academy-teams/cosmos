@@ -16,5 +16,10 @@ public class MyStudyService {
 	public List<QuizVO> showAllQuiz(int studyNO){
 		return myStudyDao.showAllQuiz(studyNO);
 	}
+	
+	// 스터디 탈퇴하기
+	public int leaveStudy(int memberNo, int studyNo) {
+		return myStudyDao.leaveStudy(memberNo, studyNo);
+	}
 
 }

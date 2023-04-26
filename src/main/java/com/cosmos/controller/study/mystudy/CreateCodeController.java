@@ -17,6 +17,7 @@ public class CreateCodeController implements CommonControllerInterface {
 		HttpServletRequest request = (HttpServletRequest)data.get("request");
 		request.setCharacterEncoding("utf-8");
 		
+		//퀴즈 작성
 		int quizNo = Integer.parseInt(request.getParameter("quizNo"));
 		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
 		int studyNo = Integer.parseInt(request.getParameter("sgNo"));
@@ -25,6 +26,8 @@ public class CreateCodeController implements CommonControllerInterface {
 		
 		CodeService service = new CodeService();
 		String message = service.insertCode(quizNo, studyNo, codeContent, memberNo, lang);
+		
+		
 		
 		return "responseBody:"+message;
 		}
