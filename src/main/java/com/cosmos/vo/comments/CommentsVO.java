@@ -11,7 +11,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-
 public class CommentsVO {
 	private int cmt_no;
 	private int code_no;
@@ -22,18 +21,17 @@ public class CommentsVO {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("cmt_no=")
-			.append(cmt_no)
-			.append(", code_no=")
-			.append(code_no)
-			.append(", member_no=")
-			.append(member_no)
-			.append(", cmt_date=")
-			.append(cmt_date)
-			.append(", cmt_content=")
-			.append(cmt_content);
+		builder.append("{\"cmt_no\":")
+			.append("\""+cmt_no+"\"")
+			.append(",\"code_no\":")
+			.append("\""+code_no+"\"")
+			.append(",\"member_no\":")
+			.append("\""+member_no+"\"")
+			.append(",\"cmt_date\":")
+			.append("\""+cmt_date+"\"")
+			.append(",\"cmt_content\":")
+			.append("\""+cmt_content+"\"");
 		return builder.toString();
 	}
-	
 	
 }

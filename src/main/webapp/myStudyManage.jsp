@@ -20,12 +20,17 @@
 		padding: 36px 24px 84px;
 		height: auto;
 		min-height: calc(100vh - 64px);
-		display: flex;
-		vertical-align: middle;
+		display: block;
+	}
+	#wrap div{
+		width : 100%;
+		font-size: 18px;
+		font-weight: 600;
 	}
 	table {
+		margin-bottom: 80px;
 		font-size: 18px;
-    	margin-top: 48px;
+    	margin-top: 21px;
 		width: 100%;
 		height: fit-content;
 		text-align: center;
@@ -87,7 +92,7 @@
 		width: 50%;
 	}
 	
-	.btnEscape{
+	#btnEscape{
 		border-radius: 8px;
 		font-size: 16px;
 		color: white;
@@ -95,18 +100,18 @@
 		border: 0.8px solid rgb(206, 212, 218);
 	}
 	
-	.btnEscape:hover {
+	#btnEscape:hover {
 		background-color: rgb(255, 0, 0);
 	}
 	
-	.btnManage{
+	#btnManage{
 		border-radius: 8px;
 		font-size: 16px;
 		color: white;
 		background-color: #aacd6e;
 		border: 0.8px solid rgb(206, 212, 218);
 	}
-	.btnManage:hover {
+	#btnManage:hover {
 		background-color: rgb(137, 178, 66);
 	}
 	
@@ -118,69 +123,52 @@
 <body>
 	<%@ include file="common/header.jsp"%>
 	<div id="wrap">
+		<div>리더</div>
+		<div>
 			<table>
 				<thead>
 					<tr>
-						<th scope="col"></th>
-						<th scope="col">내 스터디</th>
-						<th scope="col">관리자</th>
-						<th scope="col">인원수</th>
+						<th scope="col">아이디</th>
+						<th scope="col">이름</th>
+						<th scope="col">이메일</th>
+					</tr>
+				</thead>
+				<tbody id="tbody">
+						<tr>
+							<td>${user.member_id }</td>
+							<td>${user.member_name }</a></td>
+							<td>${user.member_email }</td>
+						</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div>멤버</div>
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<th scope="col">포지션</th>
+						<th scope="col">아이디</th>
+						<th scope="col">이름</th>
+						<th scope="col">이메일</th>
 						<th scope="col"></th>
 					</tr>
 				</thead>
 				<tbody id="tbody">
-					<c:forEach items="${myGroup }" var="grouplist" varStatus="status" >
+					<c:forEach items="${studyMembers }" var="memberlist" varStatus="status">
 						<tr>
-							<c:choose>
-								<c:when test ="${grouplist.sg_manager eq  user.member_no}">
-									<td><img alt="star" src="${path}/images/icon-star.png"></td>
-									<td><a href="studymain.do?studyno=${grouplist.sg_no }">${grouplist.sg_name }</a></td>
-									<td>${grouplist.manager_name }</td>
-									<td>${grouplist.sg_cur }/${grouplist.sg_max }</td>
-									<td class='td-button'><button class="btnManage" value="${grouplist.sg_no }">관리</button></td>
-								</c:when>
-								<c:otherwise>
-									<td></td>
-									<td><a href="studymain.do?studyno=${grouplist.sg_no }">${grouplist.sg_name }</a></td>
-									<td>${grouplist.manager_name }</td>
-									<td>${grouplist.sg_cur }/${grouplist.sg_max }</td>
-									<td class='td-button'><button class="btnEscape" value="${grouplist.sg_no }">탈퇴</button></td>
-								</c:otherwise>
-							</c:choose>
+							<td>${memberlist.position }</td>
+							<td>${memberlist.member_id }</td>
+							<td>${memberlist.member_name }</a></td>
+							<td>${memberlist.member_email }</td>
+							<td class='td-button'><button id="btnManage">삭제</button></td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
+		</div>
 	</div>
 	<%@ include file="common/footer.jsp"%>
 </body>
-<script>
-$(".btnManage").on("click", function() {
-	location.href = "${path}/managestudy.do?studyno="+ this.value;
-});
-
-$(".btnEscape").on("click", function() {
-	let check = confirm("스터디를 탈퇴하시겠습니까?\n스터디에서 제출 및 좋아요한 코드가 전부 삭제됩니다.");
-	if(check){
-		$.ajax({
-			url : "${path}/leavestudy.do",
-			data : {
-				memberNo : '${user.member_no}',
-				studyNo : this.value
-			},
-			success : function(message) {
-				if(message=='1'){
-					alert("스터디를 탈퇴하였습니다.");
-				} else {
-					alert("스터디 탈퇴 실패");
-				}
-				location.reload();
-			},
-			error : function() {
-				console.log(message)
-			}
-		});
-	}
-});
-</script>
 </html>
