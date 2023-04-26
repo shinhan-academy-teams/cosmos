@@ -126,18 +126,27 @@
 						<th scope="col">관리자</th>
 						<th scope="col">인원수</th>
 						<th scope="col"></th>
-						<th scope="col"></th>
 					</tr>
 				</thead>
 				<tbody id="tbody">
 					<c:forEach items="${myGroup }" var="grouplist" varStatus="status" >
 						<tr>
-							<td><img alt="star" src="${path}/images/icon-star.png"></td>
-							<td><a href="studymain.do?studyno=${grouplist.sg_no }">${grouplist.sg_name }</a></td>
-							<td>${grouplist.manager_name }</td>
-							<td>${grouplist.sg_cur }/${grouplist.sg_max }</td>
-							<td class='td-button'><button id="btnEscape">탈퇴</button></td>
-							<td class='td-button'><button id="btnManage">관리</button></td>
+							<c:choose>
+								<c:when test ="${grouplist.sg_manager eq  user.member_no}">
+									<td><img alt="star" src="${path}/images/icon-star.png"></td>
+									<td><a href="studymain.do?studyno=${grouplist.sg_no }">${grouplist.sg_name }</a></td>
+									<td>${grouplist.manager_name }</td>
+									<td>${grouplist.sg_cur }/${grouplist.sg_max }</td>
+									<td class='td-button'><button id="btnManage">관리</button></td>
+								</c:when>
+								<c:otherwise>
+									<td></td>
+									<td><a href="studymain.do?studyno=${grouplist.sg_no }">${grouplist.sg_name }</a></td>
+									<td>${grouplist.manager_name }</td>
+									<td>${grouplist.sg_cur }/${grouplist.sg_max }</td>
+									<td class='td-button'><button id="btnEscape">탈퇴</button></td>
+								</c:otherwise>
+							</c:choose>
 						</tr>
 					</c:forEach>
 				</tbody>
