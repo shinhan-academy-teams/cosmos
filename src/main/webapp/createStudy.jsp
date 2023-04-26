@@ -43,17 +43,20 @@
 	}
 	
 	#create-study-btn-div {
-		width: 24%;
-		margin: 0 0 0 auto;
-		display: flex;
-		justify-content: space-between;
+		margin: -12px 7px;
 		align-items: center;
 	}
 	
-	#create-study-btn-div > button {
+	#create-study-btn-div button {
 		width: 80px;
+		background-color: rgba(238, 119, 133, 0.6);
+	    border: 0.8px solid rgb(206, 212, 218);
+	    color: white;
+		border-radius: 8px;
+		font-size: 18px;
+		float: right;
 	}
-	
+
 	td > textarea {
 		resize: none;
 		height: 180px;
@@ -102,20 +105,13 @@
 				</tr>
 			</table>
 			<div id="create-study-btn-div">
-				<button id="create" class="btn btn-primary">만들기</button>
-				<button id="cancle" onclick="clearInput()" class="btn btn-danger">취소</button>
+				<button id="create" >만들기</button>
 			</div>
 		</div>
 	</div>
 	<%@ include file="common/footer.jsp"%>
 </body>
 <script>
-	function clearInput() {
-		$('.form-control').val('');
-		$('.form-control[name=sg_manager]').val('${user.member_name}');
-		$('#lang').val('Java');
-	}
-
 	$("#create").on("click", function() {
 		$.ajax({
 			url : "${path}/creategroup.do",

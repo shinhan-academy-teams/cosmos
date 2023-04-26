@@ -13,14 +13,20 @@
 	.modal-btn-box {
 		width: 100%;
 		text-align: center;
+		
 	}
 	
 	.modal-btn-box button {
 		display: inline-block;
 		width: 150px;
 		height: 50px;
-		background-color: #ffffff;
+		background-color: rgba(238, 119, 133, 0.8);
+   		border-radius: 8px;
+   		color: white;
 		border: 1px solid #e1e1e1;
+	}
+	.modal-btn-box button:hover {
+		background-color: rgba(238, 119, 133, 1);
 	}
 	
 	.popup-wrap {
@@ -60,6 +66,7 @@
 		font-weight: 700;
 		letter-spacing: -3px;
 		text-align: center;
+		color : white;
 	}
 	
 	.popup-body {
@@ -69,7 +76,7 @@
 	
 	.body-content {
 		width: 100%;
-		padding: 30px;
+		padding: 10px;
 	}
 	
 	.body-titlebox {
@@ -105,36 +112,42 @@
 	.pop-btn.confirm {
 		background-color: #ee7785;
 		border: none;
-		border-right: 1px solid #ffff;
+		border-right: 3px solid #ffff;
+	}
+	td{
+		padding: 10px;
+	}
+	.td-input1 {
+		width: 160px;;
+	}
+	.td-input2 {
+		width: 274px;
 	}
 </style>
 
 <div class="container">
 	<div class="modal-btn-box">
-		<button type="button" id="modal-open">문제 만들기</button>
+		<button type="button" id="modal-open">Create Daily Quiz</button>
 	</div>
 
 	<div class="popup-wrap" id="popup">
 		<div class="popup">
 			<div class="popup-head">
-				<span class="head-title"> Study Create</span>
+				<span class="head-title">Daily Quiz</span>
 			</div>
 			<form action="<%=request.getContextPath()%>/createQuiz.do?studyno=<%=request.getParameter("studyno") %>" method="post">
 				<div class="popup-body">
 					<div class="body-content">
-						<div class="body-titlebox">
-							<h2>스터디 그룹명</h2>
-						</div>
 						<div class="body-contentbox">
 							<table>
 								<tr>
 									<td>문제 제목</td>
-									<td><input type="text" name="quizTitle" maxlength="20" required></td>
+									<td><input class="td-input1" type="text" name="quizTitle" maxlength="20" required></td>
 								</tr>
 								<tr>
 									<td>문제 링크</td>
 									<td>
-										<input type="text" name="quizUrl" required>
+										<input class="td-input2" type="text" name="quizUrl" required>
 									</td>
 								</tr>
 							</table>
