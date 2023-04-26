@@ -1,4 +1,7 @@
-package com.cosmos.controller.study;
+/*
+ * 스터디 검색
+ */
+package com.cosmos.controller.study.common;
 
 import java.util.ArrayList;
 import java.util.List;

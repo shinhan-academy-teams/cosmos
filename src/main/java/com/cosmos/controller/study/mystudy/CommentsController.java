@@ -1,4 +1,7 @@
-package com.cosmos.controller.study;
+/*
+ * 댓글 작성, 보기
+ */
+package com.cosmos.controller.study.mystudy;
 
 import java.util.Map;
 
@@ -7,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.cosmos.controller.CommonControllerInterface;
 import com.cosmos.model.comments.CommentsService;
 
-public class CreateCommentsController implements CommonControllerInterface {
+public class CommentsController implements CommonControllerInterface {
 
 	@Override
 	public String execute(Map<String, Object> data) throws Exception {
