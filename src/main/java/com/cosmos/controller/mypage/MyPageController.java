@@ -21,7 +21,9 @@ public class MyPageController implements CommonControllerInterface {
 		int memberNo = nowUser.getMember_no();
 		CodeService service = new CodeService();
 		List<MyCodeVO> myCodes = service.showMyCode(memberNo);
+		List<MyCodeVO> markCodes = service.showMarkedCode(memberNo);
 		request.setAttribute("myCodes", myCodes);
+		request.setAttribute("markCodes", markCodes);
 		return "myPage.jsp";
 	}
 }

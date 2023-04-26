@@ -25,6 +25,7 @@ import com.cosmos.controller.study.common.StudyGroupController;
 import com.cosmos.controller.study.common.StudyIntroduceController;
 import com.cosmos.controller.study.mystudy.CreateCodeController;
 import com.cosmos.controller.study.mystudy.CreateQuizController;
+import com.cosmos.controller.study.mystudy.LeaveStudyController;
 import com.cosmos.controller.study.mystudy.MarkcodeController;
 import com.cosmos.controller.study.mystudy.MyStudyListController;
 import com.cosmos.controller.study.mystudy.CommentsController;
@@ -102,6 +103,10 @@ public class FrontController extends HttpServlet {
 		// 스터디 만들기
 		case "/creategroup.do":
 			controller = new CreateGroupController();
+			break;
+		// 스터디 나가기
+		case "/leavestudy.do":
+			controller = new LeaveStudyController();
 			break;
 
 		/*
