@@ -23,9 +23,31 @@
 			</a>
 			<div class="collapse navbar-collapse" id="mynavbar">
 				<ul class="navbar-nav me-auto">
-					<li class="nav-item"><a class="nav-link" href="${path}/studygroup.do">전체 스터디</a></li>
-					<li class="nav-item"><a class="nav-link" href="${path}/mystudy.do">내 스터디</a></li>
-					<li class="nav-item"><a class="nav-link" href="${path}/creategroup.do">스터디 만들기</a></li>
+					<c:set var="nowUrl" value="${pageContext.request.requestURL}" scope="page"/>
+					<c:choose>
+						<c:when test = "${fn:contains(nowUrl, 'studyList') || fn:contains(nowUrl, 'studyIntro')}">
+							<li class="nav-item"><a class="nav-link" href="${path}/studygroup.do" style="font-weight: 500; color: black; border-bottom: 4px solid white;">전체 스터디</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="nav-item"><a class="nav-link" href="${path}/studygroup.do">전체 스터디</a></li>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test = "${fn:contains(nowUrl, 'myStudyList') || fn:contains(nowUrl, 'myStudyDetail') || fn:contains(nowUrl, 'codeReview')}">
+							<li class="nav-item"><a class="nav-link" href="${path}/mystudy.do" style="font-weight: 500; color: black; border-bottom: 4px solid white;">내 스터디</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="nav-item"><a class="nav-link" href="${path}/mystudy.do">내 스터디</a></li>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test = "${fn:contains(nowUrl, 'createStudy')}">
+							<li class="nav-item"><a class="nav-link" href="${path}/creategroup.do" style="font-weight: 500; color: black; border-bottom: 4px solid white;">스터디 만들기</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="nav-item"><a class="nav-link" href="${path}/creategroup.do">스터디 만들기</a></li>
+						</c:otherwise>
+					</c:choose>
 				</ul>
 				<form class="d-flex" action="${path}/search.do">
 					<div class="input-group">

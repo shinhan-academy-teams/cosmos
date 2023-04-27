@@ -63,6 +63,10 @@
 		text-decoration: none;
 	}
 	
+	#footer-content a:hover {
+		text-decoration: underline;
+	}
+	
 	.separator {
 		width: 1px;
 		height: 16px;

@@ -165,7 +165,8 @@
 		text-decoration: underline;
 	}
 
-	form {
+	#update-pw form,
+	#delete-account > div > div {
 		width: 50%;
 	}
 
@@ -178,7 +179,7 @@
 		width: 448px;
 	}
 
-	label {
+	.form-group label {
 		margin-bottom: 4px;
 	}
 	
@@ -203,7 +204,7 @@
 		font-weight: 100;
 		height: 24px;
 	}
-
+	
 	#submit-btn, #delete-acount-btn {
 		margin-top: 48px;
 		width: 100%;
@@ -225,16 +226,6 @@
 </head>
 <body>
 	<%@ include file="common/header.jsp" %>
-	
-	<script>
-		$(function(){
-			myCodeList();
-			
-			$('#new-pw1').keyup(func_pw1_check);
-			$('#new-pw1, #new-pw2').keyup(func_pw2_check);
-			$('.form-control').keyup(check);
-		});
-	</script>
 	
 	<div id="wrap">
 		<sidebar class="d-flex flex-nowrap">
@@ -273,7 +264,7 @@
 		<contents>
 			<div id="right-contents">
 				<div id="my-code-list" class="my-page-content">
-				<div style="width:100px height:100px" ><%@ include file="zandi.jsp"%></div>
+				<%-- <div style="width:100px height:100px" ><%@ include file="zandi.jsp"%></div> --%>
 				
 					<h3>내 코드 모아보기</h3>
 					<div>
@@ -363,21 +354,32 @@
 				<div id="delete-account" class="my-page-content">
 					<h3>회원 탈퇴</h3>
 					<div>
-						<div class="form-group">
-							<label for="pw-comfirm">비밀번호</label>
-							<input type="password" class="form-control" id="pw-comfirm" name="pw-comfirm" required placeholder="비밀번호를 입력해주세요">
-						</div>
 						<div>
-							<button id="delete-acount-btn" type="submit" class="btn btn-danger">회원 탈퇴</button>
+							<div class="form-group">
+								<label for="pw-comfirm">비밀번호</label>
+								<input type="password" class="form-control" id="pw-comfirm" name="pw-comfirm" required placeholder="비밀번호를 입력해주세요">
+							</div>
+							<div>
+								<button id="delete-acount-btn" type="submit" class="btn btn-danger">회원 탈퇴</button>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</contents>
 	</div>
+	
 	<%@ include file="common/footer.jsp" %>
 
 	<script>
+		$(function(){
+			myCodeList();
+			
+			$('#new-pw1').keyup(func_pw1_check);
+			$('#new-pw1, #new-pw2').keyup(func_pw2_check);
+			$('.form-control').keyup(check);
+		});
+	
 		// 비밀번호 수정하고나서 메세지 알림창
 		let message = "${message}";
 		if(message){
@@ -389,7 +391,7 @@
 			message = null;
 			$(function(){
 				modifyAccount();
-			})
+			});
 		}
 
 		function myCodeList(){
@@ -495,18 +497,18 @@
 					},
 					success : function(message) {
 						if(message=='1'){
-							alert("회원을 탈퇴하였습니다.");
+							alert("탈퇴가 정상적으로 처리되었습니다.");
 							location.href = "${path}";
 						} else if(message=='-1'){
 							alert("스터디장은 회원 탈퇴가 불가능합니다.");
-							location.reload();
 						} else if(message=='-2'){
 							alert("비밀번호를 확인해주세요.");
-							location.reload();
 						} else {
 							alert("회원 탈퇴 실패");
-							location.reload();
 						}
+						$(function(){
+							deleteAccount();
+						});
 					},
 					error : function(message) {
 						console.log(message);

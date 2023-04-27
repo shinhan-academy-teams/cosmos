@@ -118,7 +118,7 @@
 		padding: 10px;
 	}
 	.td-input1 {
-		width: 160px;;
+		width: 274px;
 	}
 	.td-input2 {
 		width: 274px;
@@ -142,12 +142,12 @@
 							<table>
 								<tr>
 									<td>문제 제목</td>
-									<td><input class="td-input1" type="text" name="quizTitle" maxlength="20" required></td>
+									<td><input class="td-input1 form-control" type="text" name="quizTitle" maxlength="16" required></td>
 								</tr>
 								<tr>
 									<td>문제 링크</td>
 									<td>
-										<input class="td-input2" type="text" name="quizUrl" required>
+										<input class="td-input2 form-control" type="text" name="quizUrl" required>
 									</td>
 								</tr>
 							</table>

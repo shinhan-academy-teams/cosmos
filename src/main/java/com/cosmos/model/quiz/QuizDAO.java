@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.cosmos.util.OracleUtil;
+import com.cosmos.vo.QuizVO;
+import com.shinhan.vo.EmpVO;
 
 public class QuizDAO {
 	Connection conn;
@@ -26,12 +28,39 @@ public class QuizDAO {
 			st.setString(3, quizTitle);
 			result = st.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			OracleUtil.dbDisconnect(rs, st, conn);
 		}
 		
 		return result;
+	}
+	
+	// quiz_no로 quiz_title, quiz_url 찾기
+	public QuizVO selectByQuizNo(int quiz_no) {
+		QuizVO quizVo = null;
+		
+		// select * from quiz where quiz_no = 48;
+		String sql = "select * from quiz where quiz_no = ?";
+		conn = OracleUtil.getConnection();
+
+		try {
+			st = conn.prepareStatement(sql);
+			st.setInt(1, quiz_no);
+			rs = st.executeQuery();
+
+			if (rs.next()) {
+				quizVo = new QuizVO();
+				quizVo.setQuiz_title(rs.getString("quiz_title"));
+				quizVo.setQuiz_url(rs.getString("quiz_url"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleUtil.dbDisconnect(rs, st, conn);
+		}
+		
+		return quizVo;
 	}
 }

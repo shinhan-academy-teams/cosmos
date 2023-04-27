@@ -57,11 +57,6 @@
 	tr:nth-child(odd) {
 		background-color: #f1f1f1;
 	}
-	
-	#tbody a{
-		color : #0076C0;
-		text-decoration: underline;
-	}
 
 	img[alt="hit"] {
    		height: 43px;
@@ -71,7 +66,6 @@
    		height: 43px;
 		width: auto;
 	}
-	
 
 	#tbody tr {
 		font-weight: 300;
@@ -82,9 +76,18 @@
 	}
 
 	thead tr th:nth-child(2),
-	#tbody tr td:nth-child(2)  {
+	#tbody tr td:nth-child(2) {
 		text-align: left;
 		width: 50%;
+	}
+	
+	#tbody > tr > td:nth-child(2) > a {
+		color: black;
+		text-decoration: none;
+	}
+	
+	#tbody > tr > td:nth-child(2) > a:hover {
+		text-decoration: underline;
 	}
 
 </style>

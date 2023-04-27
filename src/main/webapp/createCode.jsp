@@ -61,11 +61,11 @@
 			$('#submit-other').css({'cursor':'not-allowed', 'background-color':'gray','border':'gray' ,'pointer-events':'auto' });
 		}else{
 			$('#submit-other').removeAttr('disabled');
-			$('#submit-other').css({'cursor':'pointer', 'background-color':'rgba(238, 119, 133, 0.6)', 'pointer-events':'auto' });
+			$('#submit-other').css({'cursor':'pointer', 'background-color':'#dc3545', 'pointer-events':'auto' });
 			$('#submit-other').hover(function(){
-				$(this).css('background-color','rgba(238, 119, 133, 1)');
+				$(this).css('background-color','#bb2d3b');
 			}, function() {
-				$(this).css('background-color','rgba(238, 119, 133, 0.6)');
+				$(this).css('background-color','#dc3545');
 			});
 		}
 	}
