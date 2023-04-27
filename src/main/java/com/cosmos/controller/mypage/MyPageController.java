@@ -1,5 +1,6 @@
 package com.cosmos.controller.mypage;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +25,11 @@ public class MyPageController implements CommonControllerInterface {
 		List<MyCodeVO> markCodes = service.showMarkedCode(memberNo);
 		request.setAttribute("myCodes", myCodes);
 		request.setAttribute("markCodes", markCodes);
+		List<String> list = new ArrayList<>();
+		for(MyCodeVO mycode:myCodes) {
+			list.add("'" + mycode.getCode_date() + "'");
+		}
+		session.setAttribute("myDate", list);
 		return "myPage.jsp";
 	}
 }
