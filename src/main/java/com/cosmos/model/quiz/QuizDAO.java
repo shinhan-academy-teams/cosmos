@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import com.cosmos.util.OracleUtil;
 import com.cosmos.vo.QuizVO;
-import com.shinhan.vo.EmpVO;
+
 
 public class QuizDAO {
 	Connection conn;
