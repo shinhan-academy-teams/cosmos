@@ -14,6 +14,10 @@
 		height: 100%;
 	}
 	
+	#nav-wrap {
+		position: static !important;
+	}
+	
 	#wrap {
 		background-color: #FFFFFF;
 		width: 100%;
@@ -25,46 +29,101 @@
 		display: block;
 	}
 	
-	.code-div > div {
-		display: flex;
-		margin-bottom: -15px;
+	#wrap > div.vision {
+		margin-bottom: 48px;
 	}
 	
-	#mark-btn {
-		border: 1px solid #EE7785;
-	}
-	
-	#wrap > #comment-div {
+	#quiz-info-div {
+		background-color: #F9FAFB;
 		width: 100%;
-		height: fit-content;
+		height: auto;
+		margin: 24px 0;
+		padding: 24px;
+		border-radius: 8px;
+		text-align: center;
 	}
 	
-	#wrap button {
-		background-color: lightgray;
+	#quiz-title-div {
+		width: 100%;
+		margin: 4px 0 12px;
+	}
+	
+	.code-div > div.code-title-div {
+	    display: flex;
+	    margin-bottom: 4px;
+	    align-items: flex-end;
+	}
+	
+	img[alt="mark"] {
+		height: 20px;
+		vertical-align: sub;
+	}
+	
+	#wrap .code-title-div button {
+		background-color: #FFFFFF;
+		border: 2px solid #E6E6E6;
 		width: fit-content;
 		margin-inline-start: auto;
-		float: right;
 	}
 	
-	#div-text {
-		padding: 10px;
+	#wrap .code-title-div button:hover {
+		border: 2px solid red;
 	}
-	
-	input {
+
+	#wrap > .comment-div {
 		width: 100%;
-		height: 90%;
+		margin-top: -12px;
 	}
 	
 	table.dynamicTable {
 		width: 100%;
+		margin-bottom: 12px;
+	}
+
+	.dynamicTbody > tr > th {
+		color: black;
+		font-weight: 300;
+		font-size: 15px;
+		vertical-align: middle;
+	    height: 45px;
 	}
 	
-	.dynamicTable thead {
-		border-bottom: 1px solid black;
+	img[alt=person] {
+		height: 32px;
 	}
 	
-	.dynamicTbody td {
-		border-bottom: 1px solid black;
+	.dynamicTbody > tr > th:nth-child(1) {
+		width: 50px;
+	}
+
+	.dynamicTbody > tr > th:nth-child(2) {
+		width: 80%;
+	}
+
+	.dynamicTbody > tr > th:nth-child(3),
+	.dynamicTbody > tr > th:nth-child(4) {
+		text-align: right;
+		color: gray;
+		font-weight: 100;
+		font-size: 14px;
+	}
+	
+	.cmt-input-div {
+		display: flex;
+	    justify-content: space-between;
+	    align-items: center;
+	}
+	
+	.cmt-input-div > input {
+		width: 93%;
+	}
+	
+	.cmt-input-div > button {
+		width: 6%;
+	}
+	
+	.cmt-input-div > button:hover {
+		border: 1px solid rgb(206, 212, 218);
 	}
 	
 </style>
@@ -78,33 +137,26 @@
 			${markList}.forEach(function (codeNo) {
 				let button = $('[value='+codeNo+']');
 				if(button.val() == codeNo){
-					button.css('backgroundColor', '#FAE6D4');
+					button.find('img').attr('src', 'images/icon-heart-marked.png');
 				}
 			});
-			/* 
-			let cmtMap ='${cmtMap}';
-			*/
 			
 			let cmtData = eval("(" + '${cmtMap}' + ")");
 			
 			for(let key in cmtData) {
-			    //console.log(key, ' 번 코드에 대한 댓글들.. ');
-			    
 			    let valueList = cmtData[key];
+		    	let random = Math.floor(Math.random() * 10);
 			    valueList.forEach(function(item, index, array) {
-			    	/* console.log(item.cmt_no);
-			    	console.log(item.member_name);
-			    	console.log(item.cmt_content);
-			    	console.log(item.cmt_date); */
+			    	let num = (index + random) % 10;
 			    	
 			    	let thInComment = '<tr>';
-			    	thInComment += '<th>' + item.member_name + '</th>';
+			    	thInComment += '<th><img alt="person" src="images/comment/person-'+ num +'.png"></th>';
 			    	thInComment += '<th>' + item.cmt_content + '</th>';
+			    	thInComment += '<th>' + item.member_name + '</th>';
 			    	thInComment += '<th>' + item.cmt_date + '</th>';
 			    	thInComment += '</tr>';
-			    	//console.log(thInComment);
 			    	
-			    	let idElement = $('#' + key + ' + div').find('tbody');
+			    	let idElement = $('#' + key).next().next().find('tbody');
 			    	
 			    	idElement.append(thInComment);
 			    });
@@ -112,41 +164,36 @@
 			
 		});
 	
-	
 	</script>
 
 	<div id="wrap">
+		<div id="quiz-info-div">
+			<div id="quiz-title-div">
+				<h2>${quizTitle}</h2>
+			</div>
+			<div id="quiz-url-div">
+				<a href="${quizUrl}" target="_blank">${quizUrl}</a>
+			</div>
+		</div>
 		<c:forEach items="${allCode}" var="code">
-			<div id="${code.code_no}" class="code-div">
-				<div>
-					<h4>${code.member_name} 님의 풀이</h4>
-				<%-- 	<c:set var="codeNumber" value="${code.code_no}"/> --%>
-					<button type="button" class="btn btn-outline-light text-dark" onclick="pressMark(${code.code_no})" value="${code.code_no}">❤️ ${code.mark_count}</button>
+			<div id="${code.code_no}" class="vision"></div>
+			<div class="code-div">
+				<div class="code-title-div">
+					<h5>${code.member_name} 님의 ${code.code_lang} 풀이</h5>
+<%-- 					<button type="button" class="btn btn-outline-light text-dark" onclick="pressMark(${code.code_no})" value="${code.code_no}">❤️ ${code.mark_count}</button>--%>
+						<button type="button" class="btn btn-outline-light text-dark" onclick="pressMark(${code.code_no})" value="${code.code_no}">
+							<img alt="mark" src="${path}/images/icon-heart-none.png"> ${code.mark_count}
+						</button>
 				</div>
-				<pre>
-					<code>${code.code_content}</code>
-				</pre>
+				<pre><code>${code.code_content}</code></pre>
 			</div>
 			<div class="comment-div">
 				<table class="dynamicTable">
-					<thead>
-						<tr>
-							<th>작성자</th>
-							<th>댓글내용</th>
-							<th>작성일자</th>
-						</tr>
-					</thead>
 					<tbody class="dynamicTbody"></tbody>
 				</table>
-				<hr>
-				<div class="div-text">
-					<div>댓글</div>
-					<div>
-						<input name="${code.code_no}" class="comment-textarea form-control" placeholder="댓글을 입력하세요"></input>
-						<div>
-							<button onclick="inputComment(${code.code_no})">등록</button>
-						</div>
-					</div>
+				<div class="cmt-input-div">
+					<input name="${code.code_no}" class="comment-textarea form-control" placeholder="댓글을 입력하세요" required></input>
+					<button class="btn btn-outline-light text-dark" onclick="inputComment(${code.code_no})">등록</button>
 				</div>
 				<br><br>
 			</div>
@@ -173,8 +220,7 @@
 	});
 	
 	function inputComment(codeNo){
-		let inputElement = $('#' + codeNo + ' + div').find('input');
-		
+		let inputElement = $('#' + codeNo).next().next().find('input');
 		$.ajax({
 			url : "${path}/createcomments.do",
 			method : "post",
@@ -204,12 +250,12 @@
 				codeNo : codeNo
 			},
 			success : function(message){
-				//alert(message);
 				if(message == 'already marked'){
 					alert('이미 좋아요 표시한 코드입니다.');
 				} else if(message == 'mark OK'){
-					alert('좋아요!\n마이페이지 > 좋아요 표시한 코드에서 확인 가능합니다.');
+					alert('좋아요 완료!\n마이페이지 > 좋아요 표시한 코드에서 확인 가능합니다.');
 				}
+				
 				location.reload();
 			},
 			error: function(){

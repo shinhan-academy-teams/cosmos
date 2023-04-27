@@ -1,5 +1,7 @@
 package com.cosmos.model.quiz;
 
+import com.cosmos.vo.QuizVO;
+
 public class QuizService {
 
 	QuizDAO dao = new QuizDAO();
@@ -12,5 +14,10 @@ public class QuizService {
 		}else {
 			return "문제 추가 성공";
 		}
+	}
+	
+	// quiz_no로 quiz_title, quiz_url 찾기
+	public QuizVO selectByQuizNo(int quiz_no) {
+		return dao.selectByQuizNo(quiz_no);
 	}
 }

@@ -153,13 +153,9 @@
 	
 	function check(){
 		if(${groupInfo.sg_cur} == ${groupInfo.sg_max}){
-			console.log('같음');
 			$('#btnStudyjoin').attr('disabled', 'disabled');
 			$('#btnStudyjoin').css({'cursor':'not-allowed', 'background-color':'gray', 'pointer-events':'auto' });
 			$('#btnStudyjoin').text('모집 마감');
-			
-		} else {
-			console.log('다름');
 		}
 	}
 	
@@ -177,7 +173,7 @@
 				},
 				success:function(message){
 					alert(message);
-					location.reload();
+					location.href = '${path}/mystudy.do';
 				},
 				error:function(){
 					console.log(message)

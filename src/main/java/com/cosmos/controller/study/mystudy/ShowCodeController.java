@@ -13,7 +13,9 @@ import com.cosmos.controller.CommonControllerInterface;
 import com.cosmos.model.code.CodeService;
 import com.cosmos.model.comments.CommentsService;
 import com.cosmos.model.mark.MarkService;
+import com.cosmos.model.quiz.QuizService;
 import com.cosmos.vo.MemberVO;
+import com.cosmos.vo.QuizVO;
 import com.cosmos.vo.code.MarkCodeVO;
 import com.cosmos.vo.comments.CmtJoinMemVO;
 
@@ -29,6 +31,14 @@ public class ShowCodeController implements CommonControllerInterface {
 		int sgNo = Integer.parseInt(request.getParameter("studyno"));
 		List<MarkCodeVO> allCode = codeService.showCode(quizNo, sgNo);
 		request.setAttribute("allCode", allCode);
+		
+		//퀴즈
+		QuizService quizService = new QuizService();
+		QuizVO quizVo = quizService.selectByQuizNo(quizNo);
+		String quizTitle = quizVo.getQuiz_title();
+		String quizUrl = quizVo.getQuiz_url();
+		request.setAttribute("quizTitle", quizTitle);
+		request.setAttribute("quizUrl", quizUrl);
 		
 		//좋아요
 		HttpSession session = request.getSession();

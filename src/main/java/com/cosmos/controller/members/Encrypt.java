@@ -4,15 +4,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Encrypt {
-	public static void main(String pwd) {
-		Encrypt en = new Encrypt();
-		
-		//최종 pwd 생성
-		String res = en.getEncrypt(pwd);
-	}
-	
-
-	
 	public String getEncrypt(String pwd) {
 		String result = "";
 		try {

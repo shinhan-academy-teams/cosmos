@@ -63,28 +63,31 @@
    		height: 25px;
 		width: auto;
 	}
+
+	#tbody tr td {
+		font-weight: 300;
+		color: black;
+	}
 	
 	#tbody a{
-		color : #0076C0;
+		color : inherit;
+		text-decoration: none;
+	}
+	#tbody a:hover{
 		text-decoration: underline;
 	}
-	img[alt="hit"] {
-   		height: 43px;
-		width: auto;
-	}
-
-	#tbody tr {
-		font-weight: 300;
-	}
-
-	#tbody tr td:first-child {
+	
+	thead tr th:nth-child(1),
+	thead tr th:nth-child(3),
+	thead tr th:nth-child(4),
+	thead tr th:nth-child(5) {
 		width: 100px;
 	}
-
+	
 	thead tr th:nth-child(2),
-	#tbody tr td:nth-child(2)  {
+	#tbody tr td:nth-child(2) {
 		text-align: left;
-		width: 50%;
+		width: auto;
 	}
 	
 	.btnEscape{
@@ -110,8 +113,6 @@
 		background-color: rgb(137, 178, 66);
 	}
 	
-
-
 </style>
 </head>
 
