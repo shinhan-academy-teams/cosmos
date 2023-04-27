@@ -3,6 +3,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <title>zandi</title>
 <style>
 .zandi {
@@ -64,14 +65,17 @@
 <body>
 	<div id="cal"></div>
 	<script>
-		let myCodes = '${myCodes.code_date}';
-		console.log(myCodes);
+		let myDate = ${myDate};  //session에 저장한 코드 올린 날짜들
+		let data = eval("("+myDate+")");
 		
 		let now = new Date();
-		let curYear = now.getFullYear();
-		let curMonth = now.getMonth(); //3(4)
+		let curYear = now.getFullYear(); //현재 년도
+		let curMonth = now.getMonth(); //(현재 월)-1 
+		
 		let lastDayOfMon = [ 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
 		getLastDayOfMonth();
+		
+		//윤년 판단
 		function getLastDayOfMonth() {
 
 			let mon2;
@@ -86,14 +90,10 @@
 			lastDayOfMon[1] = (mon2) ? 29 : 28;
 
 		}
-
 		
-		
-		
+		//이벤트
 		document.addEventListener("DOMContentLoaded", function () {
 			let text = "<table class='zandi'>"
-				
-		
 			text += "<thead>";
 			text += "<tr>";
 			text += "<th colspan='5'>Jan</th>";
@@ -112,20 +112,25 @@
 			text += "</thead>";
 			text += "<tbody class='zandi_tbody'>";
 	
+			//행 7개(일주일)
 			for (let i = 1; i < 8; i++) {
 				text += "<tr>";
+				//12달
 				for (var k = 0; k < 12; k++) {
-	
+					//한달 5주
 					for (let j = 0; j < 5; j++) {
-						let num = eval(i + (j * 7));
-						if (num <= lastDayOfMon[k]) {
-							/*title="+'2023-'+(k+1)+'-'+num+"*/
-							text += "<td class='tooltip' data-month = "+k+"><span class='tooltiptext'>"
+						let num = eval(i + (j * 7)); //html의 td는 오른쪽으로 출력이 되므로 7을 계속 더한 값
+						if (num <= lastDayOfMon[k]) { //말일만큼 출력
+							text += "<td class='tooltip' data-month = "+(k+1)+"-"+num+"><span class='tooltiptext'>"
 									+ "2023-"
 									+ (k + 1)
 									+ "-"
 									+ num + "<span></td>";
-	
+									//ex)2023-4-27형태로 만듬
+									//툴팁 넣음
+									//data-month : 4-27형태
+									
+							
 						} else {
 							text += "<td>" + "</td>";
 						}
@@ -133,11 +138,31 @@
 	
 				}
 				text += "</tr>";
+				
 			}
 	
 			text += "</tbody>";
 			text += "</table>";
 			document.getElementById("cal").innerHTML = text;
+				
+			for (let i = 0; i < myDate.length; i++) {  //받아온 코드 올린 날짜들만큼 for문 돌림
+			    var date = new Date(myDate[i]);
+			    var mon = date.getMonth();
+			    var day = date.getDate();
+			    var codeDate = mon+1+"-"+day;  //날짜를 4-27형태로 바꿈
+			    
+			    $(".tooltip").each(function(index, item){
+					if(codeDate ==$(item).attr("data-month") ){//날짜에 해당하는 td
+						$(this).css("backgroundColor","#D8A1AB");  //색깔
+					}
+				});
+			}
+			
+			
+		});
+		
+		$(function(){
+			
 		});
 	</script>
 </body>
