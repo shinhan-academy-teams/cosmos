@@ -79,15 +79,4 @@ public class CommentsDAO {
 		return cmtMap;
 	}
 
-	private CmtJoinMemVO makeCmt(ResultSet rs) throws SQLException {
-		CmtJoinMemVO cmt = new CmtJoinMemVO();
-		cmt.setCmt_no(rs.getInt("cmt_no"));
-		cmt.setCode_no(rs.getInt("code_no"));
-		cmt.setMember_name(rs.getString("member_name"));
-		cmt.setCmt_date(rs.getDate("cmt_date"));
-		cmt.setCmt_content(rs.getString("cmt_content"));
-
-		return cmt;
-	}
-
 }
