@@ -72,7 +72,7 @@
 			},
 			success : function(message) {
 				alert(message);
-				location.reload();
+				allCode();
 			},
 			error : function() {
 				console.log(message);
