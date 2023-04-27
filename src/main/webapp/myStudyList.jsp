@@ -60,7 +60,7 @@
 	}
 	
 	img[alt="star"] {
-   		height: 43px;
+   		height: 25px;
 		width: auto;
 	}
 	

@@ -112,6 +112,11 @@
 	<%@ include file="common/footer.jsp"%>
 </body>
 <script>
+	let studyinfo;
+	$("#info").on('keyup', function(){
+		studyinfo = $("#info").val().replaceAll(/(\n|\r\n)/g, "<br>");
+	});
+	
 	$("#create").on("click", function() {
 		$.ajax({
 			url : "${path}/creategroup.do",
@@ -121,7 +126,7 @@
 				memberNo : '${user.member_no}',
 				maxPeople : $('#maxPeople').val(),
 				lang : $('#lang').val(),
-				info : $('#info').val()
+				info : studyinfo
 			},
 			success : function(message) {
 				alert(message);

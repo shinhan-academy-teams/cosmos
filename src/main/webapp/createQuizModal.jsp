@@ -118,7 +118,7 @@
 		padding: 10px;
 	}
 	.td-input1 {
-		width: 160px;;
+		width: 274px;
 	}
 	.td-input2 {
 		width: 274px;
