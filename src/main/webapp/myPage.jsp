@@ -84,14 +84,14 @@
 
 	.my-page-content > div {
 		width: 100%;
-    height: 100%;
-    margin-top: 28px;
-    padding: 24px;
-    background-color: #F9FAFB;
-    border-radius: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+	    height: 100%;
+	    margin-top: 28px;
+	    padding: 24px;
+	    background-color: #F9FAFB;
+	    border-radius: 24px;
+	    display: flex;
+	    justify-content: center;
+	    align-items: flex-start;
 	}
 
 	.my-page-content {
@@ -99,6 +99,71 @@
 	}
 
 	/* ------------------------------------------------------- */
+
+	thead.thead {
+		background-color: #FAE6D4;
+	}
+	
+	#my-code-list tr > td:nth-child(1),
+	#my-code-list tr > th:nth-child(1) {
+		width: 5%;
+		text-align: center;
+	}
+	
+	#my-code-list tr > th:nth-child(2),
+	#my-code-list tr > th:nth-child(3) {
+		width: 15%;
+	}
+	
+	#my-code-list tr > th:nth-child(4) {
+		width: 2%;
+	}
+	
+	#my-code-list tr > td:nth-child(5),
+	#my-code-list tr > th:nth-child(5) {
+		width: 6%;
+		text-align: center;
+	}
+	
+	#my-mark-code-list tr > td:nth-child(1),
+	#my-mark-code-list tr > th:nth-child(1) {
+		width: 5%;
+		text-align: center;
+	}
+	
+	#my-mark-code-list tr > th:nth-child(2),
+	#my-mark-code-list tr > th:nth-child(3) {
+		width: 15%;
+	}
+	
+	#my-mark-code-list tr > th:nth-child(4) {
+		width: 1%;
+	}
+	
+	#my-mark-code-list tr > th:nth-child(5) {
+		width: 4%;
+	}
+	
+	#my-mark-code-list tr > td:nth-child(6),
+	#my-mark-code-list tr > th:nth-child(6) {
+		width: 6%;
+		text-align: center;
+	}
+	
+	table.table tbody td {
+		color: black !important;
+		font-size: 15px;
+		font-weight: 300;
+	}
+	
+	#right-contents a {
+		color: inherit;
+		text-decoration: none;
+	}
+	
+	#right-contents a:hover {
+		text-decoration: underline;
+	}
 
 	form {
 		width: 50%;
@@ -154,10 +219,7 @@
 	#delete-acount-btn:hover {
 		background-color: rgb(255, 0, 0);
 	}
-
-	thead#thead{
-		background-color: #FAE6D4;
-	}
+	
 </style>
 
 </head>
@@ -215,7 +277,7 @@
 					<div>
 						<div class="container mt-3">
 							<table class="table table-striped table-hover">
-								<thead id="thead">
+								<thead class="thead">
 									<tr>
 										<th>코드 번호</th>
 										<th>문제명</th>
@@ -244,7 +306,7 @@
 					<div>
 						<div class="container mt-3">
 							<table class="table table-striped table-hover">
-								<thead id="thead">
+								<thead class="thead">
 									<tr>
 										<th>코드 번호</th>
 										<th>문제명</th>
@@ -299,15 +361,13 @@
 				<div id="delete-account" class="my-page-content">
 					<h3>회원 탈퇴</h3>
 					<div>
-						<form action="${path}/" method="post">
-							<div class="form-group">
-								<label for="pw-comfirm">비밀번호</label>
-								<input type="password" class="form-control" id="pw-comfirm" name="pw-comfirm" required placeholder="비밀번호를 입력해주세요">
-							</div>
-							<div>
-								<button id="delete-acount-btn" type="submit" class="btn btn-danger">회원 탈퇴</button>
-							</div>
-						</form>
+						<div class="form-group">
+							<label for="pw-comfirm">비밀번호</label>
+							<input type="password" class="form-control" id="pw-comfirm" name="pw-comfirm" required placeholder="비밀번호를 입력해주세요">
+						</div>
+						<div>
+							<button id="delete-acount-btn" type="submit" class="btn btn-danger">회원 탈퇴</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -420,6 +480,38 @@
 				$('#submit-btn').text('조건을 충족해주세요');
 			}
 		}
+		
+		$("#delete-acount-btn").on("click", function() {
+			let check = confirm("회원을 탈퇴하시겠습니까?\n작성한 코드와 좋아요가 전부 삭제됩니다.");
+			if(check){
+				$.ajax({
+					url : "${path}/deletemember.do",
+					data : {
+						memberNo : '${user.member_no}',
+						memberId : '${user.member_id}',
+						memberPwd : $('#pw-comfirm').val(),
+					},
+					success : function(message) {
+						if(message=='1'){
+							alert("회원을 탈퇴하였습니다.");
+							location.href = "${path}";
+						} else if(message=='-1'){
+							alert("스터디장은 회원 탈퇴가 불가능합니다.");
+							location.reload();
+						} else if(message=='-2'){
+							alert("비밀번호를 확인해주세요.");
+							location.reload();
+						} else {
+							alert("회원 탈퇴 실패");
+							location.reload();
+						}
+					},
+					error : function(message) {
+						console.log(message);
+					}
+				});
+			}
+		});
 
 	</script>
 
