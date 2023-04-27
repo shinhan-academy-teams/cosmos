@@ -69,9 +69,9 @@ public class FindService{
 		/** 메일 PORT **/
 		private static final String PORT = "587";
 		/** 메일 ID **/
-		private static final String MAIL_ID = "bona366@naver.com";  //보내는 사람 이메일
+		private static final String MAIL_ID = "cosmaker2023@naver.com";  //보내는 사람 이메일
 		/** 메일 PW **/
-		private static final String MAIL_PW = "dlacogml2425!!";  //보내는 사람 비밀번호
+		private static final String MAIL_PW = "cosmaker2023!";  //보내는 사람 비밀번호
 		
 		
 		public static void naverMailSend(String subejct, String tempwd, String email) {
