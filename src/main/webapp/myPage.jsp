@@ -273,6 +273,8 @@
 		<contents>
 			<div id="right-contents">
 				<div id="my-code-list" class="my-page-content">
+				<div style="width:100px height:100px" ><%@ include file="zandi.jsp"%></div>
+				
 					<h3>내 코드 모아보기</h3>
 					<div>
 						<div class="container mt-3">
