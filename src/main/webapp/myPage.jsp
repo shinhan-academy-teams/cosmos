@@ -84,14 +84,14 @@
 
 	.my-page-content > div {
 		width: 100%;
-    height: 100%;
-    margin-top: 28px;
-    padding: 24px;
-    background-color: #F9FAFB;
-    border-radius: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+	    height: 100%;
+	    margin-top: 28px;
+	    padding: 24px;
+	    background-color: #F9FAFB;
+	    border-radius: 24px;
+	    display: flex;
+	    justify-content: center;
+	    align-items: flex-start;
 	}
 
 	.my-page-content {
@@ -99,6 +99,71 @@
 	}
 
 	/* ------------------------------------------------------- */
+
+	thead.thead {
+		background-color: #FAE6D4;
+	}
+	
+	#my-code-list tr > td:nth-child(1),
+	#my-code-list tr > th:nth-child(1) {
+		width: 5%;
+		text-align: center;
+	}
+	
+	#my-code-list tr > th:nth-child(2),
+	#my-code-list tr > th:nth-child(3) {
+		width: 15%;
+	}
+	
+	#my-code-list tr > th:nth-child(4) {
+		width: 2%;
+	}
+	
+	#my-code-list tr > td:nth-child(5),
+	#my-code-list tr > th:nth-child(5) {
+		width: 6%;
+		text-align: center;
+	}
+	
+	#my-mark-code-list tr > td:nth-child(1),
+	#my-mark-code-list tr > th:nth-child(1) {
+		width: 5%;
+		text-align: center;
+	}
+	
+	#my-mark-code-list tr > th:nth-child(2),
+	#my-mark-code-list tr > th:nth-child(3) {
+		width: 15%;
+	}
+	
+	#my-mark-code-list tr > th:nth-child(4) {
+		width: 1%;
+	}
+	
+	#my-mark-code-list tr > th:nth-child(5) {
+		width: 4%;
+	}
+	
+	#my-mark-code-list tr > td:nth-child(6),
+	#my-mark-code-list tr > th:nth-child(6) {
+		width: 6%;
+		text-align: center;
+	}
+	
+	table.table tbody td {
+		color: black !important;
+		font-size: 15px;
+		font-weight: 300;
+	}
+	
+	#right-contents a {
+		color: inherit;
+		text-decoration: none;
+	}
+	
+	#right-contents a:hover {
+		text-decoration: underline;
+	}
 
 	form {
 		width: 50%;
@@ -154,10 +219,7 @@
 	#delete-acount-btn:hover {
 		background-color: rgb(255, 0, 0);
 	}
-
-	thead#thead{
-		background-color: #FAE6D4;
-	}
+	
 </style>
 
 </head>
@@ -215,7 +277,7 @@
 					<div>
 						<div class="container mt-3">
 							<table class="table table-striped table-hover">
-								<thead id="thead">
+								<thead class="thead">
 									<tr>
 										<th>코드 번호</th>
 										<th>문제명</th>
@@ -244,7 +306,7 @@
 					<div>
 						<div class="container mt-3">
 							<table class="table table-striped table-hover">
-								<thead id="thead">
+								<thead class="thead">
 									<tr>
 										<th>코드 번호</th>
 										<th>문제명</th>
