@@ -17,7 +17,7 @@ public class StudyGroupController implements CommonControllerInterface {
 	@Override
 	public String execute(Map<String, Object> data) throws Exception {
 		// Get요청 처리
-		HttpServletRequest request = (HttpServletRequest)data.get("request");
+		HttpServletRequest request = (HttpServletRequest) data.get("request");
 		StudyGroupService sv = new StudyGroupService();
 		List<StudyGroupVO> studyGroup = sv.selectAllGroup();
 		request.setAttribute("studyGroup", studyGroup);

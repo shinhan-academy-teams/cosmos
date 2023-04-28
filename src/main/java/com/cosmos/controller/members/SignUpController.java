@@ -57,22 +57,14 @@ public class SignUpController implements CommonControllerInterface {
 		String en_pwd = en.getEncrypt(pwd);
 		
 	
-		if (result_id <= 0 && result_em <= 0) {
-			// 중복체크 검사 통과한 경우
+		if (result_id <= 0 && result_em <= 0) { // 중복체크 검사 통과한 경우
 			member = new MemberVO();
 			member.setMember_id(request.getParameter("id"));
 			member.setMember_pwd(en_pwd);
 			member.setMember_name(request.getParameter("username"));
 			member.setMember_email(fullemail);
-			
-			System.out.println("-----------가입한 회원 정보------------");
-			System.out.println("memberid : " + member.getMember_id());
-			System.out.println("memberpwd : " + member.getMember_pwd());
-			System.out.println("membername : " + member.getMember_name());
-			System.out.println("memberemail : " + member.getMember_email());
-		} else {
-			System.out.println("아이디 및 비밀번호 중복검사를 진행해주세요..");
 		}
+		
 		return member;
 	}
 

@@ -6,6 +6,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>COSMOS</title>
 <link rel="icon" type="image/x-icon" href="${path}/images/favicon.ico">
 <style>
@@ -13,7 +14,7 @@
 		height: 100%;
 	}
 
-	#nav-wrap{
+	#nav-wrap {
 		display: none;
 	}
 	

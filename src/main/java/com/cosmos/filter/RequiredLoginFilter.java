@@ -3,7 +3,6 @@ package com.cosmos.filter;
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -19,6 +18,11 @@ import com.cosmos.vo.MemberVO;
 @WebFilter("*.do")
 public class RequiredLoginFilter extends HttpFilter implements Filter {
        
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	// 생성자
     public RequiredLoginFilter() {
         super();
@@ -51,10 +55,6 @@ public class RequiredLoginFilter extends HttpFilter implements Filter {
 			}
 		}
 		chain.doFilter(request, response);
-	}
-
-	// 필터 생성
-	public void init(FilterConfig fConfig) throws ServletException {
 	}
 
 }

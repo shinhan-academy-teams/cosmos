@@ -14,7 +14,7 @@ public class FindIdController implements CommonControllerInterface {
 	public String execute(Map<String, Object> data) throws Exception {
 		String method = (String) data.get("method");
 		String page = "";
-		
+
 		if (method.equals("GET")) {
 			page = "findId.jsp";
 		} else {
@@ -26,12 +26,10 @@ public class FindIdController implements CommonControllerInterface {
 			String userId;
 			if (member != null) {
 				userId = member.getMember_id();
-				System.out.println("아이디는 " + userId);
 			} else {
 				userId = "none";
-				System.out.println("계정등록이 되어있지 않은 이메일입니다..");
 			}
-			
+
 			page = "responseBody:" + userId;
 		}
 		return page;

@@ -166,7 +166,6 @@ public class MemberDAO {
 		} finally {
 			OracleUtil.dbDisconnect(rs, st, conn);
 		}
-		System.out.println("update결과 : " + member);
 		return member;
 	}
 

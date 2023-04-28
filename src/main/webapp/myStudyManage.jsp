@@ -6,12 +6,14 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>COSMOS</title>
 <link rel="icon" type="image/x-icon" href="${path}/images/favicon.ico">
 <style>
 	html, body {
 		height: 100%;
 	}
+	
 	#wrap {
 		background-color: #FFFFFF;
 		width: 100%;
@@ -22,11 +24,13 @@
 		min-height: calc(100vh - 64px);
 		display: block;
 	}
-	#wrap div{
+	
+	#wrap div {
 		width : 100%;
 		font-size: 18px;
 		font-weight: 600;
 	}
+	
 	table {
 		margin-bottom: 80px;
 		font-size: 18px;
@@ -39,7 +43,8 @@
 	th, td {
 		height: 45px !important;
 	}
-	.td-button{
+	
+	.td-button {
 		width: 60px;
 	} 
 	
@@ -69,10 +74,11 @@
 		width: auto;
 	}
 	
-	#tbody a{
+	#tbody a {
 		color : #0076C0;
 		text-decoration: underline;
 	}
+	
 	img[alt="hit"] {
    		height: 43px;
 		width: auto;
@@ -87,12 +93,12 @@
 	}
 
 	thead tr th:nth-child(2),
-	#tbody tr td:nth-child(2)  {
+	#tbody tr td:nth-child(2) {
 		text-align: left;
 		width: 50%;
 	}
 	
-	.btnEscape{
+	.btnEscape {
 		border-radius: 8px;
 		font-size: 16px;
 		color: white;
@@ -104,18 +110,17 @@
 		background-color: rgb(255, 0, 0);
 	}
 	
-	.btnManage{
+	.btnManage {
 		border-radius: 8px;
 		font-size: 16px;
 		color: white;
 		background-color: #aacd6e;
 		border: 0.8px solid rgb(206, 212, 218);
 	}
+	
 	.btnManage:hover {
 		background-color: rgb(137, 178, 66);
 	}
-	
-
 
 </style>
 </head>
@@ -136,7 +141,7 @@
 				<tbody id="tbody">
 						<tr>
 							<td>${user.member_id }</td>
-							<td>${user.member_name }</a></td>
+							<td>${user.member_name }</td>
 							<td>${user.member_email }</td>
 						</tr>
 				</tbody>
@@ -172,28 +177,28 @@
 	<%@ include file="common/footer.jsp"%>
 </body>
 <script>
-$(".btnManage").on("click", function() {
-	let check = confirm("해당 멤버를 내보내시겠습니까?\n멤버가 작성한 코드와 좋아요가 삭제됩니다.");
-	if(check){
-		$.ajax({
-			url : "${path}/leavestudy.do",
-			data : {
-				memberNo : this.value,
-				studyNo : ${studyNo}
-			},
-			success : function(message) {
-				if(message=='1'){
-					alert("해당 멤버를 내보냈습니다.");
-				} else {
-					alert("실패");
+	$(".btnManage").on("click", function() {
+		let check = confirm("해당 멤버를 내보내시겠습니까?\n멤버가 작성한 코드와 좋아요가 삭제됩니다.");
+		if(check){
+			$.ajax({
+				url : "${path}/leavestudy.do",
+				data : {
+					memberNo : this.value,
+					studyNo : ${studyNo}
+				},
+				success : function(message) {
+					if(message=='1'){
+						alert("해당 멤버를 내보냈습니다.");
+					} else {
+						alert("실패");
+					}
+					location.reload();
+				},
+				error : function() {
+					console.log(message)
 				}
-				location.reload();
-			},
-			error : function() {
-				console.log(message)
-			}
-		});
-	}
-});
+			});
+		}
+	});
 </script>
 </html>

@@ -29,7 +29,7 @@ public class MyPageController implements CommonControllerInterface {
 		for(MyCodeVO mycode:myCodes) {
 			list.add("'" + mycode.getCode_date() + "'");
 		}
-		session.setAttribute("myDate", list);
+		request.setAttribute("myDate", list);
 		return "myPage.jsp";
 	}
 }

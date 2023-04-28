@@ -25,6 +25,7 @@
    		color: white;
 		border: 1px solid #e1e1e1;
 	}
+	
 	.modal-btn-box button:hover {
 		background-color: rgba(238, 119, 133, 1);
 	}
@@ -114,15 +115,19 @@
 		border: none;
 		border-right: 3px solid #ffff;
 	}
+	
 	td{
 		padding: 10px;
 	}
+	
 	.td-input1 {
 		width: 274px;
 	}
+	
 	.td-input2 {
 		width: 274px;
 	}
+	
 </style>
 
 <div class="container">

@@ -14,14 +14,13 @@ public class MarkcodeController implements CommonControllerInterface {
 
 	@Override
 	public String execute(Map<String, Object> data) throws Exception {
-		HttpServletRequest request = (HttpServletRequest)data.get("request");
-		
+		HttpServletRequest request = (HttpServletRequest) data.get("request");
+
 		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
 		int codeNo = Integer.parseInt(request.getParameter("codeNo"));
 		MarkService service = new MarkService();
-		
-		
-		if(service.isAlreadyMarked(memberNo, codeNo)) {
+
+		if (service.isAlreadyMarked(memberNo, codeNo)) {
 			return "responseBody:already marked";
 		}
 		service.insertMark(memberNo, codeNo);
