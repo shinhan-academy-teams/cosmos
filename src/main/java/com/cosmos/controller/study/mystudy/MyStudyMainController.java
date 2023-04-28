@@ -13,7 +13,7 @@ public class MyStudyMainController implements CommonControllerInterface {
 
 	@Override
 	public String execute(Map<String, Object> data) throws Exception {
-		HttpServletRequest request = (HttpServletRequest)data.get("request");
+		HttpServletRequest request = (HttpServletRequest) data.get("request");
 		int studyno = Integer.parseInt(request.getParameter("studyno"));
 		MyStudyService service = new MyStudyService();
 		List<QuizVO> allQuiz = service.showAllQuiz(studyno);

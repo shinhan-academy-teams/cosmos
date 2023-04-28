@@ -1,26 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-    
-<div id="footer-wrap">
-	<footer>
-		<div id="footer-content">
-			<div id="copyright">
-				<span>Copyright © 2023 <a target="_blank" href="https://github.com/shinhan-academy-teams/cosmos">CosMaker</a> Inc. All rights reserved.</span>
-			</div>
-			<div>
-				<div aria-hidden="true" class="separator"></div>
-				<span class="footer-link"><a target="_self" href="#">Privacy Policy</a></span>
-				<div aria-hidden="true" class="separator"></div>
-				<span class="footer-link"><a target="_self" href="#">Terms of Use</a></span>
-				<div aria-hidden="true" class="separator"></div>
-			</div>
-			<div id="logo-footer-div">
-				<img alt="logo-cosmos" src="${path}/images/logo-footer-cosmos.png" onclick="javascript:window.open('https://github.com/shinhan-academy-teams/cosmos')"/>
-				<img alt="logo-shinhanDS" src="${path}/images/logo-footer-shinhanDS.png" onclick="javascript:window.open('https://www.shinhands.co.kr')"/>
-				<img alt="logo-kcci" src="${path}/images/logo-footer-kcci.png" onclick="javascript:window.open('https://www.kccistc.net')"/>
-			</div>
-		</div>
-	</footer>
-</div>
 
 <style>
 	#footer-wrap {
@@ -30,7 +8,7 @@
 		transform : translateY(-100%);
 	}
 	
-	footer {
+	#footer-wrap footer {
 		position: relative;
 		margin: 0 auto;
 		display: flex;
@@ -59,7 +37,7 @@
 	}
 	
 	#footer-content a {
-		color: #6E6E73;
+		color: inherit;
 		text-decoration: none;
 	}
 	
@@ -78,10 +56,6 @@
 		padding: 0px 24px;
 	}
 	
-	.footer-link > a:hover {
-		color: #6E6E73;
-	}
-	
 	#logo-footer-div {
 		float: right;
 	}
@@ -98,3 +72,25 @@
 	}
 	
 </style>
+
+<div id="footer-wrap">
+	<footer>
+		<div id="footer-content">
+			<div id="copyright">
+				<span>Copyright © 2023 <a target="_blank" href="https://github.com/shinhan-academy-teams/cosmos">CosMaker</a> Inc. All rights reserved.</span>
+			</div>
+			<div>
+				<div aria-hidden="true" class="separator"></div>
+				<span class="footer-link"><a target="_self" href="#">Privacy Policy</a></span>
+				<div aria-hidden="true" class="separator"></div>
+				<span class="footer-link"><a target="_self" href="#">Terms of Use</a></span>
+				<div aria-hidden="true" class="separator"></div>
+			</div>
+			<div id="logo-footer-div">
+				<img alt="logo-cosmos" src="${path}/images/logo-footer-cosmos.png" onclick="javascript:window.open('https://github.com/shinhan-academy-teams/cosmos')"/>
+				<img alt="logo-shinhanDS" src="${path}/images/logo-footer-shinhanDS.png" onclick="javascript:window.open('https://www.shinhands.co.kr')"/>
+				<img alt="logo-kcci" src="${path}/images/logo-footer-kcci.png" onclick="javascript:window.open('https://www.kccistc.net')"/>
+			</div>
+		</div>
+	</footer>
+</div>

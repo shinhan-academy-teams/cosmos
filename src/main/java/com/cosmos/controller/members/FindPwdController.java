@@ -37,10 +37,6 @@ public class FindPwdController implements CommonControllerInterface {
 			FindService service = new FindService();
 			MemberVO vo = service.findById(id);// 아이디로 해당 데이터 찾기
 
-			System.out.println(vo.getMember_email());
-			System.out.println(email);
-			System.out.println(vo.getMember_name());
-			System.out.println(username);
 			if (vo != null && vo.getMember_email().equals(email) && vo.getMember_name().equals(username)){ // 아이디로 특정된 회원이 있고 이메일과 이름을 정확히 입력했다면
 				service.updateRndPwd(vo); // 해당 데이터를 업데이트하기
 				session.setAttribute("message", "temporary password sent from FindPwdController");

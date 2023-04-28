@@ -47,7 +47,7 @@ public class FindService{
 	//임시비밀번호로 업데이트
 	public MemberVO updateRndPwd(MemberVO vo) {
 		String tempwd = getRandomString(7);  //7자리 임시비밀번호 생성
-		System.out.println("임시 비밀번호 : "+tempwd);
+		// System.out.println("임시 비밀번호 : "+tempwd);
 		String email = vo.getMember_email();
 		EmailTest.naverMailSend("COSMOS: 임시 비밀번호", tempwd, email); //이메일 전송
 		
@@ -119,8 +119,8 @@ public class FindService{
 				Transport.send(mimeMessage);
 
 			} catch (Exception e) {
-				e.printStackTrace();
 				System.out.println("메일 발송 오류!!");
+				e.printStackTrace();
 			}
 
 		}

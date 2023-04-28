@@ -15,12 +15,12 @@ public class CreateGroupController implements CommonControllerInterface {
 
 	@Override
 	public String execute(Map<String, Object> data) throws Exception {
-		HttpServletRequest request = (HttpServletRequest)data.get("request");
-		String method = (String)data.get("method");
-		if(method.equals("GET")) {
+		HttpServletRequest request = (HttpServletRequest) data.get("request");
+		String method = (String) data.get("method");
+		if (method.equals("GET")) {
 			return "createStudy.jsp";
 		}
-		
+
 		// 새로운 스터디 그룹 객체 생성
 		StudyGroupVO newGroup = new StudyGroupVO();
 		StudyGroupService service = new StudyGroupService();

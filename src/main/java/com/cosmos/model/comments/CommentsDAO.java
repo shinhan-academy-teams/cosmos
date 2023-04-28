@@ -40,27 +40,26 @@ public class CommentsDAO {
 	}
 
 	// 코드에 맞는 댓글select
-	public Map<Integer, List<CmtJoinMemVO>> selectCmtByCode(int quizNo, int sgNo){
+	public Map<Integer, List<CmtJoinMemVO>> selectCmtByCode(int quizNo, int sgNo) {
 		String sql = "select comments.cmt_no, comments.code_no, members.member_name, comments.cmt_date, comments.cmt_content "
-				+ " from comments join members "
-				+ "on comments.member_no = members.member_no "
+				+ " from comments join members " + "on comments.member_no = members.member_no "
 				+ "where quiz_no=? and sg_no= ?";
-		Map<Integer,List<CmtJoinMemVO>> cmtMap = new HashMap<>();
-		
+		Map<Integer, List<CmtJoinMemVO>> cmtMap = new HashMap<>();
+
 		conn = OracleUtil.getConnection();
 		try {
 			st = conn.prepareStatement(sql);
 			st.setInt(1, quizNo);
 			st.setInt(2, sgNo);
 			rs = st.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				int code_no = rs.getInt("code_no");
 				CmtJoinMemVO obj = new CmtJoinMemVO();
 				obj.setCmt_no(rs.getInt("cmt_no"));
 				obj.setMember_name(rs.getString("member_name"));
 				obj.setCmt_date(rs.getDate("cmt_date"));
 				obj.setCmt_content(rs.getString("cmt_content"));
-				
+
 				List<CmtJoinMemVO> list = null;
 				if (cmtMap.get(code_no) == null) { // 해당 코드에 대한 댓글 없으면 list 만들어서 map에 넣음
 					list = new ArrayList<>();
@@ -75,7 +74,7 @@ public class CommentsDAO {
 		} finally {
 			OracleUtil.dbDisconnect(rs, st, conn);
 		}
-		
+
 		return cmtMap;
 	}
 

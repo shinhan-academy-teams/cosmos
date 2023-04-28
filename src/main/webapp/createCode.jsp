@@ -53,13 +53,11 @@
 </style>
 <script>
 	//코드 제출 여부에 따른 버튼 활성화
-
-
 	function isSubmit(message){
 		if(message == '작성한 코드 없음'){
 			$('#submit-other').attr('disabled', 'disabled');
 			$('#submit-other').css({'cursor':'not-allowed', 'background-color':'gray','border':'gray' ,'pointer-events':'auto' });
-		}else{
+		} else {
 			$('#submit-other').removeAttr('disabled');
 			$('#submit-other').css({'cursor':'pointer', 'background-color':'#dc3545', 'pointer-events':'auto' });
 			$('#submit-other').hover(function(){

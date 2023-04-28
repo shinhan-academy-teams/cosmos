@@ -33,8 +33,7 @@
 		justify-content: center;
 	}
 	
-	
-	img[alt="home"] {
+	#wrap > img[alt="home"] {
 		margin-right: 100px;
 		height: 550px;
 	}
@@ -45,18 +44,18 @@
 	}
 	
 	#home-content * {
-		font-family: 'GmarketSansMedium';
+		font-family: 'GmarketSansMedium', sans-serif;
 	}
 
 	#home-content > span {
 		cursor: default;
 	}
 	
-	#content1-span{
+	#content1-span {
 		font-size: 1.8em;
 	}
 	
-	.initial-span {
+	#content1-span > .initial-span {
 		color: #EE7785;
 		font-weight: 700;
 	}

@@ -5,7 +5,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js"></script>
 <script>
-	
 	let allQuiz ='${allQuiz}';
 	let data = eval("(" + allQuiz + ")");
 	

@@ -20,4 +20,4 @@ public class StudyGroupVO {
 	private String manager_name;
 	private int sg_cur; // 현재 참여 인원
 
-} // 230418 영선
+}
