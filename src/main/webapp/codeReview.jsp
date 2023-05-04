@@ -6,9 +6,10 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>COSMOS</title>
 <link rel="icon" type="image/x-icon" href="${path}/images/favicon.ico">
-<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/github-dark-dimmed.min.css">
+<link rel="stylesheet" href="${path}/css/github-dark-dimmed.min.css">
 <style>
 	html, body {
 		height: 100%;
@@ -180,7 +181,6 @@
 			<div class="code-div">
 				<div class="code-title-div">
 					<h5>${code.member_name} 님의 ${code.code_lang} 풀이</h5>
-<%-- 					<button type="button" class="btn btn-outline-light text-dark" onclick="pressMark(${code.code_no})" value="${code.code_no}">❤️ ${code.mark_count}</button>--%>
 						<button type="button" class="btn btn-outline-light text-dark" onclick="pressMark(${code.code_no})" value="${code.code_no}">
 							<img alt="mark" src="${path}/images/icon-heart-none.png"> ${code.mark_count}
 						</button>
@@ -202,7 +202,7 @@
 	
 	<%@ include file="common/footer.jsp"%>
 	
-	<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js"></script>
+	<script src="${path}/js/highlight.min.js"></script>
 	<script>hljs.highlightAll();</script>
 </body>
 

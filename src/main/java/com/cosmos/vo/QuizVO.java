@@ -30,4 +30,4 @@ public class QuizVO {
 		builder.append("\""+quiz_url+"*"+quiz_no+"\"}");
 		return builder.toString();
 	}
-} // 230421 영선
+}

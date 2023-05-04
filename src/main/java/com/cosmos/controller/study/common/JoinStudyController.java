@@ -14,7 +14,7 @@ public class JoinStudyController implements CommonControllerInterface {
 
 	@Override
 	public String execute(Map<String, Object> data) throws Exception {
-		HttpServletRequest request = (HttpServletRequest)data.get("request");
+		HttpServletRequest request = (HttpServletRequest) data.get("request");
 		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
 		int studyNo = Integer.parseInt(request.getParameter("studyNo"));
 		StudyGroupService service = new StudyGroupService();

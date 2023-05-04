@@ -18,19 +18,19 @@ public class GroupSearchController implements CommonControllerInterface {
 	@Override
 	public String execute(Map<String, Object> data) throws Exception {
 		// Get요청 처리
-		HttpServletRequest request = (HttpServletRequest)data.get("request");
+		HttpServletRequest request = (HttpServletRequest) data.get("request");
 		String searchOption = request.getParameter("searchOption");
 		String keyword = request.getParameter("search");
 		List<StudyGroupVO> studyGroup = new ArrayList<>();
 		StudyGroupService sv = new StudyGroupService();
-		
-		if(searchOption.equals("study_all")) {
+
+		if (searchOption.equals("study_all")) {
 			studyGroup = sv.searchGroupByKeyword(keyword);
 		}
-		if(searchOption.equals("study_name")) {
+		if (searchOption.equals("study_name")) {
 			studyGroup = sv.searchGroupByName(keyword);
 		}
-		if(searchOption.equals("study_manager")) {
+		if (searchOption.equals("study_manager")) {
 			studyGroup = sv.searchGroupByManager(keyword);
 		}
 		request.setAttribute("studyGroup", studyGroup);

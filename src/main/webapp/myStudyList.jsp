@@ -6,12 +6,14 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>COSMOS</title>
 <link rel="icon" type="image/x-icon" href="${path}/images/favicon.ico">
 <style>
 	html, body {
 		height: 100%;
 	}
+	
 	#wrap {
 		background-color: #FFFFFF;
 		width: 100%;
@@ -23,6 +25,7 @@
 		display: flex;
 		vertical-align: middle;
 	}
+	
 	table {
 		font-size: 18px;
     	margin-top: 48px;
@@ -34,7 +37,8 @@
 	th, td {
 		height: 45px !important;
 	}
-	.td-button{
+	
+	.td-button {
 		width: 60px;
 	} 
 	
@@ -48,7 +52,6 @@
 		color: black;
 		border-top: 1px solid black;
 		border-bottom: 1px solid black;
-		
 	}
 	
 	tr:nth-child(even) {
@@ -69,7 +72,7 @@
 		color: black;
 	}
 	
-	#tbody a{
+	#tbody a {
 		color : inherit;
 		text-decoration: none;
 	}
@@ -90,7 +93,7 @@
 		width: auto;
 	}
 	
-	.btnEscape{
+	.btnEscape {
 		border-radius: 8px;
 		font-size: 16px;
 		color: white;
@@ -102,13 +105,14 @@
 		background-color: rgb(255, 0, 0);
 	}
 	
-	.btnManage{
+	.btnManage {
 		border-radius: 8px;
 		font-size: 16px;
 		color: white;
 		background-color: #aacd6e;
 		border: 0.8px solid rgb(206, 212, 218);
 	}
+	
 	.btnManage:hover {
 		background-color: rgb(137, 178, 66);
 	}

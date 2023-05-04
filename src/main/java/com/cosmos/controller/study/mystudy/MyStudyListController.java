@@ -15,7 +15,7 @@ public class MyStudyListController implements CommonControllerInterface {
 
 	@Override
 	public String execute(Map<String, Object> data) throws Exception {
-		HttpServletRequest request = (HttpServletRequest)data.get("request");
+		HttpServletRequest request = (HttpServletRequest) data.get("request");
 		HttpSession session = request.getSession();
 		MemberVO nowUser = (MemberVO) session.getAttribute("user");
 		MyStudyService service = new MyStudyService();

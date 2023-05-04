@@ -5,104 +5,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set value="${pageContext.request.contextPath}" scope="application" var="path"/>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-
-
-<div id="nav-wrap">
-	<nav class="navbar navbar-expand-sm navbar-light">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="${path}">
-				<img alt="logo" src="${path}/images/logo-horizontal.png"/>
-			</a>
-			<div class="collapse navbar-collapse" id="mynavbar">
-				<ul class="navbar-nav me-auto">
-					<c:set var="nowUrl" value="${pageContext.request.requestURL}" scope="page"/>
-					<c:choose>
-						<c:when test = "${fn:contains(nowUrl, 'studyList') || fn:contains(nowUrl, 'studyIntro')}">
-							<li class="nav-item"><a class="nav-link" href="${path}/studygroup.do" style="font-weight: 500; color: black; border-bottom: 4px solid white;">전체 스터디</a></li>
-						</c:when>
-						<c:otherwise>
-							<li class="nav-item"><a class="nav-link" href="${path}/studygroup.do">전체 스터디</a></li>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test = "${fn:contains(nowUrl, 'myStudyList') || fn:contains(nowUrl, 'myStudyDetail') || fn:contains(nowUrl, 'codeReview')}">
-							<li class="nav-item"><a class="nav-link" href="${path}/mystudy.do" style="font-weight: 500; color: black; border-bottom: 4px solid white;">내 스터디</a></li>
-						</c:when>
-						<c:otherwise>
-							<li class="nav-item"><a class="nav-link" href="${path}/mystudy.do">내 스터디</a></li>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test = "${fn:contains(nowUrl, 'createStudy')}">
-							<li class="nav-item"><a class="nav-link" href="${path}/creategroup.do" style="font-weight: 500; color: black; border-bottom: 4px solid white;">스터디 만들기</a></li>
-						</c:when>
-						<c:otherwise>
-							<li class="nav-item"><a class="nav-link" href="${path}/creategroup.do">스터디 만들기</a></li>
-						</c:otherwise>
-					</c:choose>
-				</ul>
-				<form class="d-flex" action="${path}/search.do">
-					<div class="input-group">
-						<select name="searchOption" aria-label="searchOption">
-							<option value="study_all">전체</option>
-							<option value="study_name">스터디명</option>
-							<option value="study_manager">스터디장</option>
-						</select>
-						<input type="search" name="search" class="form-control" placeholder="Search">
-						<button id="search-btn" aria-label="search-btn" class="btn" type="submit"></button>
-					</div>
-				</form>
-				<div id="sign-div">
-					<c:if test="${empty user}">
-						<button id="sign-in" type="button" class="btn btn-outline-light text-dark" onclick="signIn()">로그인</button>
-						<button id="sign-up" type="button" class="btn btn-outline-light text-dark" onclick="signUp()">회원가입</button>
-					</c:if>
-					<c:if test="${not empty user}">
-						<div class="dropdown">
-							<button type="button" id="dropbtn">
-								<div>${user.member_name} 님, 반갑습니다!</div>
-							</button>
-							<div class="dropdown-content">
-								<button id="my-page-btn" type="button" class="btn btn-outline-light text-dark" onclick="myPage()">마이페이지</button>
-								<button id="sign-out-btn" type="button" class="btn btn-outline-light text-dark" onclick="signOut()">로그아웃</button>
-							</div>
-						</div>
-					</c:if>
-				</div>
-			</div>
-		</div>
-	</nav>
-</div>
-
-<script>
-	function signIn() {
-		location.href = '${path}/signin.do';
-	}
-
-	function signUp() {
-		location.href = '${path}/signup.do';
-	}
-
-	function myPage() {
-		location.href = '${path}/mypage.do';
-	}
-
-	function signOut() {
-		alert('정상적으로 로그아웃 되었습니다.');
-		location.href = '${path}/signout.do';
-	}
-
-</script>
+<script src="${path}/js/jquery-3.6.4.min.js"></script>
+<link href="${path}/css/bootstrap.min.css" rel="stylesheet">
+<script src="${path}/js/bootstrap.bundle.min.js"></script>
 
 <style>
+	@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+	
 	* {
 		font-family: 'Noto Sans KR', sans-serif;
 	}
@@ -114,7 +23,7 @@
 		z-index: 10000;
 	}
 
-	nav {
+	#nav-wrap > nav {
 		margin: 0 auto;
 		height: 64px;
 		width: 100%;
@@ -122,7 +31,7 @@
 		vertical-align: middle;
 	}
 
-	a[class="navbar-brand"] {
+	a.navbar-brand {
 		padding-top: 4px;
 	}
 
@@ -132,6 +41,11 @@
 
 	.nav-item {
 		padding: 8px 12px;
+	}
+	
+	.nav-item > .nav-link {
+		border-top: 4px solid transparent;
+		border-bottom: 4px solid transparent;
 	}
 
 	.nav-item > .nav-link:hover {
@@ -143,7 +57,7 @@
 		width: 368.8px !important;
 	}
 
-	select[name="searchOption"] {
+	form.d-flex select[name="searchOption"] {
 		display: block;
 		width: 96px;
 		padding: 0px 0px 1px 8px;
@@ -260,3 +174,90 @@
 	}
 
 </style>
+
+<div id="nav-wrap">
+	<nav class="navbar navbar-expand-sm navbar-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="${path}">
+				<img alt="logo" src="${path}/images/logo-horizontal.png"/>
+			</a>
+			<div class="collapse navbar-collapse" id="mynavbar">
+				<ul class="navbar-nav me-auto">
+					<c:set var="nowUrl" value="${pageContext.request.requestURL}" scope="page"/>
+					<c:choose>
+						<c:when test = "${fn:contains(nowUrl, 'studyList') || fn:contains(nowUrl, 'studyIntro')}">
+							<li class="nav-item"><a class="nav-link" href="${path}/studygroup.do" style="font-weight: 500; color: black; border-bottom: 4px solid white;">전체 스터디</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="nav-item"><a class="nav-link" href="${path}/studygroup.do">전체 스터디</a></li>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test = "${fn:contains(nowUrl, 'myStudyList') || fn:contains(nowUrl, 'myStudyDetail') || fn:contains(nowUrl, 'codeReview')}">
+							<li class="nav-item"><a class="nav-link" href="${path}/mystudy.do" style="font-weight: 500; color: black; border-bottom: 4px solid white;">내 스터디</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="nav-item"><a class="nav-link" href="${path}/mystudy.do">내 스터디</a></li>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test = "${fn:contains(nowUrl, 'createStudy')}">
+							<li class="nav-item"><a class="nav-link" href="${path}/creategroup.do" style="font-weight: 500; color: black; border-bottom: 4px solid white;">스터디 만들기</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="nav-item"><a class="nav-link" href="${path}/creategroup.do">스터디 만들기</a></li>
+						</c:otherwise>
+					</c:choose>
+				</ul>
+				<form class="d-flex" action="${path}/search.do">
+					<div class="input-group">
+						<select name="searchOption" aria-label="searchOption">
+							<option value="study_all">전체</option>
+							<option value="study_name">스터디명</option>
+							<option value="study_manager">스터디장</option>
+						</select>
+						<input type="search" name="search" class="form-control" placeholder="Search">
+						<button id="search-btn" aria-label="search-btn" class="btn" type="submit"></button>
+					</div>
+				</form>
+				<div id="sign-div">
+					<c:if test="${empty user}">
+						<button id="sign-in" type="button" class="btn btn-outline-light text-dark" onclick="signIn()">로그인</button>
+						<button id="sign-up" type="button" class="btn btn-outline-light text-dark" onclick="signUp()">회원가입</button>
+					</c:if>
+					<c:if test="${not empty user}">
+						<div class="dropdown">
+							<button type="button" id="dropbtn">
+								<div>${user.member_name} 님, 반갑습니다!</div>
+							</button>
+							<div class="dropdown-content">
+								<button id="my-page-btn" type="button" class="btn btn-outline-light text-dark" onclick="myPage()">마이페이지</button>
+								<button id="sign-out-btn" type="button" class="btn btn-outline-light text-dark" onclick="signOut()">로그아웃</button>
+							</div>
+						</div>
+					</c:if>
+				</div>
+			</div>
+		</div>
+	</nav>
+</div>
+
+<script>
+	function signIn() {
+		location.href = '${path}/signin.do';
+	}
+
+	function signUp() {
+		location.href = '${path}/signup.do';
+	}
+
+	function myPage() {
+		location.href = '${path}/mypage.do';
+	}
+
+	function signOut() {
+		alert('정상적으로 로그아웃 되었습니다.');
+		location.href = '${path}/signout.do';
+	}
+
+</script>

@@ -11,5 +11,4 @@ import lombok.Setter;
 @Setter
 public class StudyMemberVO extends MemberVO{
 	private String position;
-
 }

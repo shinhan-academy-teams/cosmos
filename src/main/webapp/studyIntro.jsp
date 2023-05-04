@@ -6,12 +6,14 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>COSMOS</title>
 <link rel="icon" type="image/x-icon" href="${path}/images/favicon.ico">
 <style>
 	html, body {
 		height: 100%;
 	}
+	
 	#wrap {
 		background-color: #FFFFFF;
 		width: 100%;
@@ -23,7 +25,8 @@
 		display: flex;
 		vertical-align: middle;
 	}
-	#rightInfo{
+	
+	#rightInfo {
 		margin-top : 56px;
 		width: 150px;
 		height: 475px;
@@ -38,17 +41,19 @@
 		float: right;
 		font-size: 18px;
 	}
-	#rightInfo > p{
+	
+	#rightInfo > p {
 		margin: auto;
 		font-size: 16px;
 	}
-	#rightInfo > hr{
+	
+	#rightInfo > hr {
 	    margin: 0.5rem 0;
    		color: solid #ddd;
 		border-top: 2px solid;
 	}
 	
-	#contents{
+	#contents {
 		margin: 0px auto auto 0px;
 		flex-direction: column;
 		width: auto;
@@ -56,16 +61,17 @@
 		padding : 10px;
 		display: inline-flex;
 		flex-direction: column;
-		
 	}
-	.header{
+	
+	.header {
 		margin: auto;
 		width: 950px;
 		padding : 10px;
 		font-size: 18px;
 		font-weight: bold;
 	}
-	.introduce{
+	
+	.introduce {
 		margin: auto;
 		width: 950px;
 		height: 362px;
@@ -75,7 +81,8 @@
 		border: 2px solid #ddd;
 		border-radius:4px;
 	}
-	.introduce-2{
+	
+	.introduce-2 {
 		margin: auto;
 		width: 950px;
 		padding : 10px;
@@ -83,7 +90,6 @@
 		box-sizing : border-box;
 		border: 2px solid #ddd;
 		border-radius:4px;
-	
 	}
 	
 	#btnStudyjoin {
@@ -96,12 +102,13 @@
 		font-size: 15px;
 		font-weight: 500;
 		border-radius: 8px;
-		
 	}
+	
 	#btnStudyjoin:hover {
 		background-color: rgba(238, 119, 133, 1);
 	}
-	.null-info{
+	
+	.null-info {
 		color : gray;
 	}
 	
@@ -141,7 +148,6 @@
 			<P>${groupInfo.sg_cur }/${groupInfo.sg_max }</P>
 			<hr>
 			<button id="btnStudyjoin">가입</button>
-			</div>
 		</div>
 	</div>
 	<%@ include file="common/footer.jsp"%>

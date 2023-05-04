@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 import com.cosmos.controller.CommonControllerInterface;
 import com.cosmos.controller.members.Encrypt;
 import com.cosmos.model.members.FindService;
-import com.cosmos.model.members.SignInService;
 import com.cosmos.model.members.UpdatePwdService;
 import com.cosmos.vo.MemberVO;
 
