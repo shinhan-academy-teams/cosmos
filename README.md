@@ -4,7 +4,7 @@
 ## ✨코스메이커 팀
 |[![](https://github.com/ehopaak.png?size=80)](https://github.com/ehopaak)|[![](https://github.com/KKangBro.png?size=80)](https://github.com/KKangBro) |[![](https://github.com/hee2425.png?size=80)](https://github.com/hee2425) | [![](https://github.com/0seony.png?size=80)](https://github.com/0seony)|
 |:---:|:---:|:---:|:---:|
-| 성진 | 채희 | 경윤 | 영선 |
+| 성진 | 경윤 | 채희 | 영선 |
 
 ## ✨ 프로젝트 소개
 그룹을 만들고 다른 사람들과 함께 알고리즘 공부를 시작해보세요!  
